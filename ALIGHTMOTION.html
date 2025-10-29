@@ -146,7 +146,16 @@ button:hover { background: #333; }
 <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
 </footer>
 </div>
-
+<script src="blockadblock.js"></script>
+<script>
+  if(typeof blockAdBlock === "undefined") {
+    alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+  } else {
+    blockAdBlock.onDetected(function() {
+      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+    });
+  }
+</script>
 <!-- 🔥 Updated Adsterra Popunder -->
 <script>
 let popTriggered = false;
