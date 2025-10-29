@@ -244,18 +244,14 @@
   <script>
     let allPresets = [];
 
-    // Fetch the presets JSON
     fetch('logo-presets.json')
       .then(res => res.json())
       .then(presets => {
         allPresets = presets;
         displayPresets(allPresets);
       })
-      .catch(err => {
-        console.error('Error loading JSON:', err);
-      });
+      .catch(err => console.error('Error loading JSON:', err));
 
-    // Display the presets
     function displayPresets(presets) {
       const list = document.getElementById('presetList');
       list.innerHTML = '';
@@ -269,7 +265,6 @@
         const section = document.createElement('div');
         section.classList.add('preset-section');
 
-        // ✅ Fixed: use src instead of data-src
         let sliderHTML = '';
         if (p.images && p.images.length > 0) {
           sliderHTML = `
@@ -277,11 +272,9 @@
               ${p.images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="Preview ${i+1}">`).join('')}
               <button class="slider-btn prev-btn" onclick="moveSlide('slider${index}', -1)">&#10094;</button>
               <button class="slider-btn next-btn" onclick="moveSlide('slider${index}', 1)">&#10095;</button>
-            </div>
-          `;
+            </div>`;
         }
 
-        // ✅ Fixed: use src for video too
         const videoHTML = p.video ? `<iframe src="${p.video}" allowfullscreen></iframe>` : '';
 
         const downloadHTML = p.download
@@ -300,7 +293,6 @@
       });
     }
 
-    // Search bar functionality
     function searchPresets() {
       const query = document.getElementById('presetSearch').value.toLowerCase();
       const filtered = allPresets.filter(p =>
@@ -310,7 +302,6 @@
       displayPresets(filtered);
     }
 
-    // Slider navigation
     function moveSlide(sliderId, direction) {
       const slider = document.getElementById(sliderId);
       const images = Array.from(slider.querySelectorAll('img'));
@@ -320,24 +311,19 @@
       images[next].classList.add('active');
     }
 
-    // ✅ Adsterra popunder safe trigger
-    document.addEventListener('click', function(e) {
-      if (e.target.tagName === 'BUTTON' && e.target.textContent.toLowerCase().includes('download')) {
-        e.preventDefault();
+    /* ✅ Replaced Popunder Adsterra Code */
+    let popTriggered = false;
 
-        const adScript = document.createElement('script');
-        adScript.src = "//pl27942229.effectivegatecpm.com/43/71/1e/43711e4155530b499c6266b36f338c69.js";
-        adScript.async = true;
-        document.body.appendChild(adScript);
+    function triggerAdsterraPop() {
+      if (popTriggered) return;
+      popTriggered = true;
+      const adScript = document.createElement('script');
+      adScript.src = '//pl27948040.effectivegatecpm.com/b1/bd/a6/b1bda618a4de9e5f000e28a517d37397.js';
+      document.body.appendChild(adScript);
+    }
 
-        const link = e.target.closest('a');
-        if (link && link.href) {
-          setTimeout(() => {
-            window.open(link.href, '_blank', 'noopener,noreferrer');
-          }, 1200);
-        }
-      }
-    });
+    document.addEventListener('click', triggerAdsterraPop);
+    document.addEventListener('touchstart', triggerAdsterraPop);
   </script>
 </body>
 </html>
