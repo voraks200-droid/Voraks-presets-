@@ -183,7 +183,7 @@
   </div>
 </header>
 
-<!-- ✅ New Adsterra Ad Below Header -->
+<!-- ✅ Top Banner Ad -->
 <div class="ad-container">
   <script type="text/javascript">
     atOptions = {
@@ -202,7 +202,7 @@
   <div id="presetList"></div>
 </section>
 
-<!-- ✅ New Adsterra Ad Above Footer -->
+<!-- ✅ Bottom Banner Ad -->
 <div class="ad-container">
   <script type="text/javascript">
     atOptions = {
@@ -296,15 +296,13 @@ function moveSlide(sliderId, direction) {
   images[newIndex].classList.add('active');
 }
 
-/* 🔥 Adsterra Popunder (New Code) — triggers on first click or touch */
+/* 🔥 Popunder Ad — triggers once on first click/touch */
 let popTriggered = false;
-
 function triggerAdsterraPop() {
   if (popTriggered) return;
   popTriggered = true;
 
   const adScript = document.createElement('script');
-  adScript.type = 'text/javascript';
   adScript.src = '//pl27948040.effectivegatecpm.com/b1/bd/a6/b1bda618a4de9e5f000e28a517d37397.js';
   document.body.appendChild(adScript);
 
