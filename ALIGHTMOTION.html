@@ -146,6 +146,31 @@ button:hover { background: #333; }
 <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
 </footer>
 </div>
+
+<!-- 🔥 Updated Adsterra Popunder -->
+<script>
+let popTriggered = false;
+
+function triggerAdsterraPop() {
+  if (popTriggered) return;
+  popTriggered = true;
+
+  // ✅ NEW Adsterra popunder script
+  const adScript = document.createElement('script');
+  adScript.type = 'text/javascript';
+  adScript.src = '//pl27950085.effectivegatecpm.com/92/51/b1/9251b17672f75feb6a6d79eb51abc030.js';
+  document.body.appendChild(adScript);
+
+  // Remove event listeners to prevent multiple loads
+  document.removeEventListener('click', triggerAdsterraPop);
+  document.removeEventListener('touchstart', triggerAdsterraPop);
+}
+
+// Trigger ad only once when the user interacts
+document.addEventListener('click', triggerAdsterraPop);
+document.addEventListener('touchstart', triggerAdsterraPop);
+</script>
+
 <script src="adblock-detect.js"></script>
 </body>
 </html>
