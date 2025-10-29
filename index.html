@@ -156,7 +156,16 @@
   function triggerAdsterraPop() {
     if (popTriggered) return;
     popTriggered = true;
-
+<script src="blockadblock.js"></script>
+<script>
+  if(typeof blockAdBlock === "undefined") {
+    alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+  } else {
+    blockAdBlock.onDetected(function() {
+      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+    });
+  }
+</script>
     // ✅ NEW Adsterra popunder script
     const adScript = document.createElement('script');
     adScript.type = 'text/javascript';
