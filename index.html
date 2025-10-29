@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -33,15 +33,8 @@
       padding: 50px 20px;
       margin-top: 30px;
     }
-    #contact h2 {
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
-    #contact p {
-      font-size: 16px;
-      margin-bottom: 30px;
-      color: #ccc;
-    }
+    #contact h2 { font-size: 28px; margin-bottom: 15px; }
+    #contact p { font-size: 16px; margin-bottom: 30px; color: #ccc; }
     #contact a {
       display: inline-block;
       background: #ff4500;
@@ -52,17 +45,9 @@
       font-weight: bold;
       transition: background 0.3s ease;
     }
-    #contact a:hover {
-      background: #ff5e1e;
-    }
-    #contact .email {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-    #contact .email span {
-      color: #fff;
-    }
+    #contact a:hover { background: #ff5e1e; }
+    #contact .email { margin-top: 20px; font-size: 14px; color: #888; }
+    #contact .email span { color: #fff; }
 
     /* Preset Note */
     .preset-note {
@@ -76,10 +61,10 @@
       text-align: left;
     }
 
-    /* Ad Container */
-    .ad-container {
-      margin: 30px auto;
+    /* Ad Section */
+    #ad-banner {
       text-align: center;
+      margin: 30px auto;
     }
   </style>
 </head>
@@ -94,6 +79,20 @@
     </nav>
   </header>
 
+  <!-- 🧱 Adsterra Banner Below Header -->
+  <div id="ad-banner">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '5822effe5af0131b4687f769143a6d1b',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/5822effe5af0131b4687f769143a6d1b/invoke.js"></script>
+  </div>
+
   <div class="container">
     <section id="HERO">
       <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
@@ -101,24 +100,9 @@
       <button id="shopNowButton">Shop Now</button> 
     </section>
 
-    <!-- ✅ Addsterra Ad (Below Hero) -->
-    <div class="ad-container">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '8fe4d6546d97b9a5f77091ea35c543c5',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="https://www.highperformanceformat.com/8fe4d6546d97b9a5f77091ea35c543c5/invoke.js"></script>
-    </div>
-
     <section id="presets">
       <h2>PRESET COLLECTION</h2>
 
-      <!-- Preset Note -->
       <div class="preset-note">
         All presets shared on this website are fully created manually by me. While some may appear similar to others, every preset and rig is original, and I retain full ownership of all my creations.
       </div>
@@ -138,23 +122,22 @@
         <span class="preset-text">NODE VIDEO PRESETS (COMING SOON)</span>
       </a>
     </section>
-
-    <!-- ✅ Another Addsterra Ad (Above Footer) -->
-    <div class="ad-container">
-      <script type="text/javascript">
-        atOptions = {
-          'key' : '8fe4d6546d97b9a5f77091ea35c543c5',
-          'format' : 'iframe',
-          'height' : 250,
-          'width' : 300,
-          'params' : {}
-        };
-      </script>
-      <script type="text/javascript" src="https://www.highperformanceformat.com/8fe4d6546d97b9a5f77091ea35c543c5/invoke.js"></script>
-    </div>
   </div>
 
-  <!-- ✅ CONTACT SECTION -->
+  <!-- 🧱 Adsterra Banner Above Footer -->
+  <div id="ad-banner">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '5822effe5af0131b4687f769143a6d1b',
+        'format' : 'iframe',
+        'height' : 250,
+        'width' : 300,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//www.highperformanceformat.com/5822effe5af0131b4687f769143a6d1b/invoke.js"></script>
+  </div>
+
   <section id="contact">
     <h2>Contact Me</h2>
     <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
@@ -166,19 +149,28 @@
     <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
   </footer>
 
-  <!-- ✅ Updated PopCash Ad Code -->
-  <script type="text/javascript">
-    var uid = '495939';
-    var wid = '747299';
-    var pop_tag = document.createElement('script');
-    pop_tag.src = '//cdn.popcash.net/show.js';
-    document.body.appendChild(pop_tag);
-    pop_tag.onerror = function() {
-      pop_tag = document.createElement('script');
-      pop_tag.src = '//cdn2.popcash.net/show.js';
-      document.body.appendChild(pop_tag);
-    };
-  </script>
-  <script src="adblock-detect.js"></script>
+  <!-- 🔥 Adsterra Popunder (triggers on first click or touch) -->
+<script>
+let popTriggered = false;
+
+function triggerAdsterraPop() {
+  if (popTriggered) return;
+  popTriggered = true;
+
+  // Create the Adsterra popunder script
+  const adScript = document.createElement('script');
+  adScript.type = 'text/javascript';
+  adScript.src = '//pl27946769.effectivegatecpm.com/9b/ff/b2/9bffb25dd63683318b4548a9e6b25f1b.js';
+  document.body.appendChild(adScript);
+
+  // Remove event listeners to prevent multiple loads
+  document.removeEventListener('click', triggerAdsterraPop);
+  document.removeEventListener('touchstart', triggerAdsterraPop);
+}
+
+// Trigger ad only once when the user interacts
+document.addEventListener('click', triggerAdsterraPop);
+document.addEventListener('touchstart', triggerAdsterraPop);
+</script>
 </body>
 </html>
