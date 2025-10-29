@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -150,27 +150,27 @@
   </footer>
 
   <!-- 🔥 Adsterra Popunder (triggers on first click or touch) -->
-<script>
-let popTriggered = false;
+  <script>
+  let popTriggered = false;
 
-function triggerAdsterraPop() {
-  if (popTriggered) return;
-  popTriggered = true;
+  function triggerAdsterraPop() {
+    if (popTriggered) return;
+    popTriggered = true;
 
-  // Create the Adsterra popunder script
-  const adScript = document.createElement('script');
-  adScript.type = 'text/javascript';
-  adScript.src = '//pl27946769.effectivegatecpm.com/9b/ff/b2/9bffb25dd63683318b4548a9e6b25f1b.js';
-  document.body.appendChild(adScript);
+    // Create the NEW Adsterra popunder script
+    const adScript = document.createElement('script');
+    adScript.type = 'text/javascript';
+    adScript.src = '//pl27948040.effectivegatecpm.com/b1/bd/a6/b1bda618a4de9e5f000e28a517d37397.js';
+    document.body.appendChild(adScript);
 
-  // Remove event listeners to prevent multiple loads
-  document.removeEventListener('click', triggerAdsterraPop);
-  document.removeEventListener('touchstart', triggerAdsterraPop);
-}
+    // Remove event listeners to prevent multiple loads
+    document.removeEventListener('click', triggerAdsterraPop);
+    document.removeEventListener('touchstart', triggerAdsterraPop);
+  }
 
-// Trigger ad only once when the user interacts
-document.addEventListener('click', triggerAdsterraPop);
-document.addEventListener('touchstart', triggerAdsterraPop);
-</script>
+  // Trigger ad only once when the user interacts
+  document.addEventListener('click', triggerAdsterraPop);
+  document.addEventListener('touchstart', triggerAdsterraPop);
+  </script>
 </body>
 </html>
