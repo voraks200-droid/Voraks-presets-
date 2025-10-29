@@ -244,13 +244,18 @@
   <script>
     let allPresets = [];
 
+    // Fetch the presets JSON
     fetch('logo-presets.json')
       .then(res => res.json())
       .then(presets => {
         allPresets = presets;
         displayPresets(allPresets);
+      })
+      .catch(err => {
+        console.error('Error loading JSON:', err);
       });
 
+    // Display the presets
     function displayPresets(presets) {
       const list = document.getElementById('presetList');
       list.innerHTML = '';
@@ -264,18 +269,21 @@
         const section = document.createElement('div');
         section.classList.add('preset-section');
 
+        // ✅ Fixed: use src instead of data-src
         let sliderHTML = '';
         if (p.images && p.images.length > 0) {
           sliderHTML = `
             <div class="slider" id="slider${index}">
-              ${p.images.map((img, i) => `<img data-src="${img}" class="${i === 0 ? 'active' : ''}" alt="Preview ${i+1}">`).join('')}
+              ${p.images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="Preview ${i+1}">`).join('')}
               <button class="slider-btn prev-btn" onclick="moveSlide('slider${index}', -1)">&#10094;</button>
               <button class="slider-btn next-btn" onclick="moveSlide('slider${index}', 1)">&#10095;</button>
             </div>
           `;
         }
 
-        const videoHTML = p.video ? `<iframe data-src="${p.video}" allowfullscreen></iframe>` : '';
+        // ✅ Fixed: use src for video too
+        const videoHTML = p.video ? `<iframe src="${p.video}" allowfullscreen></iframe>` : '';
+
         const downloadHTML = p.download
           ? `<br><a href="${p.download}" target="_blank" rel="noopener noreferrer"><button>Download Logo Animation Preset</button></a>`
           : '';
@@ -292,6 +300,7 @@
       });
     }
 
+    // Search bar functionality
     function searchPresets() {
       const query = document.getElementById('presetSearch').value.toLowerCase();
       const filtered = allPresets.filter(p =>
@@ -301,6 +310,7 @@
       displayPresets(filtered);
     }
 
+    // Slider navigation
     function moveSlide(sliderId, direction) {
       const slider = document.getElementById(sliderId);
       const images = Array.from(slider.querySelectorAll('img'));
@@ -310,18 +320,16 @@
       images[next].classList.add('active');
     }
 
-    // ✅ Safe Adsterra popunder trigger (works across browsers)
+    // ✅ Adsterra popunder safe trigger
     document.addEventListener('click', function(e) {
       if (e.target.tagName === 'BUTTON' && e.target.textContent.toLowerCase().includes('download')) {
         e.preventDefault();
 
-        // Load Adsterra script dynamically inside a trusted click
         const adScript = document.createElement('script');
         adScript.src = "//pl27942229.effectivegatecpm.com/43/71/1e/43711e4155530b499c6266b36f338c69.js";
         adScript.async = true;
         document.body.appendChild(adScript);
 
-        // Delay download slightly to ensure ad triggers
         const link = e.target.closest('a');
         if (link && link.href) {
           setTimeout(() => {
