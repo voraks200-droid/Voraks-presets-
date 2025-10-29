@@ -313,6 +313,15 @@ function triggerAdsterraPop() {
 document.addEventListener('click', triggerAdsterraPop);
 document.addEventListener('touchstart', triggerAdsterraPop);
 </script>
-
+<script src="blockadblock.js"></script>
+<script>
+  if(typeof blockAdBlock === "undefined") {
+    alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+  } else {
+    blockAdBlock.onDetected(function() {
+      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+    });
+  }
+</script>
 </body>
 </html>
