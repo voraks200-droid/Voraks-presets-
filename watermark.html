@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Watermark Presets | VORAKS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  /* --- General CSS --- */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+  header {
+    background: black;
+    color: white;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  section {
+    padding: 30px 20px;
+    text-align: center;
+    background: #fff;
+    margin: 40px auto;
+    width: 90%;
+    max-width: 800px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    position: relative;
+  }
+  footer {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }
+  .slider {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding-top: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  .slider img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    object-fit: contain;
+    background-color: #000;
+  }
+  .slider img.active { display: block; opacity: 1; }
+  .slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 20px;
+    border-radius: 4px;
+    transition: background 0.3s;
+  }
+  .slider-btn:hover { background: rgba(0,0,0,0.8); }
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+  iframe {
+    display: block;
+    margin: 20px auto 0;
+    width: 90%;
+    max-width: 600px;
+    height: 315px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover { background: gray; }
+  .preset-separator {
+    border: none;
+    border-top: 2px solid #ddd;
+    margin: 40px auto;
+    width: 60%;
+  }
+  hr {
+    border: none;
+    border-top: 5px solid #ccc;
+    margin: 40px auto;
+    width: 90%;
+    border-radius: 10px;
+  }
+  .label {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .label.free { background: #28a745; }
+  .label.paid { background: #dc3545; }
+  .search-container {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .search-container input {
+    padding: 10px 15px;
+    width: 280px;
+    border-radius: 30px;
+    border: 2px solid #fff;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  .search-container input:focus {
+    border-color: #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  }
+  .search-container button {
+    background: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+  .search-container button:hover { background: #e6b800; }
+  .no-results {
+    font-size: 16px;
+    color: #666;
+    margin-top: 20px;
+  }
+  #contact {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 30px;
+  }
+  #contact h2 { font-size: 28px; margin-bottom: 15px; }
+  #contact p { font-size: 16px; margin-bottom: 30px; color: #ccc; }
+  #contact a {
+    display: inline-block;
+    background: #ff4500;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+  #contact a:hover { background: #ff5e1e; }
+  #contact .email { margin-top: 20px; font-size: 14px; color: #888; }
+  #contact .email span { color: #fff; }
+  .ad-container {
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>VORAKS PRESETS</h1>
+  <nav>
+    <a href="index.html">HOME</a>|
+    <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
+    <a href="#">AFTER EFFECTS</a>|
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <div class="search-container">
+    <input type="text" id="presetSearch" placeholder="Search presets (e.g., Dreamlight, Signature Watermark...)" />
+    <button onclick="searchPresets()">Search</button>
+  </div>
+</header>
+
+<!-- ✅ Ad Section -->
+<div class="ad-container">
+  <script type="text/javascript">
+    atOptions = {
+      'key': '8fe4d6546d97b9a5f77091ea35c543c5',
+      'format': 'iframe',
+      'height': 250,
+      'width': 300,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="https://www.highperformanceformat.com/8fe4d6546d97b9a5f77091ea35c543c5/invoke.js"></script>
+</div>
+
+<section id="presets-container">
+  <h2>Different Types of Watermark Presets</h2>
+  <div id="presetList"></div>
+</section>
+
+<div class="ad-container">
+  <script type="text/javascript">
+    atOptions = {
+      'key': '8fe4d6546d97b9a5f77091ea35c543c5',
+      'format': 'iframe',
+      'height': 250,
+      'width': 300,
+      'params': {}
+    };
+  </script>
+  <script type="text/javascript" src="https://www.highperformanceformat.com/8fe4d6546d97b9a5f77091ea35c543c5/invoke.js"></script>
+</div>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
+  <a href="mailto:voraks200@gmail.com">📧 Email Me</a>
+  <p class="email">or email directly: <span>voraks200@gmail.com</span></p>
+</section>
+
+<hr>
+<footer>
+  <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
+</footer>
+
+<script>
+let allPresets = [];
+
+fetch('watermark.json')
+  .then(res => res.json())
+  .then(presets => {
+    allPresets = presets;
+    displayPresets(allPresets);
+  });
+
+function displayPresets(presets) {
+  const list = document.getElementById('presetList');
+  list.innerHTML = '';
+
+  if (presets.length === 0) {
+    list.innerHTML = '<p class="no-results">No presets found. Try another keyword.</p>';
+    return;
+  }
+
+  presets.forEach((p, index) => {
+    const section = document.createElement('div');
+    section.classList.add('preset-section');
+
+    let sliderHTML = '';
+    if (p.images && Array.isArray(p.images) && p.images.length > 0 && p.images.some(img => img.trim() !== '')) {
+      sliderHTML = `
+        <div class="slider" id="slider${index+1}">
+          ${p.images.filter(img => img.trim() !== '')
+            .map((img, i) => `<img data-src="${img}" class="${i===0?'active':''}" alt="Preview ${i+1}">`).join('')}
+          <button class="slider-btn prev-btn" onclick="moveSlide('slider${index+1}', -1)">&#10094;</button>
+          <button class="slider-btn next-btn" onclick="moveSlide('slider${index+1}', 1)">&#10095;</button>
+        </div>`;
+    }
+
+    let videoHTML = p.video ? `<iframe data-src="${p.video}" allow="autoplay" allowfullscreen></iframe>` : '';
+    let downloadHTML = '';
+    if (p.download && p.download.trim() !== '') {
+      downloadHTML = `
+        <br>
+        <a href="${p.download}" target="_blank">
+          <button class="download-btn">Download XML Preset</button>
+        </a>`;
+    }
+
+    section.innerHTML = `
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <span class="label ${p.type==='paid'?'paid':'free'}">
+        ${p.type==='paid'?'Paid Preset':'Free Preset'}
+      </span>
+      ${sliderHTML}
+      ${videoHTML}
+      ${downloadHTML}
+    `;
+    list.appendChild(section);
+  });
+
+  const lazyElements = document.querySelectorAll('img[data-src], iframe[data-src]');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.src = entry.target.getAttribute('data-src');
+        entry.target.removeAttribute('data-src');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '200px 0px' });
+
+  lazyElements.forEach(el => observer.observe(el));
+}
+
+function searchPresets() {
+  const query = document.getElementById('presetSearch').value.toLowerCase();
+  const filtered = allPresets.filter(p =>
+    p.title.toLowerCase().includes(query) ||
+    p.description.toLowerCase().includes(query) ||
+    p.type.toLowerCase().includes(query)
+  );
+  displayPresets(filtered);
+}
+document.getElementById('presetSearch').addEventListener('input', searchPresets);
+
+function moveSlide(sliderId, direction) {
+  const slider = document.getElementById(sliderId);
+  if (!slider) return;
+  const images = Array.from(slider.querySelectorAll('img'));
+  let currentIndex = images.findIndex(img => img.classList.contains('active'));
+  if (currentIndex !== -1) images[currentIndex].classList.remove('active');
+  let newIndex = (currentIndex + direction + images.length) % images.length;
+  images[newIndex].classList.add('active');
+}
+</script>
+
+<!-- ✅ Adsterra Popunder Handling -->
+<script>
+document.addEventListener('click', function(e) {
+  if (e.target.classList.contains('download-btn')) {
+    e.preventDefault();
+    const link = e.target.closest('a');
+    if (!link || !link.href) return;
+
+    // Step 1: Attempt to open Adsterra Popunder
+    try {
+      window.open("https://www.highperformanceformat.com/8fe4d6546d97b9a5f77091ea35c543c5/invoke.js", "_blank");
+    } catch (err) {
+      console.log("Ad blocked or failed:", err);
+    }
+
+    // Step 2: Open the real download after 2 seconds
+    setTimeout(() => {
+      window.open(link.href, "_blank");
+    }, 2000);
+  }
+});
+</script>
+
+</body>
+</html>

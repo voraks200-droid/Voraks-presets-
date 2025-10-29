@@ -1,0 +1,259 @@
+[
+  {
+    "id": "cinematic-sunlight",
+    "title": "Cinematic Sunlight Preset",
+    "description": "A warm, glowing preset that enhances natural light and adds a cinematic golden-hour tone to your videos. Perfect for outdoor scenes and emotional storytelling.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/kgpj2H1G/New-Project-16-43-E2309.png",
+      "https://i.postimg.cc/rm8tMV1z/New-Project-16-A1616-C5.png"
+    ],
+    "video": "https://drive.google.com/file/d/1i6do8tUUpGxQJ5PaLkv6RCB5CZVySQl9/preview",
+    "download": "https://drive.google.com/file/d/1ToAsbkDzw74158b1oRWsXFNJGCxlFmZu/view?usp=drivesdk"
+  },
+  {
+    "id": "bright-greenish",
+    "title": "Bright Greenish Preset",
+    "description": "A vibrant preset designed to enhance greens and create a bright, lively look — perfect for nature and outdoor visuals.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/gJNZhTLp/Screenshot-2025-10-18-14-48-05-08-e2d5b3f32b79de1d45acd1fad96fbb0f.jpg"
+    ],
+    "video": "https://drive.google.com/file/d/1kqU3L7REqw_MpyG0h_MVCBqs2HUZp6_H/preview",
+    "download": "https://drive.google.com/file/d/1TLR7xU5ZS8PB0DufEwJW2wdmUfAovBEN/view?usp=drivesdk"
+  },
+  {
+    "id": "vibrant-focus",
+    "title": "Vibrant Focus Preset",
+    "description": "This preset creates a dramatic, focused look by making the subject 'pop' with increased vibrancy and saturation, particularly on the reds. The surrounding background is slightly dimmed and blurred to draw the viewer's eye directly to the main action, giving the image a cinematic and intense feel.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/Y9xkXctj/colour-correction-1-08-CC57-E.png",
+      "https://i.postimg.cc/wvMFrLpv/colour-correction-1-585-DD7-E.png",
+      "https://i.postimg.cc/k5q7WXm7/New-Project-16-Copy-Copy-2-72-F420-F.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/11DUN6Cj026ThGQeC_fy2yHMMY3hWQUOU/view?usp=drivesdk"
+  },
+  {
+    "id": "golden-hour-glow",
+    "title": "Golden Hour Glow Preset",
+    "description": "This preset creates a rich, radiant atmosphere by maximizing the effect of golden hour light. It enhances the warmth and deep orange/yellow tones, giving the skin and highlights a beautiful sun-kissed glow. The shadows are subtly deepened for contrast, resulting in a cinematic and dreamy feel.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/RFTByCMV/New-Project-14-C4C0163.png",
+      "https://i.postimg.cc/D8Ct9Qqc/voraks-presets-xml-file-B167-C6-D.png",
+      "https://i.postimg.cc/NK9PZ3GR/voraks-presets-xml-file-CD5-C845.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1URV_JvqSon6zMUExDb6OsqzM7TwhAb8F/view?usp=drivesdk"
+  },
+  {
+    "id": "field-haze",
+    "title": "Field Haze Preset",
+    "description": "This preset applies a nostalgic, muted effect with a soft, slightly hazy green/yellow color cast to the highlights and midtones. It reduces harsh contrast and brightness, giving the image an aged and dreamy appearance that evokes a vintage film aesthetic.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/0Np1jdhQ/New-Project-14-2481354.png",
+      "https://i.postimg.cc/Dz7BQr8b/voraks-preset-2DFEC26.png",
+      "https://i.postimg.cc/hPqyPRcx/voraks-preset-6644577.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/11pvu43ItA6BlwnLNKQR9s2YH_BGjaBg3/view?usp=drivesdk"
+  },
+  {
+    "id": "vivid-pop",
+    "title": "Vivid Pop Preset",
+    "description": "This is a high-impact preset that delivers maximum vibrancy and contrast. It completely removes any dullness, deepening the blacks and amplifying the colors—especially the reds and greens—to create a sharp, electric, and instantly eye-catching image.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/Wzf18wNh/New-Project-14-1F8319C.png",
+      "https://i.postimg.cc/DfqVcgzp/voraks-presets-AEC7F2B.png",
+      "https://i.postimg.cc/hGxMq26Y/voraks-presets-CB501CD.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/10-QRchLnjz0izr1QaPU3HoZwdiQLnUZ9/view?usp=drivesdk"
+  },
+  {
+    "id": "amber-infusion",
+    "title": "Amber Infusion Preset",
+    "description": "Elevates muted tones into a striking, high-saturation look dominated by luxurious amber, gold, and bronze hues, perfect for fashion and beauty shots.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/hvbtWR1J/New-Project-14-A4F2474.png",
+      "https://i.postimg.cc/CBFcFNf8/voraks-presets-07-D1732.png",
+      "https://i.postimg.cc/wtYWrHqw/voraks-presets-97-DE0-B3.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1VlwWfXFDihIqoqprIwB3e8ZABi-7bZSQ/view?usp=drivesdk"
+  },
+  {
+    "id": "dramatic-contrast",
+    "title": "Dramatic Contrast Preset",
+    "description": "This preset delivers an intense, high-contrast look by crushing the blacks to an absolute darkness while simultaneously boosting the warm tones on the subject's skin. It creates a hard spotlight effect that dramatically separates the subject from the background, resulting in a powerful and serious atmosphere.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/XJss2pT6/New-Project-14-5496A0B.png",
+      "https://i.postimg.cc/sQ6LyJts/voraks-presets-14-AC7-DE.png",
+      "https://i.postimg.cc/hQX5GdnW/voraks-presets-8729-D55.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1IttYUqc_o_qVMjpJ201_6cbBzEa6R5oO/view?usp=drivesdk"
+  },
+  {
+    "id": "ethereal-spotlight",
+    "title": "Ethereal Spotlight Preset",
+    "description": "This preset delivers a dramatic, focused atmosphere by intensely darkening the background and deepening shadows. It simultaneously brightens the subject—especially whites—creating a subtle, glowing rim light that makes the central figure appear to be emerging from the darkness, for a powerful, heroic look.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/9DPJcjSr/997d3115-9a0f-4f1b-b064-0e9e8f933358-E163601.png",
+      "https://i.postimg.cc/LJkNmM7h/997d3115-9a0f-4f1b-b064-0e9e8f933358-E5-F019-D.png",
+      "https://i.postimg.cc/CKBDydBM/New-Project-14-C0508E9.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1Y0-3xPP5pef4O1L26o6R-qAToYack0OR/view?usp=drivesdk"
+  },
+  {
+    "id": "cinematic-deep",
+    "title": "Cinematic Deep Preset",
+    "description": "This preset transforms flat, desaturated images into a moody and cinematic scene. It deepens the shadows and blacks to create rich contrast, while the overall colour remains dark and subdued, giving the image an intense, dramatic atmosphere perfect for powerful moments.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/5Yzmkdwv/New-Project-14-4-FC8826.png",
+      "https://i.postimg.cc/9wjY68pt/voraks-XML-file-1608-C03.png",
+      "https://i.postimg.cc/4HTQDL51/voraks-XML-file-851684-E.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1tIp1YHcisr_3zkXxD9k2p8OfjPwL7UI3/view?usp=drivesdk"
+  },
+  {
+    "id": "copper-ice",
+    "title": "Copper & Ice Preset",
+    "description": "This preset delivers a strong dramatic contrast by applying a deep, dark brown/copper vignette to the background and shadows. It simultaneously ensures the subject remains bright and clear, giving them an isolated, glowing appearance. The overall effect is moody, rich, and highly cinematic.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/v1CwWgFQ/11bcfd7f-75ba-45ed-a218-738fb816292c-2664-D0-B.png",
+      "https://i.postimg.cc/LXPbsHWr/New-Project-14-3917C5A.png",
+      "https://i.postimg.cc/5HDWwYdN/voraks-presets-XML-file-6-B4780-C.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1o7vxLQUpIMeEFWS8jAIg8l6JYFr76lPd/view?usp=drivesdk"
+  },
+  {
+    "id": "spotlight-athlete",
+    "title": "Spotlight Athlete Preset",
+    "description": "A high-impact, dramatic preset that increases contrast, deepens blacks, and applies a soft vignette to the image. This effect pulls focus by intensely separating the bright subject from the darkened background, creating a powerful, professional sports aesthetic.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/1zjXJpst/New-Project-14-38141BD.png",
+      "https://i.postimg.cc/02yg2hpy/voraks-presets-1238872.png",
+      "https://i.postimg.cc/43mLDgk5/voraks-presets-BF4278B.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1Bf8l0I7oQ12yXgR5c70t8vWpD6aL_H_X/view?usp=drivesdk"
+  },
+  {
+    "id": "cool-field-film",
+    "title": "Cool Field Film Preset",
+    "description": "A vintage, desaturated aesthetic that transforms vibrant green fields into a cooler, subdued grey-brown tone, contrasting sharply with the bright white subject uniform. This preset is perfect for a nostalgic or grittier sports look.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/2S9RLYQS/New-Project-14-CC38593.png",
+      "https://i.postimg.cc/wj74PmmP/voraks-presets-FF802A1.png",
+      "https://i.postimg.cc/NFC77dpc/voraks-presets-5EBEA68.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1ChwwZFqvVXHVXZUuvt2uxGSYJJz12ZjR/view?usp=drivesdk"
+  },
+  {
+    "id": "moody-stadium-night",
+    "title": "Moody Stadium Night Preset",
+    "description": "A dramatic, high-contrast night look that darkens the background and deepens shadows, giving the image an intense, cinematic, and moody stadium atmosphere. It preserves the brightness and detail of the subject, making them 'pop' from the darkness.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/BQByW3tS/New-Project-14-8B4CD20.png",
+      "https://i.postimg.cc/HnH23Jwt/voraks-presets-AFB9B87.png",
+      "https://i.postimg.cc/vBwLH1SS/eeec1f9d-ad34-4aa2-b7ef-d80e03f0bcdd-DD905E2.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1MS9pIHhhNC5Tl01g6O8UCEgaPcfdr-Mr/view?usp=drivesdk"
+  },
+  {
+    "id": "teal-stadium-drama",
+    "title": "Teal Stadium Drama Preset",
+    "description": "A high-impact, cool-toned preset featuring deep blacks and a strong cyan/teal color shift in the shadows and midtones. This grade creates a dramatic, stylized, and modern look perfect for intense sports photography.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/P57Yq65g/New-Project-14-56096C2.png",
+      "https://i.postimg.cc/qqBzwnRk/voraks-presets-CC0608A.png",
+      "https://i.postimg.cc/rpSsLg0C/voraks-presets-FF4BB48.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1fVrcgJHQlfh2QI-VR2K89sT3yIRv4Exo/view?usp=drivesdk"
+  },
+  {
+    "id": "maroon-haze-film",
+    "title": "Maroon Haze Film Preset",
+    "description": "A warm, high-contrast preset that applies a soft, hazy glow to the highlights and pushes deep reds towards a vintage maroon film tone. This effect creates a nostalgic, cinematic look while keeping the subject's uniform bright and clean.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/pXMJKVKy/New-Project-14-07F699D.png",
+      "https://i.postimg.cc/VLFnMqY5/voraks-presets-844A3B9.png",
+      "https://i.postimg.cc/qqT66RWd/voraks-presets-E5C8ECD.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1R9tgfKpI8Z54YIEvGzvQ4cGLWnXP2wFP/view?usp=drivesdk"
+  },
+  {
+    "id": "dark-and-gold",
+    "title": "Dark and Gold Preset",
+    "description": "A sophisticated preset that creates a luxurious, moody atmosphere by crushing the blacks and applying a rich, golden tone to the highlights and midtones, making the subject stand out with a warm, editorial glow.",
+    "type": "free",
+    "images": [ 
+      "https://i.postimg.cc/hPqxYCyP/New-Project-14-F24AB26.png",
+      "https://i.postimg.cc/W3gz6VPn/voraks-presets-376CAB7.png",
+      "https://i.postimg.cc/28ckWyBG/voraks-presets-485F46B.png"
+    ],    
+    "video": "",    
+    "download":"https://drive.google.com/file/d/1XCqMhvh1Ys0XpkxI7Qr0tFK6M0o0DNUy/view?usp=drivesdk"
+  },
+  {
+    "id": "cool-stadium-drama",
+    "title": "Cool Stadium Drama Preset",
+    "description": "A high-contrast, moody preset that transforms the bright green field into a deep, cool gray/blue and darkens the shadows. It dramatically brightens the subject to make them pop from the intense, cinematic stadium atmosphere.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/7LGsPsgG/New-Project-14-F4840F8.png",
+      "https://i.postimg.cc/8zFBLFs0/voraks-presets-CA6C27E.png",
+      "https://i.postimg.cc/GpFDjvR7/voraks-presets-C851E33.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/14BWhgzM-73v9nM90ZUSKxfgBnvLeaFMP/view?usp=drivesdk"
+  },
+  {
+    "id": "cool-field-spotlight",
+    "title": "Cool Field Spotlight Preset",
+    "description": "This preset transforms the background into a desaturated, cool blue-grey tone while keeping the subject's uniform and skin clear. It applies a subtle vertical vignette to create a dramatic, focused 'spotlight' effect that makes the main figure 'pop' from the subdued environment.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/3NLBXVpr/New-Project-14-B46C48E.png",
+      "https://i.postimg.cc/kX0S07nK/dc11cc79-bb73-4080-8f30-8230cffa6e84-3D9125D.png",
+      "https://i.postimg.cc/hPWxwS4h/dc11cc79-bb73-4080-8f30-8230cffa6e84-B232F54.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/1rJfHeTVaKUDC15kL3fzeFibO1zlRkeh4/view?usp=drivesdk"
+  },
+  {
+    "id": "chromatic-glitch-pop",
+    "title": "Chromatic Glitch Pop Preset",
+    "description": "A highly stylized, intense preset that introduces an artistic chromatic aberration (color fringing) effect, giving the image a modern, slightly glitchy, or 3D-pop look. It enhances red and cyan tones and increases overall vibrancy for a dramatic, eye-catching result.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/VLmHNGVJ/New-Project-14-F7CA9FF.png",
+      "https://i.postimg.cc/K8Nf4BH6/30K-Special-HUGE-CC-Pack-Rajj-Editz-D9EA505.png",
+      "https://i.postimg.cc/76TS12Kw/voraks-presets-6230DEB.png"
+    ],
+    "video": "",
+    "download": "https://drive.google.com/file/d/14MMnsFAlkh1IWj3O-c9a_P8swpugWmXh/view?usp=drivesdk"
+  }
+]

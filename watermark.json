@@ -1,0 +1,101 @@
+[
+  {
+    "id": "normal-watermark",
+    "title": "Normal Watermark Preset",
+    "description": "A simple yet striking preset with bright, glowing white text against a pure black background. The text quickly fades in and out, creating a clean, professional, and memorable brand flash.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/52XtmYCB/voraks-presets-18A73F6.png"
+    ],
+    "video": "https://drive.google.com/file/d/1CZ2Wp-GIhbEMSe4HrVQqfwiBY-6F0eCS/preview",
+    "download": "https://drive.google.com/file/d/1fkiJwRKGUcfG7at6ld3MKZsY_48K-Dyv/view?usp=drivesdk"
+  },
+  {
+    "id": "dual-layer-watermark",
+    "title": "Dual Layer Watermark Preset",
+    "description": "A watermark animation featuring white text on black. The key element is the bold cursor, which appears and then jumps to the left of the text, giving a dynamic, responsive feel to the reveal before the logo disappears.",
+    "type": "free",
+    "images": [
+      ""
+    ],
+    "video": "https://drive.google.com/file/d/1SS5ooyg_VpS0X8N_38zmcZn8_ecK9wib/preview",
+    "download": "https://drive.google.com/file/d/17D4WXfXS-jjCs-y6c6kaLIuY72RMvppK/view?usp=drivesdk"
+  },
+  {
+    "id": "glitch-watermark",
+    "title": "Glitch Watermark Preset",
+    "description": "A high-energy, futuristic transition preset. It features a bright white cursor that types the first text, which then undergoes a glitch-style digital breakdown and is replaced by a second text (AM) before the scene quickly clears to a black screen with only the blinking cursor.",
+    "type": "free",
+    "images": [
+      ""
+    ],
+    "video": "https://drive.google.com/file/d/1I_xnsRJMEyO8kbCC2goCaIHxhKhWwxaT/preview",
+    "download": "https://drive.google.com/file/d/1YJ0ZPiAF6TqoUDPtfAFmPLcvCHTvlE6Q/view?usp=drivesdk"
+  },
+  {
+    "id": "made-by-watermark",
+    "title": "Made By Watermark Preset",
+    "description": "A modern, high-contrast watermark where the name 'VORAKS' is typed. A second, smaller line of text ('MADE BY') is then layered above it as the cursor shifts. The full credit text then glitches and dissolves, leaving a clean black screen.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/kXtyLNDZ/voraks-presets-03F32D8.png"
+    ],
+    "video": "https://drive.google.com/file/d/1JJgKjlIG9mNqdk86S-jRPmQnHZSovbmf/preview",
+    "download": "https://drive.google.com/file/d/1LzGXr1EH3D3u0jyll6HXVNGqxWZdUp8b/view?usp=drivesdk"
+  },
+  {
+    "id": "logo-glitch-watermark",
+    "title": "Logo Glitch Watermark Preset",
+    "description": "A sharp, high-contrast intro where the word 'VORAKS' is typed out by a bright cursor, then immediately explodes with a digital glitch effect. The text is abruptly replaced by a vivid red spider icon before the entire animation fades away.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/sDQR8LYQ/voraks-presets-6FE9DCA.png"
+    ],
+    "video": "https://drive.google.com/file/d/1jdoPOqyCHiliXrojtnQE_e66oq2xspMo/preview",
+    "download": "https://drive.google.com/file/d/1j1kKkUL9zINlRkhzoYDmVyidoXKIkyYC/view?usp=drivesdk"
+  },
+  {
+    "id": "crimson-slash-watermark",
+    "title": "Crimson Slash Watermark Preset",
+    "description": "An attention-grabbing, minimalist watermark that uses a bold red vertical line (or slash) to quickly wipe and reveal the 'VORAKS' name. Its sharp, energetic movement makes it ideal for a quick brand stamp.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/tgdJSG7N/Voraks-presets-90D4823.png"
+    ],
+    "video": "https://drive.google.com/file/d/102SfMetLoz32J2Mc4LsjWoDrVoVXHGuK/preview",
+    "download": "https://drive.google.com/file/d/178_lhieVjS2z3Pat47zqREUf_2HGdIzk/view?usp=drivesdk"
+  },
+  {
+    "id": "aero-glow-watermark",
+    "title": "Aero Glow Watermark Preset",
+    "description": "An enchanting, minimalist reveal where a luminous, stylized airplane crosses the screen, leaving the 'VORAKS' name in its glowing wake. The effect has a soft, dreamlike quality with a subtle purple-pink palette.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/7LNsxbfm/voraks-watermark-preset-E828FC9.png"
+    ],
+    "video": "https://drive.google.com/file/d/18NI5AmOrZXMRz6eFYnN4GjPRJSd4K5Fk/preview",
+    "download": "https://drive.google.com/file/d/1oXUiOReqL4nx7ef828rHneTxy17ZITpD/view?usp=drivesdk"
+  },
+  {
+    "id": "crosshair-reveal-watermark",
+    "title": "Crosshair Reveal Watermark Preset",
+    "description": "A clean, high-impact animated watermark that uses white geometric lines and brackets to frame and reveal the 'MADE BY VORAKS' text. The minimalist, high-tech aesthetic gives the feel of a heads-up display (HUD) or a cinematic target lock—perfect for gaming, tech, or production-focused content.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/CKDN155X/Cross-PR-WATERMARK-B038532.png"
+    ],
+    "video": "https://drive.google.com/file/d/1wnHkRvHznMQyIDtDMF-BNmsSZ3oJsote/preview",
+    "download": "https://drive.google.com/file/d/1T2m-iFx-CMtRjrrqcvwANFgvQwmBq1OD/view?usp=drivesdk"
+  },
+  {
+    "id": "neon-swipe-watermark",
+    "title": "Neon Swipe Watermark Preset",
+    "description": "A bold, modern animated watermark that uses a vibrant, glowing purple vertical bar to wipe across the screen, revealing the 'MADE BY VORAKS' text. The clean lines and bright neon color give it a sleek, energetic, and high-tech feel—perfect for dark-themed edits.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/FK441fG1/voraks-watermark-preset-4A6F2EF.png"
+    ],
+    "video": "https://drive.google.com/file/d/1nO81aXUji55xLcMKcoKcrc7SLrJNMKPu/preview",
+    "download": "https://drive.google.com/file/d/1m9qhAsEUCGSgIKvemqbYNuP_WXILpCS0/view?usp=drivesdk"
+  }
+]
