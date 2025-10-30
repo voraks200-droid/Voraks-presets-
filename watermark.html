@@ -4,7 +4,7 @@
   <meta charset="utf-8">  
   <meta name="viewport" content="width=device-width, initial-scale=1">  
   <title>Watermark Presets | VORAKS</title>  
-  
+
   <style>  
   body {  
     font-family: Arial, sans-serif;  
@@ -13,7 +13,9 @@
     padding: 0;  
     text-align: center;  
   }  
-  
+  html {
+    scroll-behavior: smooth; /* ✅ Smooth scroll added */
+  }
   header {  
     background: black;  
     color: white;  
@@ -22,13 +24,11 @@
     flex-direction: column;  
     align-items: center;  
   }  
-  
   nav a {  
     color: white;  
     margin: 0 10px;  
     text-decoration: none;  
   }  
-  
   section {  
     padding: 30px 20px;  
     background: #fff;  
@@ -38,14 +38,12 @@
     border-radius: 12px;  
     box-shadow: 0 0 10px rgba(0,0,0,0.15);  
   }  
-  
   footer {  
     background: black;  
     color: white;  
     text-align: center;  
     padding: 10px;  
   }  
-  
   .slider {  
     position: relative;  
     width: 90%;  
@@ -56,7 +54,6 @@
     border-radius: 10px;  
     box-shadow: 0 0 10px rgba(0,0,0,0.2);  
   }  
-  
   .slider img {  
     position: absolute;  
     top: 0;  
@@ -69,9 +66,7 @@
     object-fit: contain;  
     background-color: #000;  
   }  
-  
   .slider img.active { display: block; opacity: 1; }  
-  
   .slider-btn {  
     position: absolute;  
     top: 50%;  
@@ -84,11 +79,9 @@
     font-size: 20px;  
     border-radius: 4px;  
   }  
-  
   .slider-btn:hover { background: rgba(0,0,0,0.8); }  
   .prev-btn { left: 10px; }  
   .next-btn { right: 10px; }  
-  
   iframe {  
     display: block;  
     margin: 20px auto 0;  
@@ -97,7 +90,6 @@
     height: 315px;  
     border-radius: 10px;  
   }  
-  
   button {  
     background: black;  
     color: white;  
@@ -107,9 +99,7 @@
     border-radius: 5px;  
     cursor: pointer;  
   }  
-  
   button:hover { background: gray; }  
-  
   .label {  
     display: inline-block;  
     padding: 6px 12px;  
@@ -119,10 +109,8 @@
     font-size: 14px;  
     margin-top: 8px;  
   }  
-  
   .label.free { background: #28a745; }  
   .label.paid { background: #dc3545; }  
-  
   .search-container {  
     margin-top: 25px;  
     display: flex;  
@@ -131,7 +119,6 @@
     gap: 10px;  
     flex-wrap: wrap;  
   }  
-  
   .search-container input {  
     padding: 10px 15px;  
     width: 280px;  
@@ -140,12 +127,10 @@
     outline: none;  
     font-size: 16px;  
   }  
-  
   .search-container input:focus {  
     border-color: #ffcc00;  
     box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);  
   }  
-  
   .search-container button {  
     background: #ffcc00;  
     color: black;  
@@ -155,22 +140,18 @@
     cursor: pointer;  
     font-weight: bold;  
   }  
-  
   .search-container button:hover { background: #e6b800; }  
-  
   .no-results {  
     font-size: 16px;  
     color: #666;  
     margin-top: 20px;  
   }  
-  
   #contact {  
     background: #000;  
     color: #fff;  
     padding: 50px 20px;  
     margin-top: 30px;  
   }  
-  
   #contact a {  
     display: inline-block;  
     background: #ff4500;  
@@ -180,18 +161,16 @@
     text-decoration: none;  
     font-weight: bold;  
   }  
-  
   #contact a:hover { background: #ff5e1e; }  
-  
   .ad-container {  
     margin: 30px auto;  
     text-align: center;  
   }  
   </style>  
 </head>  
-  
+
 <body>  
-  
+
 <header>  
   <h1>VORAKS PRESETS</h1>  
   <nav>  
@@ -201,11 +180,11 @@
     <a href="#contact">CONTACT</a>  
   </nav>  
   <div class="search-container">  
-    <input type="text" id="presetSearch" placeholder="Search presets (e.g., Dreamlight, Signature...)" />  
+    <input type="text" id="presetSearch" placeholder="Search watermark presets..." />  
     <button onclick="searchPresets()">Search</button>  
   </div>  
 </header>  
-  
+
 <!-- ✅ Banner Ad Below Header -->  
 <div class="ad-container">  
   <script type="text/javascript">  
@@ -219,12 +198,12 @@
   </script>  
   <script type="text/javascript" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"></script>  
 </div>  
-  
+
 <section id="presets-container">  
   <h2>Different Types of Watermark Presets</h2>  
   <div id="presetList"></div>  
 </section>  
-  
+
 <!-- ✅ Banner Ad Above Footer -->  
 <div class="ad-container">  
   <script type="text/javascript">  
@@ -238,42 +217,43 @@
   </script>  
   <script type="text/javascript" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"></script>  
 </div>  
-  
+
 <section id="contact">  
   <h2>Contact Me</h2>  
   <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>  
   <a href="mailto:voraks200@gmail.com">📧 Email Me</a>  
   <p class="email">or email directly: <span>voraks200@gmail.com</span></p>  
 </section>  
-  
+
 <hr>  
 <footer>  
   <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>  
 </footer>  
-  
+
 <script>  
 let allPresets = [];  
-  
+
 fetch('watermark.json')  
   .then(res => res.json())  
   .then(presets => {  
     allPresets = presets;  
     displayPresets(allPresets);  
   });  
-  
+
 function displayPresets(presets) {  
   const list = document.getElementById('presetList');  
   list.innerHTML = '';  
-  
+
   if (presets.length === 0) {  
     list.innerHTML = '<p class="no-results">No presets found. Try another keyword.</p>';  
     return;  
   }  
-  
+
   presets.forEach((p, index) => {  
     const section = document.createElement('div');  
     section.classList.add('preset-section');  
-  
+    section.id = p.id; // ✅ Each preset gets ID from JSON
+
     let sliderHTML = '';  
     if (p.images && Array.isArray(p.images) && p.images.length > 0 && p.images.some(img => img.trim() !== '')) {  
       sliderHTML = `  
@@ -284,15 +264,14 @@ function displayPresets(presets) {
           <button class="slider-btn next-btn" onclick="moveSlide('slider${index+1}', 1)">&#10095;</button>  
         </div>`;  
     }  
-  
+
     let videoHTML = p.video ? `<iframe src="${p.video}" allow="autoplay" allowfullscreen></iframe>` : '';  
-  
     let downloadHTML = p.download && p.download.trim() !== '' ? `  
       <br>  
       <a href="${p.download}" target="_blank">  
         <button class="download-btn">Download XML Preset</button>  
       </a>` : '';  
-  
+
     section.innerHTML = `  
       <h3>${p.title}</h3>  
       <p>${p.description}</p>  
@@ -303,35 +282,51 @@ function displayPresets(presets) {
     `;  
     list.appendChild(section);  
   });  
+
+  // ✅ Smooth scroll to preset if linked
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  }
 }  
-  
+
 function moveSlide(sliderId, direction) {  
   const slider = document.getElementById(sliderId);  
   if (!slider) return;  
   const images = Array.from(slider.querySelectorAll('img'));  
   let currentIndex = images.findIndex(img => img.classList.contains('active'));  
-  images[currentIndex].classList.remove('active');  
+  if (currentIndex !== -1) images[currentIndex].classList.remove('active');  
   let newIndex = (currentIndex + direction + images.length) % images.length;  
   images[newIndex].classList.add('active');  
 }  
-  
-/* ✅ New Popunder Adsterra Code */  
-document.addEventListener('click', function() {  
-  const script = document.createElement('script');  
-  script.type = 'text/javascript';  
-  script.src = '//pl27950085.effectivegatecpm.com/92/51/b1/9251b17672f75feb6a6d79eb51abc030.js';  
-  document.body.appendChild(script);  
-}, { once: true });  
+
+/* 🔥 Updated Popunder Ad — triggers once */
+let popTriggered = false;
+function triggerAdsterraPop() {
+  if (popTriggered) return;
+  popTriggered = true;
+
+  const adScript = document.createElement('script');
+  adScript.src = "//pl27950085.effectivegatecpm.com/92/51/b1/9251b17672f75feb6a6d79eb51abc030.js";
+  document.body.appendChild(adScript);
+
+  document.removeEventListener('click', triggerAdsterraPop);
+  document.removeEventListener('touchstart', triggerAdsterraPop);
+}
+document.addEventListener('click', triggerAdsterraPop);
+document.addEventListener('touchstart', triggerAdsterraPop);
 </script>  
-  <script src="blockadblock.js"></script>
+
+<script src="blockadblock.js"></script>
 <script>
-  if(typeof blockAdBlock === "undefined") {
+if(typeof blockAdBlock === "undefined") {
+  alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+} else {
+  blockAdBlock.onDetected(function() {
     alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-  } else {
-    blockAdBlock.onDetected(function() {
-      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    });
-  }
+  });
+}
 </script>
+
 </body>  
 </html>
