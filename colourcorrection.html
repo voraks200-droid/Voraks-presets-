@@ -13,6 +13,9 @@
     padding: 0;
     text-align: center;
   }
+  html {
+    scroll-behavior: smooth; /* ✅ Smooth scroll */
+  }
   header {
     background: black;
     color: white;
@@ -250,6 +253,7 @@ function displayPresets(presets) {
   presets.forEach((p, index) => {
     const section = document.createElement('div');
     section.classList.add('preset-section');
+    section.id = p.id; // ✅ Each preset gets its ID from JSON
 
     let sliderHTML = '';
     if (p.images && Array.isArray(p.images) && p.images.length > 0 && p.images.some(img => img.trim() !== '')) {
@@ -284,6 +288,14 @@ function displayPresets(presets) {
     `;
     list.appendChild(section);
   });
+
+  // ✅ Scroll to the correct preset after loading
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }
 
 function moveSlide(sliderId, direction) {
