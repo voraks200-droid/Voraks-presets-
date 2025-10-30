@@ -13,6 +13,9 @@
       padding: 0;
       text-align: center;
     }
+    html {
+      scroll-behavior: smooth; /* ✅ Smooth scroll */
+    }
     header {
       background: black;
       color: white;
@@ -41,17 +44,12 @@
       text-align: center;
       padding: 10px;
     }
-    .ad-container {
-      margin: 20px auto;
-      text-align: center;
-    }
     .slider {
       position: relative;
       width: 90%;
       max-width: 600px;
       margin: 20px auto;
       padding-top: 56.25%;
-      height: 0;
       overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -68,10 +66,7 @@
       object-fit: contain;
       background-color: #000;
     }
-    .slider img.active {
-      display: block;
-      opacity: 1;
-    }
+    .slider img.active { display: block; opacity: 1; }
     .slider-btn {
       position: absolute;
       top: 50%;
@@ -81,7 +76,6 @@
       border: none;
       padding: 10px 15px;
       cursor: pointer;
-      z-index: 10;
       font-size: 20px;
       border-radius: 4px;
     }
@@ -105,15 +99,9 @@
       margin-top: 15px;
       border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s ease;
+      transition: 0.3s;
     }
     button:hover { background: gray; }
-    .preset-separator {
-      border: none;
-      border-top: 2px solid #ddd;
-      margin: 40px auto;
-      width: 60%;
-    }
     .label {
       display: inline-block;
       padding: 6px 12px;
@@ -165,7 +153,6 @@
     #contact {
       background: #000;
       color: #fff;
-      text-align: center;
       padding: 50px 20px;
       margin-top: 30px;
     }
@@ -179,6 +166,10 @@
       font-weight: bold;
     }
     #contact a:hover { background: #ff5e1e; }
+    .ad-container {
+      margin: 30px auto;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -192,12 +183,12 @@
       <a href="#contact">CONTACT</a>
     </nav>
     <div class="search-container">
-      <input type="text" id="presetSearch" placeholder="Search presets..." />
+      <input type="text" id="presetSearch" placeholder="Search logo presets..." />
       <button onclick="searchPresets()">Search</button>
     </div>
   </header>
 
-  <!-- 🧱 Banner Ad Below Header -->
+  <!-- ✅ Banner Ad Below Header -->
   <div class="ad-container">
     <script type="text/javascript">
       atOptions = {
@@ -216,7 +207,7 @@
     <div id="presetList"></div>
   </section>
 
-  <!-- 🧱 Banner Ad Above Footer -->
+  <!-- ✅ Banner Ad Above Footer -->
   <div class="ad-container">
     <script type="text/javascript">
       atOptions = {
@@ -238,7 +229,7 @@
   </section>
 
   <footer>
-    <p>&copy; 2025 VORAKS Presets</p>
+    <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
   </footer>
 
   <script>
@@ -264,22 +255,22 @@
       presets.forEach((p, index) => {
         const section = document.createElement('div');
         section.classList.add('preset-section');
+        section.id = p.id; // ✅ Preset ID for smooth scroll
 
         let sliderHTML = '';
-        if (p.images && p.images.length > 0) {
+        if (p.images && Array.isArray(p.images) && p.images.length > 0 && p.images.some(img => img.trim() !== '')) {
           sliderHTML = `
-            <div class="slider" id="slider${index}">
-              ${p.images.map((img, i) => `<img src="${img}" class="${i === 0 ? 'active' : ''}" alt="Preview ${i+1}">`).join('')}
-              <button class="slider-btn prev-btn" onclick="moveSlide('slider${index}', -1)">&#10094;</button>
-              <button class="slider-btn next-btn" onclick="moveSlide('slider${index}', 1)">&#10095;</button>
+            <div class="slider" id="slider${index+1}">
+              ${p.images.filter(img => img.trim() !== '')
+                .map((img, i) => `<img src="${img}" class="${i===0?'active':''}" alt="Preview ${i+1}">`).join('')}
+              <button class="slider-btn prev-btn" onclick="moveSlide('slider${index+1}', -1)">&#10094;</button>
+              <button class="slider-btn next-btn" onclick="moveSlide('slider${index+1}', 1)">&#10095;</button>
             </div>`;
         }
 
-        const videoHTML = p.video ? `<iframe src="${p.video}" allowfullscreen></iframe>` : '';
-
-        const downloadHTML = p.download
-          ? `<br><a href="${p.download}" target="_blank" rel="noopener noreferrer"><button>Download Logo Animation Preset</button></a>`
-          : '';
+        const videoHTML = p.video ? `<iframe src="${p.video}" allow="autoplay" allowfullscreen></iframe>` : '';
+        const downloadHTML = p.download && p.download.trim() !== ''
+          ? `<br><a href="${p.download}" target="_blank"><button>Download Logo Preset</button></a>` : '';
 
         section.innerHTML = `
           <h3>${p.title}</h3>
@@ -291,47 +282,48 @@
         `;
         list.appendChild(section);
       });
-    }
 
-    function searchPresets() {
-      const query = document.getElementById('presetSearch').value.toLowerCase();
-      const filtered = allPresets.filter(p =>
-        p.title.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query)
-      );
-      displayPresets(filtered);
+      // ✅ Scroll to preset from URL hash
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
     }
 
     function moveSlide(sliderId, direction) {
       const slider = document.getElementById(sliderId);
+      if (!slider) return;
       const images = Array.from(slider.querySelectorAll('img'));
       let current = images.findIndex(img => img.classList.contains('active'));
-      images[current].classList.remove('active');
+      if (current !== -1) images[current].classList.remove('active');
       let next = (current + direction + images.length) % images.length;
       images[next].classList.add('active');
     }
 
-    /* ✅ Updated Popunder Code */
+    // ✅ Improved Popunder behavior
     let popTriggered = false;
-    function triggerPopunder() {
+    function triggerAdsterraPop() {
       if (popTriggered) return;
       popTriggered = true;
-      const popScript = document.createElement('script');
-      popScript.src = '//pl27950085.effectivegatecpm.com/92/51/b1/9251b17672f75feb6a6d79eb51abc030.js';
-      document.body.appendChild(popScript);
+      const adScript = document.createElement('script');
+      adScript.src = "//pl27950085.effectivegatecpm.com/92/51/b1/9251b17672f75feb6a6d79eb51abc030.js";
+      document.body.appendChild(adScript);
+      document.removeEventListener('click', triggerAdsterraPop);
+      document.removeEventListener('touchstart', triggerAdsterraPop);
     }
-    document.addEventListener('click', triggerPopunder);
-    document.addEventListener('touchstart', triggerPopunder);
+    document.addEventListener('click', triggerAdsterraPop);
+    document.addEventListener('touchstart', triggerAdsterraPop);
   </script>
+
   <script src="blockadblock.js"></script>
-<script>
-  if(typeof blockAdBlock === "undefined") {
-    alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-  } else {
-    blockAdBlock.onDetected(function() {
+  <script>
+    if(typeof blockAdBlock === "undefined") {
       alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    });
-  }
-</script>
+    } else {
+      blockAdBlock.onDetected(function() {
+        alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+      });
+    }
+  </script>
 </body>
 </html>
