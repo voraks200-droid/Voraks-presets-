@@ -66,9 +66,27 @@
       text-align: center;
       margin: 30px auto;
     }
+
+    /* 🔥 Loader overlay (new) */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      z-index: 9999;
+    }
   </style>
 </head>
 <body>
+
+  <!-- 🔥 Loader overlay (new) -->
+  <div id="loader">Loading VORAKS Presets...</div>
+
   <header>
     <h1>VORAKS PRESETS</h1>
     <nav>
@@ -148,6 +166,7 @@
   <footer>
     <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
   </footer>
+
 <script src="blockadblock.js"></script>
 <script>
   if(typeof blockAdBlock === "undefined") {
@@ -158,28 +177,36 @@
     });
   }
 </script>
-  <!-- 🔥 Updated Adsterra Popunder -->
-  <script>
+
+<!-- 🔥 Smart Popunder + Loader logic -->
+<script>
   let popTriggered = false;
 
+  // Remove loader after 1.5s (gives ad time to initialize)
+  window.addEventListener("load", function() {
+    setTimeout(() => {
+      const loader = document.getElementById("loader");
+      if (loader) loader.style.display = "none";
+    }, 1500);
+  });
+
+  // Trigger Adsterra popunder only once on first interaction
   function triggerAdsterraPop() {
     if (popTriggered) return;
     popTriggered = true;
 
-    // ✅ NEW Adsterra popunder script
     const adScript = document.createElement('script');
     adScript.type = 'text/javascript';
     adScript.src = '//pl27950085.effectivegatecpm.com/92/51/b1/9251b17672f75feb6a6d79eb51abc030.js';
     document.body.appendChild(adScript);
 
-    // Remove event listeners to prevent multiple loads
     document.removeEventListener('click', triggerAdsterraPop);
     document.removeEventListener('touchstart', triggerAdsterraPop);
   }
 
-  // Trigger ad only once when the user interacts
   document.addEventListener('click', triggerAdsterraPop);
   document.addEventListener('touchstart', triggerAdsterraPop);
-  </script>
+</script>
+
 </body>
 </html>
