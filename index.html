@@ -62,8 +62,13 @@
     }
 
     /* Ad Section */
-    #ad-banner {
+    .ad-container {
       text-align: center;
+      margin: 30px auto;
+    }
+    .ad-loading {
+      text-align: center;
+      color: #555;
       margin: 30px auto;
     }
 
@@ -97,18 +102,11 @@
     </nav>
   </header>
 
-  <!-- 🧱 Adsterra Banner Below Header -->
-  <div id="ad-banner">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '71a83b556f1714b92792f0163c6421ea',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"></script>
+  <!-- 🧱 Adsterra Banner Below Header (Safe Loader) -->
+  <div class="ad-loading" id="ad-loading-top">Loading ad, please wait...</div>
+  <div class="ad-container" id="ad-banner-top" style="display:none;">
+    <iframe id="ad-iframe-top" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"
+      width="300" height="250" style="border:none;" loading="lazy"></iframe>
   </div>
 
   <div class="container">
@@ -142,18 +140,11 @@
     </section>
   </div>
 
-  <!-- 🧱 Adsterra Banner Above Footer -->
-  <div id="ad-banner">
-    <script type="text/javascript">
-      atOptions = {
-        'key' : '71a83b556f1714b92792f0163c6421ea',
-        'format' : 'iframe',
-        'height' : 250,
-        'width' : 300,
-        'params' : {}
-      };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"></script>
+  <!-- 🧱 Adsterra Banner Above Footer (Safe Loader) -->
+  <div class="ad-loading" id="ad-loading-bottom">Loading ad, please wait...</div>
+  <div class="ad-container" id="ad-banner-bottom" style="display:none;">
+    <iframe id="ad-iframe-bottom" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"
+      width="300" height="250" style="border:none;" loading="lazy"></iframe>
   </div>
 
   <section id="contact">
@@ -189,6 +180,20 @@
       if (loader) loader.style.display = "none";
     }, 1500);
   });
+
+  // Show ad only after iframe fully loads
+  function setupAdLoader(iframeId, loadingId, bannerId) {
+    const adIframe = document.getElementById(iframeId);
+    const adLoading = document.getElementById(loadingId);
+    const adBanner = document.getElementById(bannerId);
+    adIframe.addEventListener('load', () => {
+      adLoading.style.display = 'none';
+      adBanner.style.display = 'block';
+    });
+  }
+
+  setupAdLoader('ad-iframe-top', 'ad-loading-top', 'ad-banner-top');
+  setupAdLoader('ad-iframe-bottom', 'ad-loading-bottom', 'ad-banner-bottom');
 
   // Trigger Adsterra popunder only once on first interaction
   function triggerAdsterraPop() {
