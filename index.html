@@ -66,13 +66,8 @@
       text-align: center;
       margin: 30px auto;
     }
-    .ad-loading {
-      text-align: center;
-      color: #555;
-      margin: 30px auto;
-    }
 
-    /* 🔥 Loader overlay (new) */
+    /* Loader overlay */
     #loader {
       position: fixed;
       top: 0; left: 0;
@@ -89,7 +84,6 @@
 </head>
 <body>
 
-  <!-- 🔥 Loader overlay (new) -->
   <div id="loader">Loading VORAKS Presets...</div>
 
   <header>
@@ -102,10 +96,9 @@
     </nav>
   </header>
 
-  <!-- 🧱 Adsterra Banner Below Header (Safe Loader) -->
-  <div class="ad-loading" id="ad-loading-top">Loading ad, please wait...</div>
-  <div class="ad-container" id="ad-banner-top" style="display:none;">
-    <iframe id="ad-iframe-top" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"
+  <!-- 🧱 Adsterra Banner Below Header (Normal) -->
+  <div class="ad-container">
+    <iframe src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"
       width="300" height="250" style="border:none;" loading="lazy"></iframe>
   </div>
 
@@ -140,10 +133,9 @@
     </section>
   </div>
 
-  <!-- 🧱 Adsterra Banner Above Footer (Safe Loader) -->
-  <div class="ad-loading" id="ad-loading-bottom">Loading ad, please wait...</div>
-  <div class="ad-container" id="ad-banner-bottom" style="display:none;">
-    <iframe id="ad-iframe-bottom" src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"
+  <!-- 🧱 Adsterra Banner Above Footer (Normal) -->
+  <div class="ad-container">
+    <iframe src="//www.highperformanceformat.com/71a83b556f1714b92792f0163c6421ea/invoke.js"
       width="300" height="250" style="border:none;" loading="lazy"></iframe>
   </div>
 
@@ -167,13 +159,8 @@
       alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
     });
   }
-</script>
 
-<!-- 🔥 Smart Popunder + Loader logic -->
-<script>
-  let popTriggered = false;
-
-  // Remove loader after 1.5s (gives ad time to initialize)
+  // Loader fade-out
   window.addEventListener("load", function() {
     setTimeout(() => {
       const loader = document.getElementById("loader");
@@ -181,21 +168,8 @@
     }, 1500);
   });
 
-  // Show ad only after iframe fully loads
-  function setupAdLoader(iframeId, loadingId, bannerId) {
-    const adIframe = document.getElementById(iframeId);
-    const adLoading = document.getElementById(loadingId);
-    const adBanner = document.getElementById(bannerId);
-    adIframe.addEventListener('load', () => {
-      adLoading.style.display = 'none';
-      adBanner.style.display = 'block';
-    });
-  }
-
-  setupAdLoader('ad-iframe-top', 'ad-loading-top', 'ad-banner-top');
-  setupAdLoader('ad-iframe-bottom', 'ad-loading-bottom', 'ad-banner-bottom');
-
-  // Trigger Adsterra popunder only once on first interaction
+  // Popunder (unchanged)
+  let popTriggered = false;
   function triggerAdsterraPop() {
     if (popTriggered) return;
     popTriggered = true;
