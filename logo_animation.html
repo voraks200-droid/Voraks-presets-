@@ -6,16 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
+    /* === General Styling === */
     body {
       font-family: Arial, sans-serif;
       background-color: #f5f5f5;
-      margin: 0; pl
-      padding: 0;
+      margin: 0;
+      padding: 0; /* Corrected typo: removed 'pl' */
       text-align: center;
     }
     html {
-      scroll-behavior: smooth; /* ✅ Smooth scroll */
+      scroll-behavior: smooth;
     }
+    
+    /* === Header and Nav === */
     header {
       background: black;
       color: white;
@@ -28,7 +31,13 @@
       color: white;
       margin: 0 10px;
       text-decoration: none;
+      transition: color 0.3s ease;
     }
+    nav a:hover {
+      color: #ffcc00; /* Added hover effect */
+    }
+    
+    /* === Section Styling === */
     section {
       padding: 30px 20px;
       background: #fff;
@@ -36,20 +45,39 @@
       width: 90%;
       max-width: 800px;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
     }
+    .preset-section {
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #eee;
+    }
+    .preset-section:last-child {
+      border-bottom: none;
+    }
+
+    /* === Footer === */
     footer {
       background: black;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 15px 10px;
     }
+    footer a {
+        color: #ff4500;
+        text-decoration: none;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
+    
+    /* === Slider and Media === */
     .slider {
       position: relative;
       width: 90%;
       max-width: 600px;
       margin: 20px auto;
-      padding-top: 56.25%;
+      padding-top: 56.25%; /* 16:9 aspect ratio */
       overflow: hidden;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -63,7 +91,7 @@
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
-      object-fit: contain;
+      object-fit: cover; /* Changed to cover for consistency and better fill */
       background-color: #000;
     }
     .slider img.active { display: block; opacity: 1; }
@@ -78,6 +106,7 @@
       cursor: pointer;
       font-size: 20px;
       border-radius: 4px;
+      z-index: 10;
     }
     .slider-btn:hover { background: rgba(0, 0, 0, 0.8); }
     .prev-btn { left: 10px; }
@@ -89,19 +118,29 @@
       max-width: 600px;
       height: 315px;
       border-radius: 10px;
+      border: none; /* Added to remove default border */
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+    
+    /* === Buttons and Labels === */
     button {
       background: black;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 25px; /* Increased padding for better click area */
       margin-top: 15px;
       border-radius: 5px;
       cursor: pointer;
-      transition: 0.3s;
+      font-weight: bold;
+      transition: background 0.3s ease;
     }
-    button:hover { background: gray; }
+    button:hover { background: #444; }
+    .download-btn {
+        background: #ff4500; /* Distinct color for download */
+    }
+    .download-btn:hover {
+        background: #e63e00;
+    }
     .label {
       display: inline-block;
       padding: 6px 12px;
@@ -109,10 +148,13 @@
       color: white;
       font-weight: bold;
       font-size: 14px;
-      margin-top: 8px;
+      margin: 10px 0;
+      text-transform: uppercase;
     }
     .label.free { background: #28a745; }
     .label.paid { background: #dc3545; }
+    
+    /* === Search === */
     .search-container {
       margin-top: 25px;
       display: flex;
@@ -120,12 +162,15 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      background-color: #1a1a1a;
+      padding: 10px;
+      border-radius: 5px;
     }
     .search-container input {
       padding: 10px 15px;
       width: 280px;
       border-radius: 30px;
-      border: 2px solid #fff;
+      border: 2px solid #333;
       outline: none;
       font-size: 16px;
       transition: all 0.3s ease;
@@ -142,7 +187,7 @@
       border-radius: 30px;
       cursor: pointer;
       font-weight: bold;
-      transition: 0.3s;
+      transition: background 0.3s ease;
     }
     .search-container button:hover { background: #e6b800; }
     .no-results {
@@ -150,11 +195,15 @@
       color: #666;
       margin-top: 20px;
     }
+    
+    /* === Contact === */
     #contact {
       background: #000;
       color: #fff;
       padding: 50px 20px;
-      margin-top: 30px;
+      margin: 0; /* Removed margin-top to connect better */
+      border-radius: 0;
+      box-shadow: none;
     }
     #contact a {
       display: inline-block;
@@ -164,11 +213,17 @@
       border-radius: 30px;
       text-decoration: none;
       font-weight: bold;
+      transition: background 0.3s ease;
     }
     #contact a:hover { background: #ff5e1e; }
-    .ad-container {
-      margin: 30px auto;
-      text-align: center;
+    .email-container {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
+    .email-container span {
+      color: #fff;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -188,37 +243,42 @@
     </div>
   </header>
 
-
-
   <section id="presets-container">
     <h2>Different Types of Logo Animation Presets</h2>
     <div id="presetList"></div>
   </section>
 
-  
-
   <section id="contact">
     <h2>Contact Me</h2>
     <p>Have questions or feedback? Reach out anytime.</p>
-    <a href="mailto:voraks200@gmail.com">📧 Email Me</a>
-    <p class="email">or email directly: <span>voraks200@gmail.com</span></p>
+    <a href="mailto:voraks200@gmail.com" rel="noopener noreferrer">📧 Email Me</a>
+    <p class="email-container">or email directly: <span>voraks200@gmail.com</span></p>
   </section>
 
   <footer>
-    <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
+    <p>&copy; 2025 VORAKS Presets | Contact: <a href="mailto:voraks200@gmail.com">voraks200@gmail.com</a></p>
   </footer>
+
+  <script src="blockadblock.js"></script>
 
   <script>
     let allPresets = [];
 
+    // 1. Fetch data and initialize display
     fetch('logo-presets.json')
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to load logo-presets.json');
+        }
+        return res.json();
+      })
       .then(presets => {
         allPresets = presets;
         displayPresets(allPresets);
       })
       .catch(err => console.error('Error loading JSON:', err));
 
+    // 2. Function to display presets (filtering logic here)
     function displayPresets(presets) {
       const list = document.getElementById('presetList');
       list.innerHTML = '';
@@ -231,22 +291,31 @@
       presets.forEach((p, index) => {
         const section = document.createElement('div');
         section.classList.add('preset-section');
-        section.id = p.id; // ✅ Preset ID for smooth scroll
+        section.id = p.id;
 
         let sliderHTML = '';
-        if (p.images && Array.isArray(p.images) && p.images.length > 0 && p.images.some(img => img.trim() !== '')) {
+        const validImages = (p.images || []).filter(img => img && img.trim() !== '');
+        if (validImages.length > 0) {
+          // Only show slider controls if there's more than one image
+          const controls = validImages.length > 1 ? `
+            <button class="slider-btn prev-btn" onclick="moveSlide('slider${index+1}', -1)">&#10094;</button>
+            <button class="slider-btn next-btn" onclick="moveSlide('slider${index+1}', 1)">&#10095;</button>
+          ` : '';
+
           sliderHTML = `
             <div class="slider" id="slider${index+1}">
-              ${p.images.filter(img => img.trim() !== '')
-                .map((img, i) => `<img src="${img}" class="${i===0?'active':''}" alt="Preview ${i+1}">`).join('')}
-              <button class="slider-btn prev-btn" onclick="moveSlide('slider${index+1}', -1)">&#10094;</button>
-              <button class="slider-btn next-btn" onclick="moveSlide('slider${index+1}', 1)">&#10095;</button>
+              ${validImages.map((img, i) => `<img src="${img}" class="${i===0?'active':''}" alt="Preview ${i+1}">`).join('')}
+              ${controls}
             </div>`;
         }
-
-        const videoHTML = p.video ? `<iframe src="${p.video}" allow="autoplay" allowfullscreen></iframe>` : '';
+        
+        // Added title, frameborder, and required allow attributes for better iframe embedding
+        const videoHTML = p.video ? `<iframe src="${p.video}" title="${p.title} video preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>` : '';
+        
+        // Added rel="noopener noreferrer" and used .download-btn class
         const downloadHTML = p.download && p.download.trim() !== ''
-          ? `<br><a href="${p.download}" target="_blank"><button>Download Logo Preset</button></a>` : '';
+          ? `<p><a href="${p.download}" target="_blank" rel="noopener noreferrer"><button class="download-btn">Download Logo Preset</button></a></p>` 
+          : '';
 
         section.innerHTML = `
           <h3>${p.title}</h3>
@@ -259,34 +328,47 @@
         list.appendChild(section);
       });
 
-      // ✅ Scroll to preset from URL hash
+      // Scroll to preset from URL hash
       if (window.location.hash) {
         const target = document.querySelector(window.location.hash);
         if (target) target.scrollIntoView({ behavior: 'smooth' });
       }
     }
 
+    // 3. Function to handle the image slider movement
     function moveSlide(sliderId, direction) {
       const slider = document.getElementById(sliderId);
       if (!slider) return;
       const images = Array.from(slider.querySelectorAll('img'));
       let current = images.findIndex(img => img.classList.contains('active'));
-      if (current !== -1) images[current].classList.remove('active');
+      if (current === -1) current = 0; // Default to first image if none is active
+
+      images[current].classList.remove('active');
       let next = (current + direction + images.length) % images.length;
       images[next].classList.add('active');
     }
 
-    
-
-  <script src="blockadblock.js"></script>
-  <script>
-    if(typeof blockAdBlock === "undefined") {
-      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    } else {
-      blockAdBlock.onDetected(function() {
-        alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-      });
+    // 4. Function to handle the search button click (This was missing!)
+    function searchPresets() {
+        const searchTerm = document.getElementById('presetSearch').value.toLowerCase();
+        const filteredPresets = allPresets.filter(p => 
+            (p.title && p.title.toLowerCase().includes(searchTerm)) || 
+            (p.description && p.description.toLowerCase().includes(searchTerm)) || 
+            (p.type && p.type.toLowerCase().includes(searchTerm))
+        );
+        displayPresets(filteredPresets);
     }
+    
+    // 5. Adblocker detection logic (Executed on window load)
+    window.addEventListener('load', function() {
+        if (typeof blockAdBlock === "undefined") {
+            alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+        } else {
+            blockAdBlock.onDetected(function() {
+                alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+            });
+        }
+    });
   </script>
 </body>
 </html>
