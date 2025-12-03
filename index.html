@@ -9,140 +9,118 @@
 
   <style>
     :root{
-      --bg:#050812;
-      --card:#071428;
+      --bg:#0f1724; /* deep blue */
+      --card:#0b1220;
       --accent:#ff5a1e;
       --muted:#98a0b3;
-      --glass: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
       --max-width:1100px;
       --radius:12px;
-      --pad:20px;
+      --container-pad:24px;
       --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
     *{box-sizing:border-box}
     body{
-      margin:0; font-family:var(--mono); background: linear-gradient(180deg,#02040a 0%, #071226 60%); color:#e6eef8;
-      -webkit-font-smoothing:antialiased;
+      margin:0; font-family:var(--mono); background: linear-gradient(180deg,#071226 0%, #08172b 60%); color:#e6eef8; -webkit-font-smoothing:antialiased;
     }
 
-    /* header */
+    /* Topbar */
     header{
-      position:sticky; top:0; z-index:1200; backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(2,6,12,0.7), rgba(2,6,12,0.35));
-      box-shadow:0 8px 22px rgba(0,0,0,0.6);
-      padding:10px 0;
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(4,8,15,0.6), rgba(4,8,15,0.35));
+      padding:10px 16px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(2,6,12,0.6);
     }
-    .topbar-inner{
-      max-width:var(--max-width); margin:0 auto; padding:0 var(--pad);
-      position:relative; display:flex; align-items:center; justify-content:center;
-    }
+    .topbar-inner{max-width:var(--max-width); width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 var(--container-pad);}
+    .brand{flex:1; text-align:center}
+    .brand h1{margin:0; font-size:20px; letter-spacing:1px; font-weight:700}
+    .brand p{margin:0; font-size:12px; color:var(--muted)}
 
-    /* brand (centered) */
-    .brand{ text-align:center; }
-    .brand h1{ margin:0; font-size:20px; letter-spacing:1px; font-weight:700; }
-    .brand p{ margin:0; font-size:12px; color:var(--muted); }
-
-    /* menu button placed absolutely so brand remains centered */
-    .menu-btn{
-      position:absolute; right:var(--pad); top:50%; transform:translateY(-50%);
-      background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted);
-      width:46px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center;
-      cursor:pointer; z-index:1250;
-    }
-    .menu-btn:hover{ background:var(--glass); color:#fff }
-
-    /* keep original nav for accessibility (visually hidden) */
+    /* invisible nav kept for accessibility, but hidden visually */
     nav.primary{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
 
-    /* overlay & side menu ordering */
-    #overlay{
-      position:fixed; inset:0; background:rgba(0,0,0,0.45);
-      display:none; z-index:1140; pointer-events:auto;
-    }
-    #overlay.show{ display:block; }
+    /* three-dot */
+    .controls{display:flex; align-items:center; gap:12px}
+    .dot-btn{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); width:46px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer}
+    .dot-btn:hover{background:var(--glass); color:#fff}
 
-    .side-menu{
-      position:fixed; top:0; right:-360px; height:100vh; width:320px;
-      background: linear-gradient(180deg,#061227,#051120); padding:28px;
-      box-shadow:-36px 0 80px rgba(0,0,0,0.6); transition: right .32s cubic-bezier(.2,.9,.3,1);
-      z-index:1160; pointer-events:auto;
-      border-left:1px solid rgba(255,255,255,0.02);
-    }
-    .side-menu.show{ right:0; }
+    /* SIDE MENU */
+    .side-menu{position:fixed; right:-320px; top:0; height:100vh; width:320px; background:linear-gradient(180deg,#0b1320,#071122); box-shadow:-24px 0 60px rgba(0,0,0,0.6); padding:28px; transition:right .35s cubic-bezier(.2,.9,.3,1); z-index:60;}
+    .side-menu.show{right:0}
+    .side-menu h3{margin:0 0 12px 0; font-size:16px}
+    .side-menu a{display:block; text-decoration:none; color:#eaf4ff; padding:12px 14px; margin:8px 0; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.03)}
+    .side-menu a:hover{background:rgba(255,90,30,0.08); border-color: rgba(255,90,30,0.18); color:var(--accent)}
 
-    .side-menu h3{ margin:0 0 12px 0; font-size:16px; color:#eaf4ff }
-    .side-menu a{
-      display:block; color:#eaf4ff; text-decoration:none; padding:12px 14px; margin:10px 0;
-      border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.03);
-    }
-    .side-menu a:hover{ background: rgba(255,90,30,0.06); color:var(--accent); border-color: rgba(255,90,30,0.12) }
+    /* overlay */
+    #overlay{position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; z-index:55}
+    #overlay.show{display:block}
 
-    /* main */
-    .container{ max-width:var(--max-width); margin:36px auto; padding:0 var(--pad) }
-    .hero{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:32px; border-radius:var(--radius); display:flex; gap:24px; align-items:center; box-shadow:0 10px 30px rgba(0,0,0,0.5) }
-    .hero-left{ flex:1; text-align:left }
-    .hero-left h2{ margin:0; font-size:28px; letter-spacing:1px }
-    .hero-left p{ margin:8px 0 18px 0; color:var(--muted) }
-    .btn-primary{ background: linear-gradient(90deg,var(--accent), #ff7a44); padding:12px 20px; border-radius:999px; color:#081022; font-weight:800; border:none; cursor:pointer }
+    /* Main content */
+    .container{max-width:var(--max-width); margin:36px auto; padding:0 var(--container-pad)}
+    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:36px; border-radius:var(--radius); display:flex; gap:24px; align-items:center; box-shadow: 0 8px 30px rgba(2,6,12,0.6)}
+    .hero-left{flex:1; text-align:center}
+    .hero-left h2{margin:0; font-size:28px; letter-spacing:1px}
+    .hero-left p{margin:8px 0 18px 0; color:var(--muted)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent), #ff7a44); padding:12px 20px; border-radius:999px; color:#081022; font-weight:800; border:none; cursor:pointer}
 
-    .hero-right{ width:320px }
-    .card-preview{ background: var(--card); border-radius:12px; padding:12px; border:1px solid rgba(255,255,255,0.03) }
-    .card-preview img{ width:100%; border-radius:8px; display:block }
+    .hero-right{width:320px}
+    .card-preview{background:linear-gradient(180deg,#061627,#08182c); border-radius:12px; padding:12px; border:1px solid rgba(255,255,255,0.03)}
+    .card-preview img{width:100%; display:block; border-radius:8px}
 
-    /* grid */
-    #presets{ margin-top:22px }
-    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px }
-    .preset-card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:12px; border-radius:10px; text-align:left; border:1px solid rgba(255,255,255,0.03) }
-    .preset-card img{ width:100%; border-radius:8px; display:block }
-    .preset-card h4{ margin:10px 0 6px 0; color:#eaf4ff }
-    .preset-card p{ margin:0; color:var(--muted); font-size:13px }
+    /* presets grid */
+    #presets{margin-top:28px}
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+    .preset-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; text-align:left; border:1px solid rgba(255,255,255,0.03)}
+    .preset-card img{width:100%; border-radius:8px; display:block}
+    .preset-card h4{margin:10px 0 6px 0}
+    .preset-card p{margin:0; color:var(--muted); font-size:13px}
 
-    .preset-note{ background:#fff8dc; color:#222; padding:12px; border-radius:8px; border-left:4px solid var(--accent); margin-bottom:12px }
+    .preset-note{background:linear-gradient(90deg,#fffbf0, #fffaf3); color:#2a2a2a; padding:12px; border-radius:8px; border-left:4px solid var(--accent); margin-bottom:12px}
 
-    /* contact / footer */
-    #contact{ margin-top:28px; padding:22px; border-radius:10px; background:linear-gradient(180deg,#071226,#08182b); border:1px solid rgba(255,255,255,0.03) }
-    #contact h2{ margin-top:0 }
-    .email-btn{ display:inline-block; padding:10px 16px; border-radius:999px; background:transparent; color:var(--accent); border:1px solid rgba(255,90,30,0.12); text-decoration:none }
+    /* contact */
+    #contact{margin-top:28px; padding:28px; border-radius:12px; background:linear-gradient(180deg,#071226,#08182b); border:1px solid rgba(255,255,255,0.03)}
+    #contact h2{margin-top:0}
+    .email-btn{display:inline-block; padding:10px 16px; border-radius:999px; background:transparent; color:var(--accent); border:1px solid rgba(255,90,30,0.12); text-decoration:none}
 
-    footer{ margin:28px auto 60px auto; text-align:center; color:var(--muted); font-size:13px }
+    footer{margin:28px auto 60px auto; text-align:center; color:var(--muted); font-size:13px}
 
-    @media (max-width:700px){
-      .hero{ flex-direction:column }
-      .hero-right{ width:100% }
-      .side-menu{ width:280px; right:-320px }
-      .side-menu.show{ right:0 }
-      .menu-btn{ right:12px }
+    /* responsive tweaks */
+    @media (max-width:640px){
+      .hero{flex-direction:column}
+      .hero-right{width:100%}
+      .brand h1{font-size:18px}
     }
   </style>
 </head>
 <body>
 
-  <!-- overlay (below side-menu in z-order to allow clicks on menu) -->
-  <div id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+  <div id="overlay" onclick="closeMenu()"></div>
 
   <header>
     <div class="topbar-inner">
-      <!-- centered brand -->
-      <div class="brand" role="banner">
-        <h1>VORAKS PRESETS</h1>
-        <p>Professional presets for motion graphics</p>
+      <div class="controls" style="visibility:hidden; width:46px;"></div>
+
+      <div class="brand">
+        <h1 style="text-align:center;">VORAKS PRESETS</h1>
+        <p style="text-align:center;">Professional presets for motion graphics</p>
       </div>
 
-      <!-- menu button (absolute positioned so brand stays centered) -->
-      <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">⋮</button>
+      <div class="controls">
+        <!-- keeping original nav for accessibility (visually hidden) -->
+        <nav class="primary" aria-label="Primary">
+          <a href="index.html">HOME</a>
+          <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+          <a href="#">AFTER EFFECTS</a>
+          <a href="#contact">CONTACT</a>
+        </nav>
 
-      <!-- hidden accessible nav -->
-      <nav class="primary" aria-label="Primary navigation">
-        <a href="index.html">HOME</a>
-        <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-        <a href="#">AFTER EFFECTS</a>
-        <a href="#contact">CONTACT</a>
-      </nav>
+        <!-- three-dot menu button -->
+        <button class="dot-btn" aria-label="Open menu" onclick="openMenu()">⋮</button>
+      </div>
     </div>
   </header>
 
-  <!-- side menu: real anchors so links are clickable on touch -->
-  <aside id="sideMenu" class="side-menu" role="dialog" aria-label="Site menu" aria-hidden="true">
+  <!-- SIDE MENU (keeps links as real anchors) -->
+  <aside id="sideMenu" class="side-menu" role="dialog" aria-label="Site menu">
     <h3>Navigate</h3>
     <a href="index.html">HOME</a>
     <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
@@ -205,32 +183,21 @@
 
 <script src="blockadblock.js"></script>
 <script>
-  const sideMenu = document.getElementById('sideMenu');
+  const side = document.getElementById('sideMenu');
   const overlay = document.getElementById('overlay');
+  function openMenu(){ side.classList.add('show'); overlay.classList.add('show'); }
+  function closeMenu(){ side.classList.remove('show'); overlay.classList.remove('show'); }
 
-  function openMenu(){
-    sideMenu.classList.add('show');
-    overlay.classList.add('show');
-    sideMenu.setAttribute('aria-hidden','false');
-  }
-  function closeMenu(){
-    sideMenu.classList.remove('show');
-    overlay.classList.remove('show');
-    sideMenu.setAttribute('aria-hidden','true');
-  }
-
-  // restore adblock behaviour safely
-  try {
-    if (typeof blockAdBlock === "undefined") {
-      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    } else {
-      if (blockAdBlock && typeof blockAdBlock.onDetected === 'function'){
-        blockAdBlock.onDetected(function() {
-          alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-        });
-      }
+  // keep existing adblock behaviour
+  if (typeof blockAdBlock === "undefined") {
+    alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+  } else {
+    if (blockAdBlock && typeof blockAdBlock.onDetected === 'function'){
+      blockAdBlock.onDetected(function() {
+        alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+      });
     }
-  } catch(e){ /* ignore errors */ }
+  }
 </script>
 </body>
 </html>
