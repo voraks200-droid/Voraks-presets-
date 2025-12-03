@@ -8,107 +8,87 @@
   <meta name="ppck-ver" content="4fc89bb357f7d53a964ab2dc8f3510a1" />
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg:#0f1724; /* deep blue */
+      --card:#0b1220;
+      --accent:#ff5a1e;
+      --muted:#98a0b3;
+      --glass: rgba(255,255,255,0.04);
+      --max-width:1100px;
+      --radius:12px;
+      --container-pad:24px;
+      --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
-    /* HEADER */
-    header {
-      background: black;
-      color: white;
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 22px;
-      letter-spacing: 1px;
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:var(--mono); background: linear-gradient(180deg,#071226 0%, #08172b 60%); color:#e6eef8; -webkit-font-smoothing:antialiased;
     }
 
-    /* THREE DOT MENU */
-    .menu-icon {
-      cursor: pointer;
-      font-size: 26px;
-      padding: 5px;
+    /* Topbar */
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(4,8,15,0.6), rgba(4,8,15,0.35));
+      padding:10px 16px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(2,6,12,0.6);
     }
+    .topbar-inner{max-width:var(--max-width); width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 var(--container-pad);}
+    .brand{flex:1; text-align:center}
+    .brand h1{margin:0; font-size:20px; letter-spacing:1px; font-weight:700}
+    .brand p{margin:0; font-size:12px; color:var(--muted)}
 
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -250px;
-      width: 250px;
-      height: 100%;
-      background: #111;
-      color: #fff;
-      padding-top: 60px;
-      transition: 0.3s;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+    /* invisible nav kept for accessibility, but hidden visually */
+    nav.primary{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+
+    /* three-dot */
+    .controls{display:flex; align-items:center; gap:12px}
+    .dot-btn{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); width:46px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer}
+    .dot-btn:hover{background:var(--glass); color:#fff}
+
+    /* SIDE MENU */
+    .side-menu{position:fixed; right:-320px; top:0; height:100vh; width:320px; background:linear-gradient(180deg,#0b1320,#071122); box-shadow:-24px 0 60px rgba(0,0,0,0.6); padding:28px; transition:right .35s cubic-bezier(.2,.9,.3,1); z-index:60;}
+    .side-menu.show{right:0}
+    .side-menu h3{margin:0 0 12px 0; font-size:16px}
+    .side-menu a{display:block; text-decoration:none; color:#eaf4ff; padding:12px 14px; margin:8px 0; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.03)}
+    .side-menu a:hover{background:rgba(255,90,30,0.08); border-color: rgba(255,90,30,0.18); color:var(--accent)}
+
+    /* overlay */
+    #overlay{position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; z-index:55}
+    #overlay.show{display:block}
+
+    /* Main content */
+    .container{max-width:var(--max-width); margin:36px auto; padding:0 var(--container-pad)}
+    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:36px; border-radius:var(--radius); display:flex; gap:24px; align-items:center; box-shadow: 0 8px 30px rgba(2,6,12,0.6)}
+    .hero-left{flex:1; text-align:center}
+    .hero-left h2{margin:0; font-size:28px; letter-spacing:1px}
+    .hero-left p{margin:8px 0 18px 0; color:var(--muted)}
+    .btn-primary{background:linear-gradient(90deg,var(--accent), #ff7a44); padding:12px 20px; border-radius:999px; color:#081022; font-weight:800; border:none; cursor:pointer}
+
+    .hero-right{width:320px}
+    .card-preview{background:linear-gradient(180deg,#061627,#08182c); border-radius:12px; padding:12px; border:1px solid rgba(255,255,255,0.03)}
+    .card-preview img{width:100%; display:block; border-radius:8px}
+
+    /* presets grid */
+    #presets{margin-top:28px}
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
+    .preset-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; text-align:left; border:1px solid rgba(255,255,255,0.03)}
+    .preset-card img{width:100%; border-radius:8px; display:block}
+    .preset-card h4{margin:10px 0 6px 0}
+    .preset-card p{margin:0; color:var(--muted); font-size:13px}
+
+    .preset-note{background:linear-gradient(90deg,#fffbf0, #fffaf3); color:#2a2a2a; padding:12px; border-radius:8px; border-left:4px solid var(--accent); margin-bottom:12px}
+
+    /* contact */
+    #contact{margin-top:28px; padding:28px; border-radius:12px; background:linear-gradient(180deg,#071226,#08182b); border:1px solid rgba(255,255,255,0.03)}
+    #contact h2{margin-top:0}
+    .email-btn{display:inline-block; padding:10px 16px; border-radius:999px; background:transparent; color:var(--accent); border:1px solid rgba(255,90,30,0.12); text-decoration:none}
+
+    footer{margin:28px auto 60px auto; text-align:center; color:var(--muted); font-size:13px}
+
+    /* responsive tweaks */
+    @media (max-width:640px){
+      .hero{flex-direction:column}
+      .hero-right{width:100%}
+      .brand h1{font-size:18px}
     }
-    .side-menu a {
-      display: block;
-      padding: 15px 25px;
-      color: #fff;
-      text-decoration: none;
-      border-bottom: 1px solid #333;
-      font-size: 16px;
-    }
-    .side-menu a:hover {
-      background: #222;
-    }
-
-    /* OVERLAY */
-    #overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.4);
-      display: none;
-      z-index: 900;
-    }
-
-    /* GENERAL */
-    .container { max-width: 900px; margin: 0 auto; text-align: center; }
-    section { padding: 20px; }
-    button { background: black; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
-    button:hover { background: #333; }
-
-    /* PRESET LINK */
-    .preset-link { display: block; margin-bottom: 20px; text-decoration: none; color: black; }
-    .preset-link img { width: 500px; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-    .preset-text { margin-top: 10px; font-weight: bold; font-size: 18px; color: #222; display: block; }
-
-    /* CONTACT SECTION */
-    #contact { background: #000; color: #fff; text-align: center; padding: 50px 20px; margin-top: 30px; }
-    #contact h2 { font-size: 28px; margin-bottom: 15px; }
-    #contact p { font-size: 16px; margin-bottom: 30px; color: #ccc; }
-    #contact a { display: inline-block; background: #ff4500; color: #fff; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; }
-    #contact a:hover { background: #ff5e1e; }
-    #contact .email { margin-top: 20px; font-size: 14px; color: #888; }
-    #contact .email span { color: #fff; }
-
-    /* PRESET NOTE */
-    .preset-note {
-      background: #fff8dc;
-      color: #333;
-      border-left: 5px solid #ff4500;
-      padding: 15px 20px;
-      margin-bottom: 20px;
-      font-style: italic;
-      border-radius: 4px;
-      text-align: left;
-    }
-
-    footer { background: black; color: white; text-align: center; padding: 10px; }
-
   </style>
 </head>
 <body>
@@ -116,79 +96,108 @@
   <div id="overlay" onclick="closeMenu()"></div>
 
   <header>
-    <h1>VORAKS PRESETS</h1>
-    <div class="menu-icon" onclick="openMenu()">⋮</div>
+    <div class="topbar-inner">
+      <div class="controls" style="visibility:hidden; width:46px;"></div>
+
+      <div class="brand">
+        <h1 style="text-align:center;">VORAKS PRESETS</h1>
+        <p style="text-align:center;">Professional presets for motion graphics</p>
+      </div>
+
+      <div class="controls">
+        <!-- keeping original nav for accessibility (visually hidden) -->
+        <nav class="primary" aria-label="Primary">
+          <a href="index.html">HOME</a>
+          <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+          <a href="#">AFTER EFFECTS</a>
+          <a href="#contact">CONTACT</a>
+        </nav>
+
+        <!-- three-dot menu button -->
+        <button class="dot-btn" aria-label="Open menu" onclick="openMenu()">⋮</button>
+      </div>
+    </div>
   </header>
 
-  <!-- SIDE MENU -->
-  <div id="sideMenu" class="side-menu">
+  <!-- SIDE MENU (keeps links as real anchors) -->
+  <aside id="sideMenu" class="side-menu" role="dialog" aria-label="Site menu">
+    <h3>Navigate</h3>
     <a href="index.html">HOME</a>
     <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
     <a href="#">AFTER EFFECTS</a>
     <a href="#contact">CONTACT</a>
-  </div>
+    <div style="height:12px"></div>
+    <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
+  </aside>
 
-  <div class="container">
-    <section id="HERO">
-      <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
-      <p>HUNDREDS OF FREE AND PAID PRESETS TO LEVEL UP YOUR EDITS</p>
-      <button id="shopNowButton">Shop Now</button>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
+        <p>HUNDREDS OF FREE AND PAID PRESETS TO LEVEL UP YOUR EDITS</p>
+        <button class="btn-primary" id="shopNowButton">Shop Now</button>
+      </div>
+      <div class="hero-right">
+        <div class="card-preview">
+          <img src="alight_motion1.png" alt="ALIGHT MOTION PREVIEW">
+        </div>
+      </div>
     </section>
 
     <section id="presets">
-      <h2>PRESET COLLECTION</h2>
+      <h2 style="margin-top:18px">PRESET COLLECTION</h2>
 
       <div class="preset-note">
         All presets shared on this website are fully created manually by me. While some may appear similar to others, every preset and rig is original, and I retain full ownership of all my creations.
       </div>
 
-      <a href="ALIGHTMOTION.html" class="preset-link">
-        <img src="alight_motion1.png" alt="ALIGHT MOTION PRESETS">
-        <span class="preset-text">ALIGHT MOTION PRESETS</span>
-      </a>
+      <div class="grid">
+        <article class="preset-card">
+          <a href="ALIGHTMOTION.html"><img src="alight_motion1.png" alt="ALIGHT MOTION PRESETS"><h4>ALIGHT MOTION PRESETS</h4></a>
+          <p>Click to view the full collection of Alight Motion presets.</p>
+        </article>
 
-      <a href="#" class="preset-link">
-        <img src="after_effects1.png" alt="AFTER EFFECTS PRESETS">
-        <span class="preset-text">AFTER EFFECTS PRESETS (COMING SOON)</span>
-      </a>
+        <article class="preset-card">
+          <a href="#"><img src="after_effects1.png" alt="AFTER EFFECTS PRESETS"><h4>AFTER EFFECTS PRESETS (COMING SOON)</h4></a>
+          <p>Presets for After Effects — coming soon. Stay tuned.</p>
+        </article>
 
-      <a href="#" class="preset-link">
-        <img src="20251003_195318.png" alt="NODE VIDEO PRESETS">
-        <span class="preset-text">NODE VIDEO PRESETS (COMING SOON)</span>
-      </a>
+        <article class="preset-card">
+          <a href="#"><img src="20251003_195318.png" alt="NODE VIDEO PRESETS"><h4>NODE VIDEO PRESETS (COMING SOON)</h4></a>
+          <p>Node Video presets are in development — preview available here.</p>
+        </article>
+      </div>
     </section>
-  </div>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
-    <a href="mailto:voraks200@gmail.com">📧 Email Me</a>
-    <p class="email">or email directly: <span>voraks200@gmail.com</span></p>
-  </section>
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
+      <a class="email-btn" href="mailto:voraks200@gmail.com">📧 Email Me</a>
+      <p style="color:var(--muted); margin-top:12px">or email directly: <strong style="color:#eaf4ff">voraks200@gmail.com</strong></p>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
-  </footer>
+    <footer>
+      <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
+    </footer>
+  </main>
 
 <script src="blockadblock.js"></script>
 <script>
-  function openMenu() {
-    document.getElementById("sideMenu").style.right = "0";
-    document.getElementById("overlay").style.display = "block";
-  }
-  function closeMenu() {
-    document.getElementById("sideMenu").style.right = "-250px";
-    document.getElementById("overlay").style.display = "none";
-  }
+  const side = document.getElementById('sideMenu');
+  const overlay = document.getElementById('overlay');
+  function openMenu(){ side.classList.add('show'); overlay.classList.add('show'); }
+  function closeMenu(){ side.classList.remove('show'); overlay.classList.remove('show'); }
 
+  // keep existing adblock behaviour
   if (typeof blockAdBlock === "undefined") {
     alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
   } else {
-    blockAdBlock.onDetected(function() {
-      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    });
+    if (blockAdBlock && typeof blockAdBlock.onDetected === 'function'){
+      blockAdBlock.onDetected(function() {
+        alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+      });
+    }
   }
 </script>
-
 </body>
 </html>
