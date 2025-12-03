@@ -14,42 +14,88 @@
       margin: 0;
       padding: 0;
     }
+    /* HEADER */
+    header {
+      background: black;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    /* THREE DOT MENU */
+    .menu-icon {
+      cursor: pointer;
+      font-size: 26px;
+      padding: 5px;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -250px;
+      width: 250px;
+      height: 100%;
+      background: #111;
+      color: #fff;
+      padding-top: 60px;
+      transition: 0.3s;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.3);
+    }
+    .side-menu a {
+      display: block;
+      padding: 15px 25px;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      font-size: 16px;
+    }
+    .side-menu a:hover {
+      background: #222;
+    }
+
+    /* OVERLAY */
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      z-index: 900;
+    }
+
+    /* GENERAL */
     .container { max-width: 900px; margin: 0 auto; text-align: center; }
-    header { background: black; color: white; padding: 20px; text-align: center; }
-    nav a { color: white; margin: 0 10px; text-decoration: none; }
     section { padding: 20px; }
-    footer { background: black; color: white; text-align: center; padding: 10px; }
-    .preset-link { display: block; margin-bottom: 20px; text-decoration: none; color: black; }
-    .preset-link img { width: 500px; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 5px; }
-    .preset-text { margin-top: 5px; font-weight: bold; color: black; display: block; }
     button { background: black; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
     button:hover { background: #333; }
 
-    /* Contact Section */
-    #contact {
-      background: #000;
-      color: #fff;
-      text-align: center;
-      padding: 50px 20px;
-      margin-top: 30px;
-    }
+    /* PRESET LINK */
+    .preset-link { display: block; margin-bottom: 20px; text-decoration: none; color: black; }
+    .preset-link img { width: 500px; max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .preset-text { margin-top: 10px; font-weight: bold; font-size: 18px; color: #222; display: block; }
+
+    /* CONTACT SECTION */
+    #contact { background: #000; color: #fff; text-align: center; padding: 50px 20px; margin-top: 30px; }
     #contact h2 { font-size: 28px; margin-bottom: 15px; }
     #contact p { font-size: 16px; margin-bottom: 30px; color: #ccc; }
-    #contact a {
-      display: inline-block;
-      background: #ff4500;
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
+    #contact a { display: inline-block; background: #ff4500; color: #fff; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: background 0.3s ease; }
     #contact a:hover { background: #ff5e1e; }
     #contact .email { margin-top: 20px; font-size: 14px; color: #888; }
     #contact .email span { color: #fff; }
 
-    /* Preset Note */
+    /* PRESET NOTE */
     .preset-note {
       background: #fff8dc;
       color: #333;
@@ -61,31 +107,32 @@
       text-align: left;
     }
 
-    /* Ad Section */
-    #ad-banner {
-      text-align: center;
-      margin: 30px auto;
-    }
+    footer { background: black; color: white; text-align: center; padding: 10px; }
+
   </style>
 </head>
 <body>
+
+  <div id="overlay" onclick="closeMenu()"></div>
+
   <header>
     <h1>VORAKS PRESETS</h1>
-    <nav>
-      <a href="index.html">HOME</a>|
-      <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>|
-      <a href="#">AFTER EFFECTS</a>|
-      <a href="#contact">CONTACT</a>|
-    </nav>
+    <div class="menu-icon" onclick="openMenu()">⋮</div>
   </header>
 
-  
+  <!-- SIDE MENU -->
+  <div id="sideMenu" class="side-menu">
+    <a href="index.html">HOME</a>
+    <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+    <a href="#">AFTER EFFECTS</a>
+    <a href="#contact">CONTACT</a>
+  </div>
 
   <div class="container">
     <section id="HERO">
       <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
       <p>HUNDREDS OF FREE AND PAID PRESETS TO LEVEL UP YOUR EDITS</p>
-      <button id="shopNowButton">Shop Now</button> 
+      <button id="shopNowButton">Shop Now</button>
     </section>
 
     <section id="presets">
@@ -112,8 +159,6 @@
     </section>
   </div>
 
-  
-
   <section id="contact">
     <h2>Contact Me</h2>
     <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
@@ -124,9 +169,19 @@
   <footer>
     <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
   </footer>
+
 <script src="blockadblock.js"></script>
 <script>
-  if(typeof blockAdBlock === "undefined") {
+  function openMenu() {
+    document.getElementById("sideMenu").style.right = "0";
+    document.getElementById("overlay").style.display = "block";
+  }
+  function closeMenu() {
+    document.getElementById("sideMenu").style.right = "-250px";
+    document.getElementById("overlay").style.display = "none";
+  }
+
+  if (typeof blockAdBlock === "undefined") {
     alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
   } else {
     blockAdBlock.onDetected(function() {
@@ -134,5 +189,6 @@
     });
   }
 </script>
+
 </body>
 </html>
