@@ -20,17 +20,21 @@
   --mono:'Segoe UI', Roboto, Arial, sans-serif;
 }
 
+/* basic reset */
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
   font-family:var(--mono);
   background:var(--bg-grad);
   color:#0f1724;
+  overflow-x:hidden; /* important: prevents horizontal scroll that may reveal the menu */
 }
 
 /* Header */
 header{
   position:sticky; top:0; z-index:1200;
-  background:rgba(255,255,255,0.9);
+  background:rgba(255,255,255,0.95);
   border-bottom:1px solid rgba(15,23,36,0.05);
   backdrop-filter:blur(4px);
 }
@@ -48,122 +52,200 @@ header{
   width:var(--menu-w);height:56px;border-radius:14px;border:none;
   background:linear-gradient(90deg,var(--accent-1),var(--accent-3));
   color:#fff;font-size:30px;cursor:pointer;display:flex;justify-content:center;align-items:center;
+  box-shadow:0 8px 20px rgba(11,132,255,0.12);
 }
 
-/* Sidebar */
-#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;z-index:1140;}
-#overlay.show{display:block;}
+/* Sidebar & overlay */
+#overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,0.3); display:none; z-index:1140;
+}
+#overlay.show{ display:block; }
+
 .side-menu{
-  position:fixed;top:0;right:-360px;width:360px;height:100vh;
-  background:#fff;padding:24px;box-shadow:-20px 0 50px rgba(0,0,0,0.08);
-  transition:right .3s ease;z-index:1160;
+  position:fixed; top:0; right:-420px; width:360px; height:100vh;
+  background:#fff; padding:24px; box-shadow:-20px 0 60px rgba(0,0,0,0.08);
+  transition:right .28s ease; z-index:1160; border-left:1px solid rgba(15,23,36,0.04);
+  will-change: right;
 }
-.side-menu.show{right:0;}
-.side-menu a{display:block;margin:10px 0;padding:10px;border-radius:8px;
-  color:var(--accent-1);text-decoration:none;border:1px solid rgba(11,132,255,0.1)}
-.side-menu a:hover{background:rgba(11,132,255,0.1)}
+.side-menu.show{ right:0; }
 
-/* Main */
-.container{max-width:var(--max-width);margin:30px auto;padding:0 var(--pad);}
-.hero{background:white;padding:25px;border-radius:var(--radius);box-shadow:0 5px 15px rgba(0,0,0,0.06);}
+.side-menu h3{ margin:0 0 12px 0; color:#07203a; font-size:16px; }
+.side-menu a{ display:block; margin:10px 0; padding:10px; border-radius:8px; text-decoration:none;
+  color:var(--accent-1); border:1px solid rgba(11,132,255,0.08); }
+.side-menu a:hover{ background:rgba(11,132,255,0.06); }
 
-/* Grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
-.preset-card{background:var(--card);padding:12px;border-radius:12px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column}
-.thumb{width:100%;height:120px;border-radius:8px;overflow:hidden;margin-bottom:10px;}
-.thumb img{width:100%;height:100%;object-fit:cover}
+/* Main layout */
+.container{ max-width:var(--max-width); margin:30px auto; padding:0 var(--pad); }
+.hero{ background:white; padding:25px; border-radius:var(--radius); box-shadow:0 5px 15px rgba(0,0,0,0.06); }
+.hero h2{ margin:0; font-size:20px; color:#07203a }
+
+/* Grid & cards */
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; margin-top:18px; }
+.preset-card{ background:var(--card); padding:12px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.05); display:flex; flex-direction:column; }
+.thumb{ width:100%; height:120px; border-radius:8px; overflow:hidden; margin-bottom:10px; background:#f3f5f8; }
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.preset-card h4{ margin:6px 0 6px 0; color:#07203a; font-size:16px }
+.preset-card p{ margin:0; color:var(--muted); font-size:13px }
 
 /* Buttons */
 .open-btn{
-  margin-top:10px;padding:10px;border:none;border-radius:8px;width:100%;
-  background:var(--accent-1);color:white;cursor:pointer;font-weight:600;
+  margin-top:10px; padding:10px; border:none; border-radius:8px; width:100%;
+  background:var(--accent-1); color:white; cursor:pointer; font-weight:600;
 }
-.open-btn:hover{opacity:0.9}
+.open-btn:hover{ opacity:.95 }
 
 .soon-btn{
-  margin-top:10px;padding:10px;border:none;border-radius:8px;width:100%;
-  background:gray;color:white;font-weight:600;opacity:0.6;cursor:not-allowed;
+  margin-top:10px; padding:10px; border:none; border-radius:8px; width:100%;
+  background:#9aa0a6; color:white; font-weight:600; opacity:.85; cursor:not-allowed;
+}
+
+/* small screens */
+@media (max-width:780px){
+  .menu-btn{ right:12px; width:60px; height:56px; }
+  .side-menu{ width:300px; right:-360px; }
+  .topbar-inner{ padding-right: calc(var(--pad) + var(--menu-w)); }
 }
 </style>
 </head>
-
 <body>
-<div id="overlay" onclick="closeMenu()"></div>
+
+<div id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 
 <header>
   <div class="topbar-inner">
     <div class="brand"><h1>VORAKS PRESETS</h1></div>
-    <button class="menu-btn" onclick="openMenu()">⋮</button>
+    <button id="menuBtn" class="menu-btn" aria-label="Open menu">⋮</button>
   </div>
 </header>
 
-<!-- MENU -->
-<aside id="sideMenu" class="side-menu">
+<!-- Side menu -->
+<aside id="sideMenu" class="side-menu" role="dialog" aria-hidden="true">
   <h3>Navigate</h3>
   <a href="index.html">HOME</a>
   <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-  <a href="#" onclick="event.preventDefault()">AFTER EFFECTS (Soon)</a>
-  <a href="#" onclick="event.preventDefault()">NODE VIDEO (Soon)</a>
-  <a href="#contact" onclick="goContact()">CONTACT</a>
+  <a href="#" onclick="event.preventDefault();">AFTER EFFECTS (Soon)</a>
+  <a href="#" onclick="event.preventDefault();">NODE VIDEO (Soon)</a>
+  <a href="#contact" onclick="goContact();">CONTACT</a>
+
+  <div style="height:14px"></div>
+  <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
 </aside>
 
 <main class="container">
+  <section class="hero">
+    <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
+  </section>
 
-<section class="hero">
-  <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
-</section>
+  <section id="presets">
+    <h2 style="margin-top:18px">PRESET COLLECTION</h2>
 
-<section id="presets">
-<h2 style="margin-top:25px">PRESET COLLECTION</h2>
+    <div class="grid">
 
-<div class="grid">
+      <!-- ALIGHT MOTION -->
+      <article class="preset-card">
+        <div class="thumb"><img src="alight_motion1.png" alt="Alight Motion preview"></div>
+        <h4>ALIGHT MOTION PRESETS</h4>
+        <p>Click to view the full collection of Alight Motion presets.</p>
+        <button class="open-btn" onclick="openAlight()">OPEN</button>
 
-  <!-- Alight Motion -->
-  <article class="preset-card">
-    <div class="thumb"><img src="alight_motion1.png"></div>
-    <h4>ALIGHT MOTION PRESETS</h4>
-    <p>Click to view all Alight Motion presets</p>
-    <a href="ALIGHTMOTION.html"><button class="open-btn">OPEN</button></a>
-  </article>
+        <div id="am-content" style="display:none;margin-top:10px;">
+          <a href="ALIGHTMOTION.html" style="color:var(--accent-1);font-weight:700;text-decoration:none">Open Alight Motion Presets →</a>
+          <p style="margin-top:6px;font-size:13px;color:var(--muted)">Full preset collection available.</p>
+        </div>
+      </article>
 
-  <!-- After Effects -->
-  <article class="preset-card">
-    <div class="thumb"><img src="after_effects1.png"></div>
-    <h4>AFTER EFFECTS PRESETS</h4>
-    <p>Coming soon...</p>
-    <button class="soon-btn">COMING SOON</button>
-  </article>
+      <!-- AFTER EFFECTS -->
+      <article class="preset-card">
+        <div class="thumb"><img src="after_effects1.png" alt="After Effects preview"></div>
+        <h4>AFTER EFFECTS PRESETS (COMING SOON)</h4>
+        <p>Presets for After Effects — coming soon.</p>
+        <button class="soon-btn" aria-disabled="true">COMING SOON</button>
 
-  <!-- Node Video -->
-  <article class="preset-card">
-    <div class="thumb"><img src="20251003_195318.png"></div>
-    <h4>NODE VIDEO PRESETS</h4>
-    <p>Coming soon...</p>
-    <button class="soon-btn">COMING SOON</button>
-  </article>
+        <div id="ae-content" style="display:none;margin-top:10px;">
+          <p style="font-weight:700">⏳ Coming soon...</p>
+          <p style="color:var(--muted);font-size:13px;margin-top:4px">We'll release these presets in a future update.</p>
+        </div>
+      </article>
 
-</div>
-</section>
+      <!-- NODE VIDEO -->
+      <article class="preset-card">
+        <div class="thumb"><img src="20251003_195318.png" alt="Node Video preview"></div>
+        <h4>NODE VIDEO PRESETS (COMING SOON)</h4>
+        <p>Node Video presets are in development — preview available here.</p>
+        <button class="soon-btn" aria-disabled="true">COMING SOON</button>
 
-<section id="contact" style="margin-top:30px;">
-<h2>Contact Me</h2>
-<p>Email anytime with questions or project ideas:</p>
-<a href="mailto:voraks200@gmail.com" 
-style="padding:10px 20px;background:var(--accent-2);color:#fff;border-radius:8px;text-decoration:none;">
-📩 Email Me
-</a>
-</section>
+        <div id="node-content" style="display:none;margin-top:10px;">
+          <p style="font-weight:700">⏳ Coming soon...</p>
+          <p style="color:var(--muted);font-size:13px;margin-top:4px">Preview & release will be announced later.</p>
+        </div>
+      </article>
 
-<footer style="text-align:center;margin-top:40px;color:gray;">
-© 2025 VORAKS Presets
-</footer>
+    </div>
+  </section>
+
+  <section id="contact" style="margin-top:28px;padding:18px;background:var(--card);border-radius:10px;border:1px solid rgba(15,23,36,0.04)">
+    <h2>Contact Me</h2>
+    <p style="color:var(--muted)">Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
+    <a href="mailto:voraks200@gmail.com" style="display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent-2);color:#fff;text-decoration:none">📧 Email Me</a>
+  </section>
+
+  <footer style="text-align:center;margin-top:28px;color:var(--muted)">© 2025 VORAKS Presets</footer>
 </main>
 
 <script>
-function openMenu(){ sideMenu.classList.add('show');overlay.classList.add('show'); }
-function closeMenu(){ sideMenu.classList.remove('show');overlay.classList.remove('show'); }
-function goContact(){ closeMenu(); setTimeout(()=>document.querySelector("#contact").scrollIntoView({behavior:"smooth"}),200); }
+  // get references once (safe)
+  const sideMenu = document.getElementById('sideMenu');
+  const overlay = document.getElementById('overlay');
+  const menuBtn = document.getElementById('menuBtn');
+
+  // ensure menu is hidden initially
+  sideMenu.classList.remove('show');
+  overlay.classList.remove('show');
+  sideMenu.setAttribute('aria-hidden','true');
+
+  function openMenu(){
+    sideMenu.classList.add('show');
+    overlay.classList.add('show');
+    sideMenu.setAttribute('aria-hidden','false');
+  }
+  function closeMenu(){
+    sideMenu.classList.remove('show');
+    overlay.classList.remove('show');
+    sideMenu.setAttribute('aria-hidden','true');
+  }
+
+  // click handlers
+  menuBtn.addEventListener('click', openMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  // close with Esc key
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMenu();
+  });
+
+  function goContact(){
+    closeMenu();
+    setTimeout(() => {
+      const el = document.querySelector('#contact');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 180);
+  }
+
+  // alight open (reveals the small in-card content)
+  function openAlight(){
+    const el = document.getElementById('am-content');
+    if(el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+  }
+
+  // adblock alert (safe guard)
+  try {
+    if (typeof blockAdBlock === 'undefined') {
+      // don't spam the user — only show alert if window is focused and it's the first load
+      // alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+    } else if(blockAdBlock && typeof blockAdBlock.onDetected === 'function') {
+      blockAdBlock.onDetected(function(){ /* optional alert, kept commented */ });
+    }
+  } catch(e){ /* ignore */ }
 </script>
 
 </body>
