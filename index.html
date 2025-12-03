@@ -1,270 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>VORAKS PRESETS</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VORAKS PRESETS</title>
 
-  <style>
-    :root{
-      --bg-grad: linear-gradient(180deg,#f0f7ff 0%, #eef6fb 60%);
-      --card: #ffffff;
-      --accent-1: #0b84ff;   /* blue */
-      --accent-2: #ff5a1e;   /* orange */
-      --accent-3: #7c3aed;   /* purple */
-      --muted: #556068;
-      --max-width:1100px;
-      --radius:12px;
-      --pad:20px;
-      --menu-w:76px;         /* menu button width — used to keep title centered */
-      --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    }
+<style>
+:root{
+  --bg-grad: linear-gradient(180deg,#f0f7ff 0%, #eef6fb 60%);
+  --card:#ffffff;
+  --accent-1:#0b84ff;
+  --accent-2:#ff5a1e;
+  --accent-3:#7c3aed;
+  --muted:#556068;
+  --max-width:1100px;
+  --radius:12px;
+  --pad:20px;
+  --menu-w:76px;
+  --mono:'Segoe UI', Roboto, Arial, sans-serif;
+}
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:var(--mono);
-      background:var(--bg-grad);
-      color:#0f1724;
-      -webkit-font-smoothing:antialiased;
-    }
+body{
+  margin:0;
+  font-family:var(--mono);
+  background:var(--bg-grad);
+  color:#0f1724;
+}
 
-    /* HEADER */
-    header{
-      position:sticky; top:0; z-index:1200;
-      background:rgba(255,255,255,0.9);
-      border-bottom:1px solid rgba(15,23,36,0.05);
-      backdrop-filter: blur(4px);
-    }
-    .topbar-inner{
-      max-width:var(--max-width);
-      margin:0 auto;
-      padding:12px var(--pad);
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      /* add right padding equal to the menu width so the title doesn't get visually overlapped */
-      padding-right: calc(var(--pad) + var(--menu-w));
-    }
-    .brand{ text-align:center; }
-    .brand h1{ margin:0; font-size:20px; letter-spacing:1px; font-weight:800; color: #07203a }
-    .brand p{ margin:0; font-size:12px; color:var(--muted) }
+/* Header */
+header{
+  position:sticky; top:0; z-index:1200;
+  background:rgba(255,255,255,0.9);
+  border-bottom:1px solid rgba(15,23,36,0.05);
+  backdrop-filter:blur(4px);
+}
+.topbar-inner{
+  max-width:var(--max-width);
+  margin:0 auto; padding:12px var(--pad);
+  position:relative; display:flex; justify-content:center; align-items:center;
+  padding-right:calc(var(--pad) + var(--menu-w));
+}
+.brand h1{margin:0;font-size:22px;font-weight:800;color:#07203a}
 
-    /* MENU BUTTON (big, colorful but not covering title) */
-    .menu-btn{
-      position:absolute;
-      right:var(--pad);
-      top:50%;
-      transform:translateY(-50%);
-      width:var(--menu-w);
-      height:56px;
-      border-radius:14px;
-      border:none;
-      background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
-      color:#fff;
-      font-size:30px;
-      display:flex; align-items:center; justify-content:center;
-      cursor:pointer; box-shadow:0 10px 28px rgba(11,132,255,0.14);
-      z-index:1250;
-    }
-    .menu-btn:active{ transform:translateY(-50%) scale(.98) }
+/* Menu Button */
+.menu-btn{
+  position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);
+  width:var(--menu-w);height:56px;border-radius:14px;border:none;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-3));
+  color:#fff;font-size:30px;cursor:pointer;display:flex;justify-content:center;align-items:center;
+}
 
-    /* accessible nav preserved off-screen for screen readers */
-    nav.primary{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+/* Sidebar */
+#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;z-index:1140;}
+#overlay.show{display:block;}
+.side-menu{
+  position:fixed;top:0;right:-360px;width:360px;height:100vh;
+  background:#fff;padding:24px;box-shadow:-20px 0 50px rgba(0,0,0,0.08);
+  transition:right .3s ease;z-index:1160;
+}
+.side-menu.show{right:0;}
+.side-menu a{display:block;margin:10px 0;padding:10px;border-radius:8px;
+  color:var(--accent-1);text-decoration:none;border:1px solid rgba(11,132,255,0.1)}
+.side-menu a:hover{background:rgba(11,132,255,0.1)}
 
-    /* overlay & side-menu (menu above overlay so links are clickable) */
-    #overlay{ position:fixed; inset:0; background:rgba(15,23,36,0.22); display:none; z-index:1140 }
-    #overlay.show{ display:block }
+/* Main */
+.container{max-width:var(--max-width);margin:30px auto;padding:0 var(--pad);}
+.hero{background:white;padding:25px;border-radius:var(--radius);box-shadow:0 5px 15px rgba(0,0,0,0.06);}
 
-    .side-menu{
-      position:fixed; top:0; right:-420px; height:100vh; width:360px;
-      background: linear-gradient(180deg,#fff,#fbfdff);
-      padding:24px; box-shadow:-36px 0 80px rgba(15,23,36,0.06);
-      transition:right .28s ease; z-index:1160; border-left:1px solid rgba(15,23,36,0.04);
-      pointer-events:auto;
-    }
-    .side-menu.show{ right:0; }
+/* Grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;}
+.preset-card{background:var(--card);padding:12px;border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column}
+.thumb{width:100%;height:120px;border-radius:8px;overflow:hidden;margin-bottom:10px;}
+.thumb img{width:100%;height:100%;object-fit:cover}
 
-    .side-menu h3{ margin:0 0 12px 0; font-size:16px; color:#07203a }
-    .side-menu a{ display:block; text-decoration:none; color:var(--accent-1); padding:12px 14px; margin:8px 0; border-radius:10px; background:transparent; border:1px solid rgba(11,132,255,0.08) }
-    .side-menu a:hover{ background:rgba(11,132,255,0.06) }
+/* Buttons */
+.open-btn{
+  margin-top:10px;padding:10px;border:none;border-radius:8px;width:100%;
+  background:var(--accent-1);color:white;cursor:pointer;font-weight:600;
+}
+.open-btn:hover{opacity:0.9}
 
-    /* MAIN */
-    .container{ max-width:var(--max-width); margin:36px auto; padding:0 var(--pad) }
-    .hero{
-      background: linear-gradient(180deg,#ffffff,#fbfdff);
-      padding:28px; border-radius:var(--radius);
-      display:flex; gap:24px; align-items:center;
-      box-shadow:0 8px 20px rgba(12,18,28,0.06);
-    }
-    .hero-left{ flex:1; text-align:left }
-    .hero-left h2{ margin:0; font-size:26px; letter-spacing:0.3px; color:#07203a }
-
-    /* PRESET GRID */
-    #presets{ margin-top:18px }
-    .preset-note{ background:#fff8dc; color:#2a2a2a; padding:12px; border-radius:8px; border-left:4px solid var(--accent-2); margin-bottom:12px }
-
-    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
-    .preset-card{
-      background:var(--card); padding:12px; border-radius:12px; text-align:left;
-      border:1px solid rgba(15,23,36,0.04); min-height:160px; display:flex; flex-direction:column;
-      box-shadow: 0 6px 16px rgba(12,18,28,0.04);
-    }
-    .preset-card .thumb{ width:100%; height:120px; border-radius:8px; overflow:hidden; margin-bottom:10px; }
-    .preset-card img{ width:100%; height:100%; object-fit:cover; display:block; }
-    .preset-card h4{ margin:6px 0 6px 0; font-size:16px; color:#07203a }
-    .preset-card p{ margin:0; color:var(--muted); font-size:13px }
-
-    /* Footer / contact */
-    #contact{ margin-top:28px; padding:22px; border-radius:10px; background:var(--card); border:1px solid rgba(15,23,36,0.04) }
-    #contact h2{ margin-top:0 }
-    .email-btn{ display:inline-block; padding:10px 16px; border-radius:999px; background:var(--accent-2); color:#fff; text-decoration:none; box-shadow: 0 6px 18px rgba(255,90,30,0.12) }
-
-    footer{ margin:28px auto 60px auto; text-align:center; color:var(--muted); font-size:13px }
-
-    /* small screens */
-    @media (max-width:780px){
-      .hero{ flex-direction:column }
-      .menu-btn{ right:12px; width:60px; height:56px; }
-      .side-menu{ width:300px; right:-360px }
-      .topbar-inner{ padding-right: calc(var(--pad) + var(--menu-w)); }
-    }
-  </style>
+.soon-btn{
+  margin-top:10px;padding:10px;border:none;border-radius:8px;width:100%;
+  background:gray;color:white;font-weight:600;opacity:0.6;cursor:not-allowed;
+}
+</style>
 </head>
+
 <body>
+<div id="overlay" onclick="closeMenu()"></div>
 
-  <!-- overlay -->
-  <div id="overlay" onclick="closeMenu()"></div>
+<header>
+  <div class="topbar-inner">
+    <div class="brand"><h1>VORAKS PRESETS</h1></div>
+    <button class="menu-btn" onclick="openMenu()">⋮</button>
+  </div>
+</header>
 
-  <header>
-    <div class="topbar-inner">
-      <div class="brand" role="banner">
-        <h1>VORAKS PRESETS</h1>
-        <p>Professional presets for motion graphics</p>
-      </div>
+<!-- MENU -->
+<aside id="sideMenu" class="side-menu">
+  <h3>Navigate</h3>
+  <a href="index.html">HOME</a>
+  <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+  <a href="#" onclick="event.preventDefault()">AFTER EFFECTS (Soon)</a>
+  <a href="#" onclick="event.preventDefault()">NODE VIDEO (Soon)</a>
+  <a href="#contact" onclick="goContact()">CONTACT</a>
+</aside>
 
-      <!-- big visible menu (won't overlap title because of header padding-right) -->
-      <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">⋮</button>
+<main class="container">
 
-      <!-- hidden for screen-readers -->
-      <nav class="primary" aria-label="Primary navigation">
-        <a href="index.html">HOME</a>
-        <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-        <a href="#">AFTER EFFECTS</a>
-        <a href="#contact">CONTACT</a>
-      </nav>
-    </div>
-  </header>
+<section class="hero">
+  <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
+</section>
 
-  <!-- side menu -->
-  <aside id="sideMenu" class="side-menu" role="dialog" aria-label="Site menu" aria-hidden="true">
-    <h3>Navigate</h3>
+<section id="presets">
+<h2 style="margin-top:25px">PRESET COLLECTION</h2>
 
-    <a href="index.html">HOME</a>
-    <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+<div class="grid">
 
-    <!-- do nothing for AE/Node as requested -->
-    <a href="#" onclick="event.preventDefault();">AFTER EFFECTS</a>
-    <a href="#" onclick="event.preventDefault();">NODE VIDEO</a>
+  <!-- Alight Motion -->
+  <article class="preset-card">
+    <div class="thumb"><img src="alight_motion1.png"></div>
+    <h4>ALIGHT MOTION PRESETS</h4>
+    <p>Click to view all Alight Motion presets</p>
+    <a href="ALIGHTMOTION.html"><button class="open-btn">OPEN</button></a>
+  </article>
 
-    <!-- contact: scroll + close -->
-    <a href="#contact" onclick="event.preventDefault(); goContact();">CONTACT</a>
+  <!-- After Effects -->
+  <article class="preset-card">
+    <div class="thumb"><img src="after_effects1.png"></div>
+    <h4>AFTER EFFECTS PRESETS</h4>
+    <p>Coming soon...</p>
+    <button class="soon-btn">COMING SOON</button>
+  </article>
 
-    <div style="height:12px"></div>
-    <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
-  </aside>
+  <!-- Node Video -->
+  <article class="preset-card">
+    <div class="thumb"><img src="20251003_195318.png"></div>
+    <h4>NODE VIDEO PRESETS</h4>
+    <p>Coming soon...</p>
+    <button class="soon-btn">COMING SOON</button>
+  </article>
 
-  <main class="container">
-    <section class="hero">
-      <div class="hero-left">
-        <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
-        <!-- subtitle and Shop Now removed -->
-      </div>
-    </section>
+</div>
+</section>
 
-    <section id="presets">
-      <h2 style="margin-top:18px">PRESET COLLECTION</h2>
+<section id="contact" style="margin-top:30px;">
+<h2>Contact Me</h2>
+<p>Email anytime with questions or project ideas:</p>
+<a href="mailto:voraks200@gmail.com" 
+style="padding:10px 20px;background:var(--accent-2);color:#fff;border-radius:8px;text-decoration:none;">
+📩 Email Me
+</a>
+</section>
 
-      <div class="preset-note">
-        All presets shared on this website are fully created manually by me. While some may appear similar to others, every preset and rig is original, and I retain full ownership of all my creations.
-      </div>
+<footer style="text-align:center;margin-top:40px;color:gray;">
+© 2025 VORAKS Presets
+</footer>
+</main>
 
-      <div class="grid">
-        <article class="preset-card">
-          <div class="thumb"><img src="alight_motion1.png" alt="Alight Motion preview"></div>
-          <div>
-            <h4><a href="ALIGHTMOTION.html" style="text-decoration:none;color:inherit;">ALIGHT MOTION PRESETS</a></h4>
-            <p>Click to view the full collection of Alight Motion presets.</p>
-          </div>
-        </article>
-
-        <article class="preset-card">
-          <div class="thumb"><img src="after_effects1.png" alt="After Effects preview"></div>
-          <div>
-            <h4>AFTER EFFECTS PRESETS (COMING SOON)</h4>
-            <p>Presets for After Effects — coming soon.</p>
-          </div>
-        </article>
-
-        <article class="preset-card">
-          <div class="thumb"><img src="20251003_195318.png" alt="Node Video preview"></div>
-          <div>
-            <h4>NODE VIDEO PRESETS (COMING SOON)</h4>
-            <p>Node Video presets are in development — preview available here.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
-      <a class="email-btn" href="mailto:voraks200@gmail.com">📧 Email Me</a>
-      <p style="color:var(--muted); margin-top:12px">or email directly: <strong style="color:#07203a">voraks200@gmail.com</strong></p>
-    </section>
-
-    <footer>
-      <p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
-    </footer>
-  </main>
-
-<script src="blockadblock.js"></script>
 <script>
-  const sideMenu = document.getElementById('sideMenu');
-  const overlay = document.getElementById('overlay');
-
-  function openMenu(){
-    sideMenu.classList.add('show');
-    overlay.classList.add('show');
-    sideMenu.setAttribute('aria-hidden','false');
-  }
-  function closeMenu(){
-    sideMenu.classList.remove('show');
-    overlay.classList.remove('show');
-    sideMenu.setAttribute('aria-hidden','true');
-  }
-
-  function goContact(){
-    closeMenu();
-    setTimeout(() => {
-      const el = document.querySelector('#contact');
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 120);
-  }
-
-  // keep existing adblock behaviour safely
-  try {
-    if (typeof blockAdBlock === "undefined") {
-      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    } else {
-      if (blockAdBlock && typeof blockAdBlock.onDetected === 'function'){
-        blockAdBlock.onDetected(function() {
-          alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-        });
-      }
-    }
-  } catch(e){ /* ignore errors */ }
+function openMenu(){ sideMenu.classList.add('show');overlay.classList.add('show'); }
+function closeMenu(){ sideMenu.classList.remove('show');overlay.classList.remove('show'); }
+function goContact(){ closeMenu(); setTimeout(()=>document.querySelector("#contact").scrollIntoView({behavior:"smooth"}),200); }
 </script>
+
 </body>
 </html>
