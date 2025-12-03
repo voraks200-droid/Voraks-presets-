@@ -4,128 +4,219 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>VORAKS PRESETS</title>
-  <meta name="mnd-ver" content="r75kntqyrpzajhpzypu7ua" />
-  <meta name="ppck-ver" content="4fc89bb357f7d53a964ab2dc8f3510a1" />
 
   <style>
     :root{
-      --bg:#0f1724; /* deep blue */
-      --card:#0b1220;
-      --accent:#ff5a1e;
-      --muted:#98a0b3;
-      --glass: rgba(255,255,255,0.04);
+      --bg: #f6f8fb;       /* light professional background */
+      --card: #ffffff;     /* card background */
+      --accent: #0b84ff;   /* professional blue accent */
+      --muted: #6b7280;
+      --glass: rgba(11,132,255,0.06);
       --max-width:1100px;
       --radius:12px;
-      --container-pad:24px;
+      --pad:20px;
       --mono: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     }
+
     *{box-sizing:border-box}
     body{
-      margin:0; font-family:var(--mono); background: linear-gradient(180deg,#071226 0%, #08172b 60%); color:#e6eef8; -webkit-font-smoothing:antialiased;
+      margin:0;
+      font-family:var(--mono);
+      background:var(--bg);
+      color:#0f1724;
+      -webkit-font-smoothing:antialiased;
     }
 
-    /* Topbar */
+    /* Header (centered brand) */
     header{
-      position:sticky; top:0; z-index:50; backdrop-filter: blur(6px);
-      background: linear-gradient(180deg, rgba(4,8,15,0.6), rgba(4,8,15,0.35));
-      padding:10px 16px; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 18px rgba(2,6,12,0.6);
+      position:sticky;
+      top:0;
+      z-index:1200;
+      background:rgba(255,255,255,0.9);
+      border-bottom:1px solid rgba(15,23,36,0.04);
+      backdrop-filter: blur(4px);
     }
-    .topbar-inner{max-width:var(--max-width); width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px; padding:0 var(--container-pad);}
-    .brand{flex:1; text-align:center}
-    .brand h1{margin:0; font-size:20px; letter-spacing:1px; font-weight:700}
-    .brand p{margin:0; font-size:12px; color:var(--muted)}
+    .topbar-inner{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:12px var(--pad);
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .brand{ text-align:center; }
+    .brand h1{ margin:0; font-size:20px; letter-spacing:1px; font-weight:700; }
+    .brand p{ margin:0; font-size:12px; color:var(--muted); }
 
-    /* invisible nav kept for accessibility, but hidden visually */
-    nav.primary{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+    /* Big three-dots button */
+    .menu-btn{
+      position:absolute;
+      right:var(--pad);
+      top:50%;
+      transform:translateY(-50%);
+      width:68px;
+      height:68px;
+      border-radius:16px;
+      border:none;
+      background:linear-gradient(180deg,var(--accent), #0a6fe0);
+      color:#fff;
+      font-size:30px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      box-shadow:0 10px 30px rgba(11,132,255,0.14);
+      z-index:1250;
+    }
+    .menu-btn:active{ transform:translateY(-50%) scale(.98) }
 
-    /* three-dot */
-    .controls{display:flex; align-items:center; gap:12px}
-    .dot-btn{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted); width:46px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer}
-    .dot-btn:hover{background:var(--glass); color:#fff}
+    /* Hidden accessible nav (kept for screen readers) */
+    nav.primary{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 
-    /* SIDE MENU */
-    .side-menu{position:fixed; right:-320px; top:0; height:100vh; width:320px; background:linear-gradient(180deg,#0b1320,#071122); box-shadow:-24px 0 60px rgba(0,0,0,0.6); padding:28px; transition:right .35s cubic-bezier(.2,.9,.3,1); z-index:60;}
-    .side-menu.show{right:0}
-    .side-menu h3{margin:0 0 12px 0; font-size:16px}
-    .side-menu a{display:block; text-decoration:none; color:#eaf4ff; padding:12px 14px; margin:8px 0; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.03)}
-    .side-menu a:hover{background:rgba(255,90,30,0.08); border-color: rgba(255,90,30,0.18); color:var(--accent)}
+    /* Overlay and side menu (z-index ordering ensures menu above overlay & clickable) */
+    #overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(15,23,36,0.35);
+      display:none;
+      z-index:1140;
+    }
+    #overlay.show{ display:block; }
 
-    /* overlay */
-    #overlay{position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; z-index:55}
-    #overlay.show{display:block}
+    .side-menu{
+      position:fixed;
+      top:0;
+      right:-380px;
+      height:100vh;
+      width:340px;
+      background: linear-gradient(180deg,#ffffff,#f4f6fb);
+      padding:24px;
+      box-shadow:-36px 0 80px rgba(15,23,36,0.06);
+      transition:right .28s ease;
+      z-index:1160;               /* above overlay */
+      border-left:1px solid rgba(15,23,36,0.04);
+      pointer-events:auto;
+    }
+    .side-menu.show{ right:0; }
 
-    /* Main content */
-    .container{max-width:var(--max-width); margin:36px auto; padding:0 var(--container-pad)}
-    .hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:36px; border-radius:var(--radius); display:flex; gap:24px; align-items:center; box-shadow: 0 8px 30px rgba(2,6,12,0.6)}
-    .hero-left{flex:1; text-align:center}
-    .hero-left h2{margin:0; font-size:28px; letter-spacing:1px}
-    .hero-left p{margin:8px 0 18px 0; color:var(--muted)}
-    .btn-primary{background:linear-gradient(90deg,var(--accent), #ff7a44); padding:12px 20px; border-radius:999px; color:#081022; font-weight:800; border:none; cursor:pointer}
+    .side-menu h3{ margin:0 0 12px 0; font-size:16px; color:#0f1724 }
+    .side-menu a{
+      display:block;
+      text-decoration:none;
+      color:var(--accent);
+      padding:12px 14px;
+      margin:8px 0;
+      border-radius:10px;
+      background:transparent;
+      border:1px solid rgba(11,132,255,0.08);
+    }
+    .side-menu a:hover{ background:var(--glass) }
 
-    .hero-right{width:320px}
-    .card-preview{background:linear-gradient(180deg,#061627,#08182c); border-radius:12px; padding:12px; border:1px solid rgba(255,255,255,0.03)}
-    .card-preview img{width:100%; display:block; border-radius:8px}
+    /* Main layout */
+    .container{ max-width:var(--max-width); margin:36px auto; padding:0 var(--pad) }
+    .hero{
+      background:linear-gradient(180deg,#ffffff,#fbfdff);
+      padding:28px;
+      border-radius:var(--radius);
+      display:flex;
+      gap:24px;
+      align-items:center;
+      box-shadow:0 6px 18px rgba(15,23,36,0.06);
+    }
+    .hero-left{ flex:1; text-align:left; }
+    .hero-left h2{ margin:0; font-size:26px; letter-spacing:0.6px; }
 
-    /* presets grid */
-    #presets{margin-top:28px}
-    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px}
-    .preset-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:14px; border-radius:12px; text-align:left; border:1px solid rgba(255,255,255,0.03)}
-    .preset-card img{width:100%; border-radius:8px; display:block}
-    .preset-card h4{margin:10px 0 6px 0}
-    .preset-card p{margin:0; color:var(--muted); font-size:13px}
+    /* Presets grid */
+    #presets{ margin-top:18px; }
+    .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; }
+    .preset-card{
+      background:var(--card);
+      padding:12px;
+      border-radius:10px;
+      text-align:left;
+      border:1px solid rgba(15,23,36,0.04);
+      min-height:120px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+    .preset-card h4{ margin:10px 0 6px 0; color:#0f1724; font-size:16px }
+    .preset-card p{ margin:0; color:var(--muted); font-size:13px }
 
-    .preset-note{background:linear-gradient(90deg,#fffbf0, #fffaf3); color:#2a2a2a; padding:12px; border-radius:8px; border-left:4px solid var(--accent); margin-bottom:12px}
+    .preset-note{
+      background:#fff8dc; color:#2a2a2a; padding:12px; border-radius:8px; border-left:4px solid var(--accent);
+      margin-bottom:12px;
+    }
 
-    /* contact */
-    #contact{margin-top:28px; padding:28px; border-radius:12px; background:linear-gradient(180deg,#071226,#08182b); border:1px solid rgba(255,255,255,0.03)}
-    #contact h2{margin-top:0}
-    .email-btn{display:inline-block; padding:10px 16px; border-radius:999px; background:transparent; color:var(--accent); border:1px solid rgba(255,90,30,0.12); text-decoration:none}
+    /* Contact */
+    #contact{
+      margin-top:28px;
+      padding:22px;
+      border-radius:10px;
+      background:var(--card);
+      border:1px solid rgba(15,23,36,0.04);
+    }
+    #contact h2{ margin-top:0 }
+    .email-btn{
+      display:inline-block;
+      padding:10px 16px;
+      border-radius:999px;
+      background:var(--accent);
+      color:#fff;
+      text-decoration:none;
+    }
 
-    footer{margin:28px auto 60px auto; text-align:center; color:var(--muted); font-size:13px}
+    footer{ margin:28px auto 60px auto; text-align:center; color:var(--muted); font-size:13px }
 
-    /* responsive tweaks */
-    @media (max-width:640px){
-      .hero{flex-direction:column}
-      .hero-right{width:100%}
-      .brand h1{font-size:18px}
+    @media (max-width:760px){
+      .hero{ flex-direction:column }
+      .menu-btn{ right:12px; width:60px; height:60px; font-size:26px }
+      .side-menu{ width:300px; right:-340px; }
     }
   </style>
 </head>
 <body>
 
+  <!-- overlay (closes menu when clicked) -->
   <div id="overlay" onclick="closeMenu()"></div>
 
   <header>
     <div class="topbar-inner">
-      <div class="controls" style="visibility:hidden; width:46px;"></div>
-
-      <div class="brand">
-        <h1 style="text-align:center;">VORAKS PRESETS</h1>
-        <p style="text-align:center;">Professional presets for motion graphics</p>
+      <!-- center brand -->
+      <div class="brand" role="banner">
+        <h1>VORAKS PRESETS</h1>
+        <p>Professional presets for motion graphics</p>
       </div>
 
-      <div class="controls">
-        <!-- keeping original nav for accessibility (visually hidden) -->
-        <nav class="primary" aria-label="Primary">
-          <a href="index.html">HOME</a>
-          <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-          <a href="#">AFTER EFFECTS</a>
-          <a href="#contact">CONTACT</a>
-        </nav>
+      <!-- big 3-dot menu button (noticeable) -->
+      <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">⋮</button>
 
-        <!-- three-dot menu button -->
-        <button class="dot-btn" aria-label="Open menu" onclick="openMenu()">⋮</button>
-      </div>
+      <!-- hidden accessible nav for screen readers -->
+      <nav class="primary" aria-label="Primary navigation">
+        <a href="index.html">HOME</a>
+        <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+        <a href="#">AFTER EFFECTS</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
     </div>
   </header>
 
-  <!-- SIDE MENU (keeps links as real anchors) -->
-  <aside id="sideMenu" class="side-menu" role="dialog" aria-label="Site menu">
+  <!-- side menu (links are real anchors) -->
+  <aside id="sideMenu" class="side-menu" role="dialog" aria-label="Site menu" aria-hidden="true">
     <h3>Navigate</h3>
+
+    <!-- home & alight still navigate as normal -->
     <a href="index.html">HOME</a>
     <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-    <a href="#">AFTER EFFECTS</a>
-    <a href="#contact">CONTACT</a>
+
+    <!-- After Effects & Node Video do nothing (no scrolling) -->
+    <a href="#" onclick="event.preventDefault();">AFTER EFFECTS</a>
+    <a href="#" onclick="event.preventDefault();">NODE VIDEO</a>
+
+    <!-- Contact scrolls + closes the menu -->
+    <a href="#contact" onclick="event.preventDefault(); goContact();">CONTACT</a>
+
     <div style="height:12px"></div>
     <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
   </aside>
@@ -134,13 +225,7 @@
     <section class="hero">
       <div class="hero-left">
         <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
-        <p>HUNDREDS OF FREE AND PAID PRESETS TO LEVEL UP YOUR EDITS</p>
-        <button class="btn-primary" id="shopNowButton">Shop Now</button>
-      </div>
-      <div class="hero-right">
-        <div class="card-preview">
-          <img src="alight_motion1.png" alt="ALIGHT MOTION PREVIEW">
-        </div>
+        <!-- removed subtitle and Shop Now as requested -->
       </div>
     </section>
 
@@ -153,18 +238,24 @@
 
       <div class="grid">
         <article class="preset-card">
-          <a href="ALIGHTMOTION.html"><img src="alight_motion1.png" alt="ALIGHT MOTION PRESETS"><h4>ALIGHT MOTION PRESETS</h4></a>
-          <p>Click to view the full collection of Alight Motion presets.</p>
+          <div>
+            <h4><a href="ALIGHTMOTION.html" style="text-decoration:none;color:inherit;">ALIGHT MOTION PRESETS</a></h4>
+            <p>Click to view the full collection of Alight Motion presets.</p>
+          </div>
         </article>
 
         <article class="preset-card">
-          <a href="#"><img src="after_effects1.png" alt="AFTER EFFECTS PRESETS"><h4>AFTER EFFECTS PRESETS (COMING SOON)</h4></a>
-          <p>Presets for After Effects — coming soon. Stay tuned.</p>
+          <div>
+            <h4>AFTER EFFECTS PRESETS (COMING SOON)</h4>
+            <p>Presets for After Effects — coming soon. Stay tuned.</p>
+          </div>
         </article>
 
         <article class="preset-card">
-          <a href="#"><img src="20251003_195318.png" alt="NODE VIDEO PRESETS"><h4>NODE VIDEO PRESETS (COMING SOON)</h4></a>
-          <p>Node Video presets are in development — preview available here.</p>
+          <div>
+            <h4>NODE VIDEO PRESETS (COMING SOON)</h4>
+            <p>Node Video presets are in development — preview available here.</p>
+          </div>
         </article>
       </div>
     </section>
@@ -173,7 +264,7 @@
       <h2>Contact Me</h2>
       <p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
       <a class="email-btn" href="mailto:voraks200@gmail.com">📧 Email Me</a>
-      <p style="color:var(--muted); margin-top:12px">or email directly: <strong style="color:#eaf4ff">voraks200@gmail.com</strong></p>
+      <p style="color:var(--muted); margin-top:12px">or email directly: <strong style="color:#0f1724">voraks200@gmail.com</strong></p>
     </section>
 
     <footer>
@@ -183,21 +274,42 @@
 
 <script src="blockadblock.js"></script>
 <script>
-  const side = document.getElementById('sideMenu');
+  const sideMenu = document.getElementById('sideMenu');
   const overlay = document.getElementById('overlay');
-  function openMenu(){ side.classList.add('show'); overlay.classList.add('show'); }
-  function closeMenu(){ side.classList.remove('show'); overlay.classList.remove('show'); }
 
-  // keep existing adblock behaviour
-  if (typeof blockAdBlock === "undefined") {
-    alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-  } else {
-    if (blockAdBlock && typeof blockAdBlock.onDetected === 'function'){
-      blockAdBlock.onDetected(function() {
-        alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-      });
-    }
+  function openMenu(){
+    sideMenu.classList.add('show');
+    overlay.classList.add('show');
+    sideMenu.setAttribute('aria-hidden','false');
   }
+  function closeMenu(){
+    sideMenu.classList.remove('show');
+    overlay.classList.remove('show');
+    sideMenu.setAttribute('aria-hidden','true');
+  }
+
+  // Close menu + scroll to contact
+  function goContact(){
+    closeMenu();
+    // wait a tiny bit so menu close animation starts (smooth effect)
+    setTimeout(() => {
+      const el = document.querySelector('#contact');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 120);
+  }
+
+  // keep existing adblock behaviour (safe)
+  try {
+    if (typeof blockAdBlock === "undefined") {
+      alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+    } else {
+      if (blockAdBlock && typeof blockAdBlock.onDetected === 'function'){
+        blockAdBlock.onDetected(function() {
+          alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
+        });
+      }
+    }
+  } catch(e){ /* ignore errors */ }
 </script>
 </body>
 </html>
