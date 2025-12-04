@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>VORAKS Presets</title>
+<title>COLOUR CORRECTION PRESETS</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
-/* =================== GLOBAL =================== */
+/* GLOBAL */
 body{
   margin:0;
   font-family:Poppins,Arial,sans-serif;
@@ -16,9 +16,9 @@ body{
   text-align:center;
 }
 
-/* =================== HEADER =================== */
+/* HEADER */
 header{
-  padding:60px 10px 30px;
+  padding:50px 10px 30px;
   position:relative;
 }
 
@@ -29,57 +29,51 @@ header h1{
   color:#ffcc00;
   text-transform:uppercase;
   text-shadow:0 0 15px rgba(255,230,0,.6);
-  margin-top:25px;
+  margin-top:20px;
 }
 
-/* =================== 3 DOT MENU =================== */
+/* HAMBURGER */
 .menu-btn{
   position:absolute;
   right:25px;
   top:20px;
-  font-size:30px;
+  font-size:32px;
+  font-weight:bold;
   cursor:pointer;
-  padding:10px;
+  padding:12px;
   border-radius:8px;
-  background:#ffffff15;
-  backdrop-filter:blur(5px);
-  user-select:none;
-  z-index:99999;
+  background:#ffffff25;
+  backdrop-filter:blur(4px);
 }
-.menu-btn:hover{background:#ffffff30;}
+.menu-btn:hover{background:#ffffff40;}
 
 #menu{
   position:fixed;
   top:0;
   right:-260px;
   width:240px;
-  height:100vh;
+  height:100%;
   background:#0b0b0c;
-  box-shadow:-4px 0 15px rgba(0,0,0,.7);
-  padding-top:80px;
-  transition:.4s ease;
+  padding-top:70px;
+  transition:.4s;
   text-align:center;
-  z-index:9999;
-}
-
-#menu.open{
-  right:0; /* <<< Makes menu actually open */
+  box-shadow:-4px 0 15px rgba(0,0,0,.6);
 }
 
 #menu a{
   display:block;
   color:white;
-  padding:15px 0;
+  padding:15px;
   font-size:18px;
   text-decoration:none;
-  border-bottom:1px solid #ffffff25;
+  border-bottom:1px solid #ffffff22;
 }
 #menu a:hover{
   background:#ffcc00;
   color:black;
 }
 
-/* =================== SEARCH =================== */
+/* SEARCH */
 .search-container{
   margin-top:25px;
   display:flex;
@@ -93,22 +87,21 @@ header h1{
   padding:12px 18px;
   border:none;
   border-radius:30px;
-  outline:none;
   font-size:16px;
 }
 
 .search-container button{
   background:#ffcc00;
   padding:12px 22px;
-  color:black;
-  border-radius:30px;
   border:none;
-  cursor:pointer;
+  border-radius:30px;
+  color:black;
   font-weight:600;
+  cursor:pointer;
 }
 .search-container button:hover{background:#e6b800;}
 
-/* =================== PRESET CARD =================== */
+/* PRESET SECTION */
 section{
   width:92%;
   max-width:850px;
@@ -128,14 +121,14 @@ section h2{
 .preset-section{
   margin-bottom:30px;
   padding-bottom:20px;
-  border-bottom:1px solid #ffffff30;
+  border-bottom:1px solid #ffffff40;
 }
 
 .label{padding:8px 15px;border-radius:20px;font-weight:bold;}
 .free{background:#28a745;}
 .paid{background:#dc3545;}
 
-/* =================== SLIDER =================== */
+/* SLIDER */
 .slider{
   position:relative;
   width:100%;
@@ -150,7 +143,6 @@ section h2{
   display:none;
   opacity:0;
   transition:.7s;
-  border-radius:10px;
 }
 .slider img.active{display:block;opacity:1;}
 
@@ -158,7 +150,7 @@ section h2{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:#00000070;
+  background:#00000075;
   color:white;
   border:none;
   padding:10px 15px;
@@ -169,7 +161,7 @@ section h2{
 .prev-btn{left:10px;}
 .next-btn{right:10px;}
 
-/* =================== DOWNLOAD BUTTON =================== */
+/* BUTTON */
 .download-btn{
   background:#ff4500;
   color:white;
@@ -177,25 +169,20 @@ section h2{
   padding:12px 25px;
   border-radius:6px;
   margin-top:15px;
-  cursor:pointer;
   font-weight:bold;
 }
 .download-btn:hover{background:#e63b00;}
 
-/* =================== CONTACT =================== */
-#contact{
-  background:#000000aa;
-  margin-top:50px;
-}
-
+/* CONTACT */
+#contact{margin-top:50px;background:#000000aa;}
 #contact h2{color:#ffcc00;}
 
 #contact a{
   background:#ff4500;
   padding:12px 25px;
-  color:white;
   border-radius:30px;
   text-decoration:none;
+  color:white;
   font-weight:bold;
 }
 #contact a:hover{background:#ff5b1e;}
@@ -205,35 +192,36 @@ footer{
   padding:15px;
   margin-top:30px;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- 3 DOT MENU BUTTON -->
+<!-- MENU BUTTON -->
 <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 
-<!-- SLIDE MENU -->
+<!-- MENU LINKS -->
 <div id="menu">
-  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
-  <a href="alightmotion.html" onclick="toggleMenu()">🎞 Alight Motion</a>
-  <a href="#" onclick="toggleMenu()">After Effects</a>
-  <a href="#" onclick="toggleMenu()">NODE VIDEO</a>
-  <a href="#contact" onclick="toggleMenu()">📩 Contact</a>
-  
+  <a onclick="scrollToTop();toggleMenu()">🏠 Home</a>
+  <a onclick="toggleMenu()">🎨 Colour Correction</a>
+  <a onclick="toggleMenu()">🟢 Alight Motion (Open Soon)</a>
+  <a onclick="toggleMenu()">🔵 After Effects (Coming Soon)</a>
+  <a onclick="toggleMenu()">🟣 Node Video (Coming Soon)</a>
+  <a onclick="scrollToContact();toggleMenu()">📩 Contact</a>
 </div>
 
 <header>
   <h1>VORAKS PRESETS</h1>
 
   <div class="search-container">
-    <input type="text" id="presetSearch" placeholder="Search Colour Correction Presets...">
-    <button onclick="searchPresets()">Search</button>
+      <input type="text" id="presetSearch" placeholder="Search Colour Correction Presets...">
+      <button onclick="searchPresets()">Search</button>
   </div>
 </header>
 
 <section id="presets-container">
-  <h2>Alight Motion Colour Correction Presets</h2>
+  <h2>Colour Correction XML Presets</h2>
   <div id="presetList"></div>
 </section>
 
@@ -296,10 +284,14 @@ function searchPresets(){
   displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q)));
 }
 
-/*** MENU TOGGLE FIX ***/
+/* MENU ACTIONS */
 function toggleMenu(){
-  document.getElementById("menu").classList.toggle("open");
+  const m=document.getElementById("menu");
+  m.style.right = m.style.right=="0px"?"-260px":"0px";
 }
+
+function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
+function scrollToContact(){document.getElementById("contact").scrollIntoView({behavior:"smooth"});}
 
 </script>
 
