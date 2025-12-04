@@ -1,275 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Watermark Presets | VORAKS</title>
-
 <style>
-/* ============ BASIC UI ============ */
-body{
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  margin:0;
-  text-align:center;
-}
-html{scroll-behavior:smooth;}
+  :root{
+    --bg1: #0f1724;
+    --panel:#0b1220;
+    --accent:#0b84ff;
+    --muted:#9aa3b2;
+    --card:#ffffff;
+    --orange:#ff4500;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif;background:linear-gradient(180deg,#f5f7fb 0%, #eef6fb 100%);color:#0f1724}
+  .container{max-width:1100px;margin:28px auto;padding:0 20px}
 
-header{
-  background:black;
-  color:white;
-  padding:18px 15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:60;
+    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+    border-bottom:1px solid rgba(15,23,36,0.04);
+    padding:18px 20px; display:flex; align-items:center; justify-content:center;
+  }
+  .top-inner{max-width:1100px; width:100%; display:flex; align-items:center; justify-content:center; position:relative}
+  .brand{ text-align:center }
+  .brand h1{ margin:0; font-size:20px; letter-spacing:1px; font-weight:800; text-transform:uppercase; color:#07203a }
+  .brand p{ margin:0; font-size:12px; color:var(--muted) }
 
-/* ----------- TITLE ----------- */
-header h1{
-  margin:0;
-  font-size:23px;
-  font-weight:700;
-}
+  /* Menu button */
+  .menu-btn{ position:absolute; right:20px; top:50%; transform:translateY(-50%); width:56px; height:56px; border-radius:12px; border:none; background:linear-gradient(90deg,var(--accent), #7c3aed); color:#fff; font-size:28px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 10px 28px rgba(11,132,255,0.12); z-index:70 }
+  @media (max-width:640px){ .brand h1{ font-size:18px } .menu-btn{ right:12px } }
 
-/* ----------- 3 DOT MENU BUTTON ----------- */
-.menu-btn{
-  font-size:30px;
-  cursor:pointer;
-  padding:5px 12px;
-  border-radius:50%;
-  user-select:none;
-}
+  /* overlay + side menu */
+  #overlay{ position:fixed; inset:0; background:rgba(2,6,12,0.45); display:none; z-index:65; }
+  #overlay.show{ display:block }
 
-/* ----------- POPUP MENU ----------- */
-.menu-box{
-  position:absolute;
-  top:60px;
-  right:15px;
-  width:200px;
-  background:#111;
-  border-radius:10px;
-  display:none;
-  flex-direction:column;
-  animation:fade 0.25s;
-  box-shadow:0 0 10px rgba(0,0,0,0.4);
-}
-@keyframes fade{ from{opacity:0;transform:translateY(-8px);} to{opacity:1;} }
+  .side-menu{
+    position:fixed; right:-360px; top:0; height:100vh; width:320px; padding:26px;
+    background:linear-gradient(180deg,#ffffff,#fbfdff); box-shadow:-36px 0 80px rgba(15,23,36,0.06); transition:right .28s ease; z-index:68; border-left:1px solid rgba(15,23,36,0.04);
+  }
+  .side-menu.show{ right:0 }
+  .side-menu h3{ margin:0 0 14px 0; font-size:16px; color:#07203a }
+  .side-menu a{ display:block; text-decoration:none; color:var(--accent); padding:12px 14px; margin:8px 0; border-radius:10px; border:1px solid rgba(11,132,255,0.08) }
+  .side-menu a:hover{ background:rgba(11,132,255,0.06) }
+  .side-menu .disabled{ color:var(--muted); border-color:rgba(0,0,0,0.03); background:transparent; pointer-events:none }
 
-.menu-box a{
-  text-decoration:none;
-  color:white;
-  padding:12px;
-  text-align:left;
-  border-bottom:1px solid #222;
-  transition:0.2s;
-}
-.menu-box a:hover{background:#222;}
+  /* Search */
+  .search { display:flex; justify-content:center; gap:12px; margin:20px 0 }
+  .search input{ padding:10px 14px; border-radius:999px; border:1px solid rgba(15,23,36,0.06); width:280px; outline:none }
+  .search button{ background:var(--accent); color:#fff; border:none; padding:10px 16px; border-radius:999px; cursor:pointer; font-weight:700 }
 
-.coming{
-  color:#777 !important;
-  pointer-events:none;
-  font-style:italic;
-}
+  /* Preset list */
+  main{ padding-bottom:40px }
+  .panel{ background:linear-gradient(180deg,#ffffff,#fbfdff); padding:22px; border-radius:12px; box-shadow:0 8px 30px rgba(2,6,12,0.06) }
+  h2.section-title{ margin:0 0 12px 0; color:#07203a; font-size:20px }
 
-/* ----------- SEARCH ----------- */
-.search-container{
-  margin:20px auto;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
-.search-container input{
-  padding:10px 15px;
-  width:260px;
-  border-radius:30px;
-  border:2px solid #333;
-}
-.search-container button{
-  background:#ffcc00;
-  border:none;
-  padding:10px 18px;
-  border-radius:30px;
-  font-weight:bold;
-  cursor:pointer;
-}
+  .preset-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; margin-top:16px }
+  .card{ background:var(--card); border-radius:12px; padding:12px; text-align:left; border:1px solid rgba(15,23,36,0.03); box-shadow:0 6px 18px rgba(2,6,12,0.04) }
+  .thumb{ width:100%; height:160px; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:#f3f5f8 }
+  .thumb img, .thumb video, .thumb iframe{ width:100%; height:100%; object-fit:cover; display:block; }
+  .card h3{ margin:10px 0 6px 0; font-size:16px; color:#07203a }
+  .card p{ margin:0; color:var(--muted); font-size:13px }
+  .meta{ margin-top:10px; display:flex; gap:8px; align-items:center; justify-content:space-between }
+  .label{ padding:6px 12px; border-radius:999px; font-weight:700; font-size:12px; color:#fff; }
+  .label.free{ background:#28a745 }
+  .label.paid{ background:#dc3545 }
+  .open-link{ background:var(--accent); color:#fff; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:700 }
 
-/* ----------- PRESET SECTIONS ----------- */
-section{
-  width:90%;
-  max-width:800px;
-  margin:40px auto;
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-.preset-section{
-  border-bottom:1px solid #eee;
-  margin-bottom:22px;
-  padding-bottom:22px;
-}
-.preset-section:last-child{border:none;}
+  /* slider controls (if images array length >1) */
+  .slider { position:relative; }
+  .slider .nav{ position:absolute; top:8px; right:8px; display:flex; gap:6px }
+  .slider .nav button{ padding:6px 8px; border-radius:6px; border:none; background:rgba(0,0,0,0.6); color:#fff; cursor:pointer }
 
-.label{
-  padding:6px 14px;
-  border-radius:20px;
-  color:white;
-  font-size:13px;
-  margin:10px 0;
-  display:inline-block;
-}
-.free{background:#28a745;}
-.paid{background:#dc3545;}
+  /* Contact */
+  #contact{ margin-top:28px; background:linear-gradient(180deg,#071226,#08182b); color:#eaf4ff; padding:26px; border-radius:12px; border:1px solid rgba(255,255,255,0.03) }
+  #contact h2{ margin-top:0 }
+  .contact-grid{ display:grid; grid-template-columns: 1fr 320px; gap:18px; align-items:start }
+  .contact-card{ background:#0b1220; padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.03) }
+  .contact-card p{ color:var(--muted) }
+  .contact-form input, .contact-form textarea{ width:100%; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); margin-bottom:10px; background:transparent; color:#eaf4ff }
+  .contact-form button{ background:var(--orange); color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:700 }
 
-/* ----------- SLIDER ----------- */
-.slider{
-  position:relative;
-  width:90%;
-  max-width:550px;
-  margin:auto;
-  padding-top:56%;
-  overflow:hidden;
-  border-radius:10px;
-}
-.slider img{
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;
-  object-fit:cover;
-  display:none;
-  opacity:0;
-  transition:.6s;
-}
-.slider img.active{display:block;opacity:1;}
+  footer{ margin-top:18px; text-align:center; color:var(--muted); font-size:13px }
 
-.slider-btn{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  background:rgba(0,0,0,.5);
-  color:white;border:none;
-  padding:8px 12px;
-  cursor:pointer;
-  font-size:22px;
-  border-radius:5px;
-}
-.prev-btn{left:10px;}
-.next-btn{right:10px;}
-
-/* ----------- CONTACT ----------- */
-#contact{
-  background:black;color:white;
-  border-radius:0;
-  margin-top:60px;
-  padding:45px 20px;
-}
-#contact a{
-  background:#ff4500;
-  padding:12px 25px;
-  border-radius:30px;
-  display:inline-block;
-  color:white;
-  text-decoration:none;
-  font-weight:700;
-}
+  /* responsive */
+  @media (max-width:880px){ .contact-grid{ grid-template-columns: 1fr } .side-menu{ width:300px } .side-menu.show{ right:0 } }
 </style>
 </head>
-
 <body>
+  <div id="overlay"></div>
 
-<!-- 🔻 HEADER WITH 3 DOT MENU -->
-<header>
-  <h1>VORAKS PRESETS</h1>
-
-  <div class="menu-btn" onclick="toggleMenu()">⋮</div>
-
-  <div id="menu" class="menu-box">
-      <a href="index.html">🏠 Home</a>
-      <a href="ALIGHTMOTION.html">🎬 Alight Motion</a>
-
-      <a class="coming">✨ After Effects (Coming Soon)</a>
-      <a class="coming">📲 Node Video (Coming Soon)</a>
-
-      <a href="#contact" onclick="closeMenu()">📩 Contact</a>
-  </div>
-</header>
-
-<!-- Search Bar -->
-<div class="search-container">
-  <input type="text" id="presetSearch" placeholder="Search watermark presets...">
-  <button onclick="searchPresets()">Search</button>
-</div>
-
-<section>
-  <h2>Watermark Presets</h2>
-  <div id="presetList"></div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <h2>Contact Me</h2>
-  <a href="mailto:voraks200@gmail.com">Email Me</a>
-</section>
-
-<footer style="padding:20px;background:black;color:white;">
-  © 2025 VORAKS
-</footer>
-
-<script>
-let presets=[];
-
-/* -------- JSON LOAD FIX -------- */
-fetch("watermark.json")
-.then(r=>r.json())
-.then(d=>{presets=d;display(d);});
-
-/* -------- DISPLAY PRESETS -------- */
-function display(data){
-  const box=document.getElementById("presetList");
-  box.innerHTML="";
-
-  data.forEach((p,i)=>{
-    box.innerHTML+=`
-    <div class="preset-section">
-      <h3>${p.title}</h3>
-      <p>${p.description}</p>
-      <span class="label ${p.type}">${p.type}</span>
-
-      <div class="slider" id="slide${i}">
-        ${p.images.map((img,j)=>`<img src="${img}" class="${j==0?"active":""}">`).join("")}
-        ${p.images.length>1?`
-         <button class="slider-btn prev-btn" onclick="move(${i},-1)">❮</button>
-         <button class="slider-btn next-btn" onclick="move(${i},1)">❯</button>`:""}
+  <header>
+    <div class="top-inner">
+      <div class="brand">
+        <h1>VORAKS PRESETS</h1>
+        <p>Professional motion presets — Watermark collection</p>
       </div>
 
-      ${p.download?`<br><a href="${p.download}" target="_blank"><button class="download-btn">Download</button></a>`:""}
-    </div>`;
+      <button class="menu-btn" aria-label="Open menu" id="menuBtn">⋮</button>
+    </div>
+  </header>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" role="dialog" aria-label="Site menu">
+    <h3>Navigate</h3>
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="ALIGHTMOTION.html" onclick="closeMenu()">Alight Motion</a>
+    <a class="disabled" onclick="return false">After Effects (Coming Soon)</a>
+    <a class="disabled" onclick="return false">Node Video (Coming Soon)</a>
+    <a href="#contact" onclick="closeMenu();document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+    <div style="height:12px"></div>
+    <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
+  </aside>
+
+  <main class="container">
+    <div class="search" role="search" aria-label="Search presets">
+      <input id="presetSearch" placeholder="Search watermark presets..." />
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div class="panel">
+      <h2 class="section-title">Watermark Preset Collection</h2>
+
+      <div id="presetGrid" class="preset-grid" aria-live="polite"></div>
+    </div>
+
+    <section id="contact">
+      <h2>Contact & Collaborations</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <p style="margin:0 0 10px 0">Hi — I'm the creator behind VORAKS. I make presets for mobile & desktop editors that help creators speed up their workflow and get professional results. If you'd like custom presets, collaborations, or to request a pack, contact me below.</p>
+
+          <div class="contact-form" style="margin-top:14px">
+            <input id="cname" placeholder="Your name (optional)" />
+            <input id="csubject" placeholder="Subject" />
+            <textarea id="cmessage" rows="4" placeholder="Your message..."></textarea>
+            <button id="sendContact">Email Me</button>
+            <p style="margin-top:10px;color:var(--muted);font-size:13px">Or email directly: <strong style="color:#eaf4ff">voraks200@gmail.com</strong></p>
+            <p style="margin-top:6px;color:var(--muted);font-size:13px">Socials: <a href="#" style="color:var(--accent)">YouTube</a> · <a href="#" style="color:var(--accent)">Instagram</a></p>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h4 style="margin:0 0 8px 0">Quick contacts</h4>
+          <p style="margin:0 0 6px 0;color:var(--muted)">Email</p>
+          <p style="margin:0 0 14px 0"><a href="mailto:voraks200@gmail.com" style="color:var(--accent)">voraks200@gmail.com</a></p>
+
+          <h4 style="margin:0 0 8px 0">Download & support</h4>
+          <p style="margin:0;color:var(--muted)">If a download link doesn't work, tell me the preset id and I’ll send it via email or cloud link.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>© 2025 VORAKS Presets · Made with ❤️</footer>
+  </main>
+
+<script>
+/* ======== Data (embedded JSON you provided) ======== */
+const presetsData = [
+  {
+    "id": "normal-watermark",
+    "title": "Normal Watermark Preset",
+    "description": "A simple yet striking preset with bright, glowing white text against a pure black background. The text quickly fades in and out, creating a clean, professional, and memorable brand flash.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/52XtmYCB/voraks-presets-18A73F6.png"
+    ],
+    "video": "https://drive.google.com/file/d/1CZ2Wp-GIhbEMSe4HrVQqfwiBY-6F0eCS/preview",
+    "download": "https://drive.google.com/file/d/1fkiJwRKGUcfG7at6ld3MKZsY_48K-Dyv/view?usp=drivesdk"
+  },
+  {
+    "id": "dual-layer-watermark",
+    "title": "Dual Layer Watermark Preset",
+    "description": "A watermark animation featuring white text on black. The key element is the bold cursor, which appears and then jumps to the left of the text, giving a dynamic, responsive feel to the reveal before the logo disappears.",
+    "type": "free",
+    "images": [
+      ""
+    ],
+    "video": "https://drive.google.com/file/d/1SS5ooyg_VpS0X8N_38zmcZn8_ecK9wib/preview",
+    "download": "https://drive.google.com/file/d/17D4WXfXS-jjCs-y6c6kaLIuY72RMvppK/view?usp=drivesdk"
+  },
+  {
+    "id": "glitch-watermark",
+    "title": "Glitch Watermark Preset",
+    "description": "A high-energy, futuristic transition preset. It features a bright white cursor that types the first text, which then undergoes a glitch-style digital breakdown and is replaced by a second text (AM) before the scene quickly clears to a black screen with only the blinking cursor.",
+    "type": "free",
+    "images": [
+      ""
+    ],
+    "video": "https://drive.google.com/file/d/1I_xnsRJMEyO8kbCC2goCaIHxhKhWwxaT/preview",
+    "download": "https://drive.google.com/file/d/1YJ0ZPiAF6TqoUDPtfAFmPLcvCHTvlE6Q/view?usp=drivesdk"
+  },
+  {
+    "id": "made-by-watermark",
+    "title": "Made By Watermark Preset",
+    "description": "A modern, high-contrast watermark where the name 'VORAKS' is typed. A second, smaller line of text ('MADE BY') is then layered above it as the cursor shifts. The full credit text then glitches and dissolves, leaving a clean black screen.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/kXtyLNDZ/voraks-presets-03F32D8.png"
+    ],
+    "video": "https://drive.google.com/file/d/1JJgKjlIG9mNqdk86S-jRPmQnHZSovbmf/preview",
+    "download": "https://drive.google.com/file/d/1LzGXr1EH3D3u0jyll6HXVNGqxWZdUp8b/view?usp=drivesdk"
+  },
+  {
+    "id": "logo-glitch-watermark",
+    "title": "Logo Glitch Watermark Preset",
+    "description": "A sharp, high-contrast intro where the word 'VORAKS' is typed out by a bright cursor, then immediately explodes with a digital glitch effect. The text is abruptly replaced by a vivid red spider icon before the entire animation fades away.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/sDQR8LYQ/voraks-presets-6FE9DCA.png"
+    ],
+    "video": "https://drive.google.com/file/d/1jdoPOqyCHiliXrojtnQE_e66oq2xspMo/preview",
+    "download": "https://drive.google.com/file/d/1j1kKkUL9zINlRkhzoYDmVyidoXKIkyYC/view?usp=drivesdk"
+  },
+  {
+    "id": "crimson-slash-watermark",
+    "title": "Crimson Slash Watermark Preset",
+    "description": "An attention-grabbing, minimalist watermark that uses a bold red vertical line (or slash) to quickly wipe and reveal the 'VORAKS' name. Its sharp, energetic movement makes it ideal for a quick brand stamp.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/tgdJSG7N/Voraks-presets-90D4823.png"
+    ],
+    "video": "https://drive.google.com/file/d/102SfMetLoz32J2Mc4LsjWoDrVoVXHGuK/preview",
+    "download": "https://drive.google.com/file/d/178_lhieVjS2z3Pat47zqREUf_2HGdIzk/view?usp=drivesdk"
+  },
+  {
+    "id": "aero-glow-watermark",
+    "title": "Aero Glow Watermark Preset",
+    "description": "An enchanting, minimalist reveal where a luminous, stylized airplane crosses the screen, leaving the 'VORAKS' name in its glowing wake. The effect has a soft, dreamlike quality with a subtle purple-pink palette.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/7LNsxbfm/voraks-watermark-preset-E828FC9.png"
+    ],
+    "video": "https://drive.google.com/file/d/18NI5AmOrZXMRz6eFYnN4GjPRJSd4K5Fk/preview",
+    "download":"https://drive.google.com/file/d/1oXUiOReqL4nx7ef828rHneTxy17ZITpD/view?usp=drivesdk"
+  },
+  {
+    "id": "crosshair-reveal-watermark",
+    "title": "Crosshair Reveal Watermark Preset",
+    "description": "A clean, high-impact animated watermark that uses white geometric lines and brackets to frame and reveal the 'MADE BY VORAKS' text. The minimalist, high-tech aesthetic gives the feel of a heads-up display (HUD) or a cinematic target lock—perfect for gaming, tech, or production-focused content.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/CKDN155X/Cross-PR-WATERMARK-B038532.png"
+    ],
+    "video": "https://drive.google.com/file/d/1wnHkRvHznMQyIDtDMF-BNmsSZ3oJsote/preview",
+    "download": "https://drive.google.com/file/d/1T2m-iFx-CMtRjrrqcvwANFgvQwmBq1OD/view?usp=drivesdk"
+  },
+  {
+    "id": "neon-swipe-watermark",
+    "title": "Neon Swipe Watermark Preset",
+    "description": "A bold, modern animated watermark that uses a vibrant, glowing purple vertical bar to wipe across the screen, revealing the 'MADE BY VORAKS' text. The clean lines and bright neon color give it a sleek, energetic, and high-tech feel—perfect for dark-themed edits.",
+    "type": "free",
+    "images": [
+      "https://i.postimg.cc/FK441fG1/voraks-watermark-preset-4A6F2EF.png"
+    ],
+    "video": "https://drive.google.com/file/d/1nO81aXUji55xLcMKcoKcrc7SLrJNMKPu/preview",
+    "download": "https://drive.google.com/file/d/1m9qhAsEUCGSgIKvemqbYNuP_WXILpCS0/view?usp=drivesdk"
+  }
+];
+
+/* ======== Helpers ======== */
+const PLACEHOLDER_SVG = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="800" height="450">
+    <rect width="100%" height="100%" fill="#f3f5f8"/>
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#c2c7cc" font-family="Arial,sans-serif" font-size="22">No preview available</text>
+  </svg>
+`);
+
+/* ======== Render ======== */
+const grid = document.getElementById('presetGrid');
+
+function buildGrid(items){
+  grid.innerHTML = '';
+  items.forEach((p, idx) => {
+    const card = document.createElement('article');
+    card.className = 'card';
+
+    // get valid images
+    const validImgs = (p.images || []).filter(i => i && i.trim().length>4);
+
+    // thumb HTML — prefer image, else fallback to video/or placeholder
+    let thumbHTML = '';
+    if(validImgs.length > 0){
+      thumbHTML = `<div class="thumb slider" id="slider-${idx}">` +
+                    validImgs.map((u,i) => `<img src="${u}" data-index="${i}" class="${i===0?'active':''}" onerror="this.onerror=null;this.src='${PLACEHOLDER_SVG}'">`).join('') +
+                    `${validImgs.length>1 ? `<div class="nav"><button onclick="prevSlide(${idx})">‹</button><button onclick="nextSlide(${idx})">›</button></div>` : ''}` +
+                  `</div>`;
+    } else if(p.video && p.video.trim().length>6){
+      // drive preview or other — embed in iframe
+      const iframeSrc = getDrivePreviewSrc(p.video);
+      if(iframeSrc){
+        thumbHTML = `<div class="thumb"><iframe src="${iframeSrc}" frameborder="0" allow="autoplay; encrypted-media" title="${escapeHtml(p.title)} video" style="width:100%;height:100%;"></iframe></div>`;
+      } else {
+        // direct video?
+        thumbHTML = `<div class="thumb"><video controls src="${p.video}" onerror="this.onerror=null; this.poster='${PLACEHOLDER_SVG}'"></video></div>`;
+      }
+    } else {
+      thumbHTML = `<div class="thumb"><img src="${PLACEHOLDER_SVG}" alt="no preview"></div>`;
+    }
+
+    const typeLabel = `<span class="label ${p.type === 'paid' ? 'paid' : 'free'}">${p.type === 'paid' ? 'Paid' : 'Free'}</span>`;
+    const downloadBtn = p.download && p.download.trim().length>5 ? `<a class="open-link" href="${p.download}" target="_blank" rel="noopener noreferrer">Download</a>` : '';
+
+    card.innerHTML = `
+      ${thumbHTML}
+      <h3>${escapeHtml(p.title)}</h3>
+      <p>${escapeHtml(p.description)}</p>
+      <div class="meta">
+        ${typeLabel}
+        <div style="margin-left:auto">${downloadBtn}</div>
+      </div>
+    `;
+    grid.appendChild(card);
   });
 }
 
-/* -------- SLIDER -------- */
-function move(i,d){
-  const s=document.querySelectorAll(`#slide${i} img`);
-  let x=[...s].findIndex(a=>a.classList.contains("active"));
-  s[x].classList.remove("active");
-  s[(x+d+s.length)%s.length].classList.add("active");
+/* ======== Utilities ======== */
+function escapeHtml(s){ return (s||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+
+/* Drive preview helper:
+   If url contains /d/<id>/ preview or /file/d/<id>/preview etc,
+   return standardized preview iframe src. Otherwise return null.
+*/
+function getDrivePreviewSrc(url){
+  try{
+    if(!url) return null;
+    const u = String(url);
+    // If already contains '/preview' keep as-is
+    if(u.includes('drive.google.com') && u.includes('/preview')) return u;
+    // try to extract id
+    const m1 = u.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if(m1 && m1[1]) return `https://drive.google.com/file/d/${m1[1]}/preview`;
+    const m2 = u.match(/id=([a-zA-Z0-9_-]+)/);
+    if(m2 && m2[1]) return `https://drive.google.com/file/d/${m2[1]}/preview`;
+    return null;
+  }catch(e){ return null; }
 }
 
-/* -------- SEARCH -------- */
-function searchPresets(){
-  const v=document.getElementById("presetSearch").value.toLowerCase();
-  display(presets.filter(p=>p.title.toLowerCase().includes(v)));
+/* ======== Slider controls ======== */
+function nextSlide(i){ changeSlide(i, 1); }
+function prevSlide(i){ changeSlide(i, -1); }
+function changeSlide(i, dir){
+  const slider = document.getElementById(`slider-${i}`);
+  if(!slider) return;
+  const imgs = Array.from(slider.querySelectorAll('img'));
+  if(imgs.length<=1) return;
+  const activeIndex = imgs.findIndex(img => img.classList.contains('active'));
+  imgs[activeIndex].classList.remove('active');
+  const newIndex = (activeIndex + dir + imgs.length) % imgs.length;
+  imgs[newIndex].classList.add('active');
 }
 
-/* -------- MENU FUNCTIONS -------- */
-function toggleMenu(){
-  const m=document.getElementById("menu");
-  m.style.display = m.style.display=="flex"?"none":"flex";
+/* ======== Search ======== */
+const searchInput = document.getElementById('presetSearch');
+const searchBtn = document.getElementById('searchBtn');
+
+function applySearch(){
+  const q = (searchInput.value || '').trim().toLowerCase();
+  if(!q){ buildGrid(presetsData); return; }
+  const filtered = presetsData.filter(p => {
+    return (p.title && p.title.toLowerCase().includes(q)) ||
+           (p.description && p.description.toLowerCase().includes(q)) ||
+           (p.type && p.type.toLowerCase().includes(q));
+  });
+  buildGrid(filtered);
+}
+searchBtn.addEventListener('click', applySearch);
+searchInput.addEventListener('keydown', e => { if(e.key === 'Enter') applySearch(); });
+
+/* ======== Initialize UI ======== */
+document.addEventListener('DOMContentLoaded', () => {
+  buildGrid(presetsData);
+});
+
+/* ======== Menu behavior (same polished menu style) ======== */
+const menuBtn = document.getElementById('menuBtn');
+const sideMenu = document.getElementById('sideMenu');
+const overlay = document.getElementById('overlay');
+
+function openMenu(){
+  sideMenu.classList.add('show');
+  overlay.classList.add('show');
+  sideMenu.setAttribute('aria-hidden','false');
 }
 function closeMenu(){
-  document.getElementById("menu").style.display="none";
+  sideMenu.classList.remove('show');
+  overlay.classList.remove('show');
+  sideMenu.setAttribute('aria-hidden','true');
 }
-</script>
-
-</body>
-</html>
+menuBtn.addEventListener('click', () => { sideMenu.classList.contains('show') ? closeMenu() : openMenu(); });
+overlay.addEventListener('click', closeMenu);
+document.addEventListener('keydown', e => {
