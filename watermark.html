@@ -6,202 +6,269 @@
 <title>Watermark Presets | VORAKS</title>
 
 <style>
-/* ================= GENERAL ================= */
+/* ============ BASIC UI ============ */
 body{
   font-family: Arial, sans-serif;
-  background:#111;
-  color:white;
+  background:#f5f5f5;
   margin:0;
   text-align:center;
 }
-section{color:black;}
+html{scroll-behavior:smooth;}
 
-/* =============== HEADER ================= */
 header{
   background:black;
-  padding:20px;
-  position:relative;
+  color:white;
+  padding:18px 15px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
+
+/* ----------- TITLE ----------- */
 header h1{
   margin:0;
-  font-size:28px;
+  font-size:23px;
   font-weight:700;
-  color:#ffcc00;
 }
 
-/* ============= 3 DOT MENU ============= */
-.menu-icon{
-  position:absolute;
-  right:15px;
-  top:15px;
+/* ----------- 3 DOT MENU BUTTON ----------- */
+.menu-btn{
   font-size:30px;
   cursor:pointer;
-  color:white;
+  padding:5px 12px;
+  border-radius:50%;
+  user-select:none;
 }
+
+/* ----------- POPUP MENU ----------- */
 .menu-box{
-  display:none;
   position:absolute;
+  top:60px;
   right:15px;
-  top:55px;
-  background:#222;
-  padding:15px;
+  width:200px;
+  background:#111;
   border-radius:10px;
-  width:150px;
-  text-align:left;
-  z-index:999;
+  display:none;
+  flex-direction:column;
+  animation:fade 0.25s;
   box-shadow:0 0 10px rgba(0,0,0,0.4);
 }
+@keyframes fade{ from{opacity:0;transform:translateY(-8px);} to{opacity:1;} }
+
 .menu-box a{
-  display:block;
-  padding:8px 5px;
   text-decoration:none;
   color:white;
-  font-weight:bold;
+  padding:12px;
+  text-align:left;
+  border-bottom:1px solid #222;
+  transition:0.2s;
 }
-.menu-box a:hover{background:#333;}
-.menu-box .soon{color:#777;cursor:not-allowed;}
-.menu-box .soon:hover{background:none;}
+.menu-box a:hover{background:#222;}
 
-/* ============== SEARCH AREA ============== */
+.coming{
+  color:#777 !important;
+  pointer-events:none;
+  font-style:italic;
+}
+
+/* ----------- SEARCH ----------- */
 .search-container{
-  margin-top:15px;
-  background:#222;
-  padding:10px;
-  border-radius:6px;
+  margin:20px auto;
   display:flex;
   justify-content:center;
   gap:10px;
+  flex-wrap:wrap;
 }
 .search-container input{
-  padding:8px;
-  width:250px;
-  border-radius:6px;
-  border:none;
+  padding:10px 15px;
+  width:260px;
+  border-radius:30px;
+  border:2px solid #333;
 }
 .search-container button{
   background:#ffcc00;
-  color:black;
-  padding:8px 15px;
   border:none;
-  border-radius:6px;
+  padding:10px 18px;
+  border-radius:30px;
   font-weight:bold;
   cursor:pointer;
 }
 
-/* ============= PRESET LIST SECTION ============= */
+/* ----------- PRESET SECTIONS ----------- */
 section{
-  background:white;
   width:90%;
-  margin:25px auto;
-  border-radius:10px;
-  padding:20px;
-  box-shadow:0 0 10px rgba(255,255,255,0.1);
+  max-width:800px;
+  margin:40px auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 .preset-section{
-  margin-bottom:35px;
-  border-bottom:1px solid #ddd;
-  padding-bottom:20px;
+  border-bottom:1px solid #eee;
+  margin-bottom:22px;
+  padding-bottom:22px;
 }
+.preset-section:last-child{border:none;}
 
-/* ============= SLIDER ============= */
+.label{
+  padding:6px 14px;
+  border-radius:20px;
+  color:white;
+  font-size:13px;
+  margin:10px 0;
+  display:inline-block;
+}
+.free{background:#28a745;}
+.paid{background:#dc3545;}
+
+/* ----------- SLIDER ----------- */
 .slider{
   position:relative;
   width:90%;
+  max-width:550px;
   margin:auto;
-  max-width:600px;
-  overflow:hidden;
   padding-top:56%;
+  overflow:hidden;
+  border-radius:10px;
 }
 .slider img{
   position:absolute;
-  width:100%;height:100%;
+  top:0;left:0;width:100%;height:100%;
   object-fit:cover;
   display:none;
+  opacity:0;
+  transition:.6s;
 }
-.slider img.active{display:block;}
+.slider img.active{display:block;opacity:1;}
 
 .slider-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:rgba(0,0,0,0.6);
-  color:white;
-  border:none;
-  padding:10px;
+  background:rgba(0,0,0,.5);
+  color:white;border:none;
+  padding:8px 12px;
   cursor:pointer;
+  font-size:22px;
+  border-radius:5px;
 }
 .prev-btn{left:10px;}
 .next-btn{right:10px;}
 
-/* ============ CONTACT ============ */
+/* ----------- CONTACT ----------- */
 #contact{
-  background:black;
-  color:white;
-  padding:40px 10px;
+  background:black;color:white;
+  border-radius:0;
+  margin-top:60px;
+  padding:45px 20px;
 }
 #contact a{
   background:#ff4500;
-  padding:10px 20px;
+  padding:12px 25px;
+  border-radius:30px;
+  display:inline-block;
   color:white;
   text-decoration:none;
-  border-radius:20px;
+  font-weight:700;
 }
-
-/* ============ FOOTER ============ */
-footer{background:black;padding:15px;font-size:14px;}
-footer a{color:#ffcc00;}
 </style>
 </head>
 
 <body>
 
+<!-- 🔻 HEADER WITH 3 DOT MENU -->
 <header>
   <h1>VORAKS PRESETS</h1>
 
-  <!-- 3 dot menu -->
-  <div class="menu-icon" onclick="toggleMenu()">⋮</div>
+  <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 
-  <div class="menu-box" id="menuBox">
-    <a href="index.html">🏠 Home</a>
-    <a href="ALIGHTMOTION.html">📁 Alight Motion</a>
-    <a class="soon">✨ After Effects (Coming Soon)</a>
-    <a class="soon">🎬 Node Video (Coming Soon)</a>
-    <a href="#contact">📩 Contact</a>
-  </div>
+  <div id="menu" class="menu-box">
+      <a href="index.html">🏠 Home</a>
+      <a href="ALIGHTMOTION.html">🎬 Alight Motion</a>
 
-  <div class="search-container">
-    <input type="text" id="presetSearch" placeholder="Search watermark presets...">
-    <button onclick="searchPresets()">Search</button>
+      <a class="coming">✨ After Effects (Coming Soon)</a>
+      <a class="coming">📲 Node Video (Coming Soon)</a>
+
+      <a href="#contact" onclick="closeMenu()">📩 Contact</a>
   </div>
 </header>
 
+<!-- Search Bar -->
+<div class="search-container">
+  <input type="text" id="presetSearch" placeholder="Search watermark presets...">
+  <button onclick="searchPresets()">Search</button>
+</div>
 
-<section id="presets-container">
+<section>
   <h2>Watermark Presets</h2>
   <div id="presetList"></div>
 </section>
 
-
+<!-- CONTACT -->
 <section id="contact">
   <h2>Contact Me</h2>
-  <p>Need help or feedback? Feel free to reach out.</p>
   <a href="mailto:voraks200@gmail.com">Email Me</a>
 </section>
 
-<footer>
-  © 2025 VORAKS | Mail: <a href="mailto:voraks200@gmail.com">voraks200@gmail.com</a>
+<footer style="padding:20px;background:black;color:white;">
+  © 2025 VORAKS
 </footer>
 
 <script>
-function toggleMenu(){
-  const menu=document.getElementById("menuBox");
-  menu.style.display = menu.style.display==="block" ? "none" : "block";
+let presets=[];
+
+/* -------- JSON LOAD FIX -------- */
+fetch("watermark.json")
+.then(r=>r.json())
+.then(d=>{presets=d;display(d);});
+
+/* -------- DISPLAY PRESETS -------- */
+function display(data){
+  const box=document.getElementById("presetList");
+  box.innerHTML="";
+
+  data.forEach((p,i)=>{
+    box.innerHTML+=`
+    <div class="preset-section">
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <span class="label ${p.type}">${p.type}</span>
+
+      <div class="slider" id="slide${i}">
+        ${p.images.map((img,j)=>`<img src="${img}" class="${j==0?"active":""}">`).join("")}
+        ${p.images.length>1?`
+         <button class="slider-btn prev-btn" onclick="move(${i},-1)">❮</button>
+         <button class="slider-btn next-btn" onclick="move(${i},1)">❯</button>`:""}
+      </div>
+
+      ${p.download?`<br><a href="${p.download}" target="_blank"><button class="download-btn">Download</button></a>`:""}
+    </div>`;
+  });
 }
-document.addEventListener("click",(e)=>{
-  if(!e.target.closest(".menu-icon") && !e.target.closest("#menuBox")){
-    document.getElementById("menuBox").style.display="none";
-  }
-});
+
+/* -------- SLIDER -------- */
+function move(i,d){
+  const s=document.querySelectorAll(`#slide${i} img`);
+  let x=[...s].findIndex(a=>a.classList.contains("active"));
+  s[x].classList.remove("active");
+  s[(x+d+s.length)%s.length].classList.add("active");
+}
+
+/* -------- SEARCH -------- */
+function searchPresets(){
+  const v=document.getElementById("presetSearch").value.toLowerCase();
+  display(presets.filter(p=>p.title.toLowerCase().includes(v)));
+}
+
+/* -------- MENU FUNCTIONS -------- */
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.display = m.style.display=="flex"?"none":"flex";
+}
+function closeMenu(){
+  document.getElementById("menu").style.display="none";
+}
 </script>
 
 </body>
