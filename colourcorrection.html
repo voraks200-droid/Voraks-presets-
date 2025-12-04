@@ -1,306 +1,547 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>VORAKS Presets</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VORAKS PRESETS</title>
 
 <style>
+:root{
+  --bg-grad: linear-gradient(180deg,#f0f7ff 0%, #eef6fb 60%);
+  --card:#ffffff;
+  --accent-1:#0b84ff;
+  --accent-2:#ff5a1e;
+  --accent-3:#7c3aed;
+  --muted:#556068;
+  --max-width:1100px;
+  --radius:12px;
+  --pad:20px;
+  --menu-w:76px;
+  --mono:'Segoe UI', Roboto, Arial, sans-serif;
+}
 
-/* =================== GLOBAL =================== */
+/* basic reset */
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   margin:0;
-  font-family:Poppins,Arial,sans-serif;
-  background:linear-gradient(135deg,#0d0d0d,#161a2e,#1e2f54,#182b43);
-  color:white;
-  text-align:center;
+  font-family:var(--mono);
+  background:var(--bg-grad);
+  color:#0f1724;
+  overflow-x:hidden; /* important: prevents horizontal scroll that may reveal the menu */
 }
 
-/* =================== HEADER =================== */
+/* Header */
 header{
-  padding:60px 10px 30px;
-  position:relative;
+  position:sticky; top:0; z-index:1200;
+  background:rgba(255,255,255,0.95);
+  border-bottom:1px solid rgba(15,23,36,0.05);
+  backdrop-filter:blur(4px);
 }
-
-header h1{
-  font-size:42px;
-  font-weight:900;
-  letter-spacing:3px;
-  color:#ffcc00;
-  text-transform:uppercase;
-  text-shadow:0 0 15px rgba(255,230,0,.6);
-  margin-top:25px;
+.topbar-inner{
+  max-width:var(--max-width);
+  margin:0 auto; padding:12px var(--pad);
+  position:relative; display:flex; justify-content:center; align-items:center;
+  padding-right:calc(var(--pad) + var(--menu-w));
 }
+.brand h1{margin:0;font-size:22px;font-weight:800;color:#07203a}
 
-/* =================== 3 DOT MENU =================== */
+/* Menu Button */
 .menu-btn{
-  position:absolute;
-  right:25px;
-  top:20px;
-  font-size:30px;
-  cursor:pointer;
-  padding:10px;
-  border-radius:8px;
-  background:#ffffff15;
-  backdrop-filter:blur(5px);
-  user-select:none;
-  z-index:99999;
-}
-.menu-btn:hover{background:#ffffff30;}
-
-#menu{
-  position:fixed;
-  top:0;
-  right:-260px;
-  width:240px;
-  height:100vh;
-  background:#0b0b0c;
-  box-shadow:-4px 0 15px rgba(0,0,0,.7);
-  padding-top:80px;
-  transition:.4s ease;
-  text-align:center;
-  z-index:9999;
+  position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);
+  width:var(--menu-w);height:56px;border-radius:14px;border:none;
+  background:linear-gradient(90deg,var(--accent-1),var(--accent-3));
+  color:#fff;font-size:30px;cursor:pointer;display:flex;justify-content:center;align-items:center;
+  box-shadow:0 8px 20px rgba(11,132,255,0.12);
 }
 
-#menu.open{
-  right:0; /* <<< Makes menu actually open */
+/* Sidebar & overlay */
+#overlay{
+  position:fixed; inset:0; background:rgba(0,0,0,0.3); display:none; z-index:1140;
+}
+#overlay.show{ display:block; backdrop-filter: blur(2px); }
+
+.side-menu{
+  position:fixed; top:0; right:-420px; width:360px; height:100vh;
+  background:#fff; padding:24px; box-shadow:-20px 0 60px rgba(0,0,0,0.08);
+  transition:right .28s ease; z-index:1160; border-left:1px solid rgba(15,23,36,0.04);
+  will-change: right;
+}
+.side-menu.show{ right:0; }
+
+.side-menu h3{ margin:0 0 12px 0; color:#07203a; font-size:16px; }
+.side-menu a{ display:block; margin:10px 0; padding:10px; border-radius:8px; text-decoration:none;
+  color:var(--accent-1); border:1px solid rgba(11,132,255,0.08); }
+.side-menu a:hover{ background:rgba(11,132,255,0.06); }
+
+/* Main layout */
+.container{ max-width:var(--max-width); margin:30px auto; padding:0 var(--pad); }
+.hero{ background:white; padding:25px; border-radius:var(--radius); box-shadow:0 5px 15px rgba(0,0,0,0.06); }
+.hero h2{ margin:0; font-size:20px; color:#07203a }
+
+/* Grid & cards */
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; margin-top:18px; }
+.preset-card{ background:var(--card); padding:12px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.05); display:flex; flex-direction:column; }
+.thumb{ width:100%; height:120px; border-radius:8px; overflow:hidden; margin-bottom:10px; background:#f3f5f8; }
+.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+.preset-card h4{ margin:6px 0 6px 0; color:#07203a; font-size:16px }
+.preset-card p{ margin:0; color:var(--muted); font-size:13px }
+
+/* Buttons */
+.open-btn{
+  margin-top:10px; padding:10px; border:none; border-radius:8px; width:100%;
+  background:var(--accent-1); color:white; cursor:pointer; font-weight:600;
+}
+.open-btn:hover{ opacity:.95 }
+
+.soon-btn{
+  margin-top:10px; padding:10px; border:none; border-radius:8px; width:100%;
+  background:#9aa0a6; color:white; font-weight:600; opacity:.85; cursor:not-allowed;
 }
 
-#menu a{
-  display:block;
-  color:white;
-  padding:15px 0;
-  font-size:18px;
-  text-decoration:none;
-  border-bottom:1px solid #ffffff25;
-}
-#menu a:hover{
-  background:#ffcc00;
-  color:black;
+/* small screens */
+@media (max-width:780px){
+  .menu-btn{ right:12px; width:60px; height:56px; }
+  .side-menu{ width:300px; right:-360px; }
+  .topbar-inner{ padding-right: calc(var(--pad) + var(--menu-w)); }
 }
 
-/* =================== SEARCH =================== */
-.search-container{
-  margin-top:25px;
+/* ---------- Dynamic Preset Loader Styles (keeps original look) ---------- */
+.dynamic-section{
+  margin-top:28px;
+  background:var(--card);
+  padding:18px;
+  border-radius:12px;
+  border:1px solid rgba(15,23,36,0.04);
+}
+
+/* search inside dynamic section */
+.dynamic-search{
   display:flex;
-  justify-content:center;
   gap:10px;
-  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:14px;
 }
-
-.search-container input{
-  width:260px;
-  padding:12px 18px;
-  border:none;
-  border-radius:30px;
+.dynamic-search input{
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(15,23,36,0.06);
+  width:60%;
   outline:none;
-  font-size:16px;
 }
 
-.search-container button{
-  background:#ffcc00;
-  padding:12px 22px;
-  color:black;
-  border-radius:30px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
+/* preset list */
+.preset-list{ display:flex; flex-direction:column; gap:18px; margin-top:12px; }
+
+/* preset card (JSON-driven) */
+.json-preset{
+  background:linear-gradient(180deg,#ffffff,#fbfdff);
+  padding:12px; border-radius:10px; box-shadow:0 8px 22px rgba(11,132,255,0.06);
 }
-.search-container button:hover{background:#e6b800;}
+.json-preset h3{ margin:6px 0;color:#07203a; }
+.json-preset p{ margin:0; color:var(--muted); font-size:13px; }
 
-/* =================== PRESET CARD =================== */
-section{
-  width:92%;
-  max-width:850px;
-  margin:35px auto;
-  background:#ffffff10;
-  backdrop-filter:blur(10px);
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 0 25px rgba(0,0,0,.4);
-}
-
-section h2{
-  color:#ffcc00;
-  font-size:26px;
-}
-
-.preset-section{
-  margin-bottom:30px;
-  padding-bottom:20px;
-  border-bottom:1px solid #ffffff30;
-}
-
-.label{padding:8px 15px;border-radius:20px;font-weight:bold;}
-.free{background:#28a745;}
-.paid{background:#dc3545;}
-
-/* =================== SLIDER =================== */
-.slider{
+/* slider reused but adapted */
+.json-slider{
   position:relative;
+  margin:12px auto 0 auto;
   width:100%;
-  max-width:600px;
-  margin:20px auto;
+  max-width:720px;
+  height:320px;
   overflow:hidden;
   border-radius:10px;
+  background:#f3f5f8;
 }
-
-.slider img{
+.json-slider img,
+.json-slider video{
   width:100%;
+  height:100%;
+  object-fit:cover;
   display:none;
-  opacity:0;
-  transition:.7s;
-  border-radius:10px;
 }
-.slider img.active{display:block;opacity:1;}
+.json-slider .active{ display:block; }
 
-.slider-btn{
+/* slider nav */
+.json-slider .slider-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:#00000070;
+  background:rgba(0,0,0,0.45);
+  color:white;border:none;padding:10px 14px;border-radius:8px;cursor:pointer;
+}
+.json-slider .prev{ left:12px; }
+.json-slider .next{ right:12px; }
+
+/* download button */
+.json-download{
+  margin-top:12px;
+  padding:10px 14px;
+  background:var(--accent-2);
   color:white;
   border:none;
-  padding:10px 15px;
-  font-size:20px;
+  border-radius:8px;
   cursor:pointer;
-  border-radius:6px;
-}
-.prev-btn{left:10px;}
-.next-btn{right:10px;}
-
-/* =================== DOWNLOAD BUTTON =================== */
-.download-btn{
-  background:#ff4500;
-  color:white;
-  border:none;
-  padding:12px 25px;
-  border-radius:6px;
-  margin-top:15px;
-  cursor:pointer;
-  font-weight:bold;
-}
-.download-btn:hover{background:#e63b00;}
-
-/* =================== CONTACT =================== */
-#contact{
-  background:#000000aa;
-  margin-top:50px;
+  font-weight:700;
 }
 
-#contact h2{color:#ffcc00;}
-
-#contact a{
-  background:#ff4500;
-  padding:12px 25px;
-  color:white;
-  border-radius:30px;
-  text-decoration:none;
-  font-weight:bold;
+/* small screens for json slider */
+@media (max-width:860px){
+  .json-slider{ height:220px; }
 }
-#contact a:hover{background:#ff5b1e;}
 
-footer{
-  background:#000000dd;
-  padding:15px;
-  margin-top:30px;
-}
+/* subtle helper */
+.hidden{ display:none!important; }
 </style>
 </head>
-
 <body>
 
-<!-- 3 DOT MENU BUTTON -->
-<div class="menu-btn" onclick="toggleMenu()">⋮</div>
-
-<!-- SLIDE MENU -->
-<div id="menu">
-  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
-  <a href="ALIGHTMOTION.html" onclick="toggleMenu()">🎞 Alight Motion</a>
-  <a href="#" onclick="toggleMenu()">After Effects</a>
-  <a href="#" onclick="toggleMenu()">NODE VIDEO</a>
-  <a href="#contact" onclick="toggleMenu()">📩 Contact</a>
-  
-</div>
+<div id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
 
 <header>
-  <h1>VORAKS PRESETS</h1>
-
-  <div class="search-container">
-    <input type="text" id="presetSearch" placeholder="Search Colour Correction Presets...">
-    <button onclick="searchPresets()">Search</button>
+  <div class="topbar-inner">
+    <div class="brand"><h1>VORAKS PRESETS</h1></div>
+    <button id="menuBtn" class="menu-btn" aria-label="Open menu">⋮</button>
   </div>
 </header>
 
-<section id="presets-container">
-  <h2>Alight Motion Colour Correction Presets</h2>
-  <div id="presetList"></div>
-</section>
+<!-- Side menu -->
+<aside id="sideMenu" class="side-menu" role="dialog" aria-hidden="true">
+  <h3>Navigate</h3>
+  <a href="index.html">HOME</a>
+  <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
+  <a href="#" onclick="event.preventDefault();">AFTER EFFECTS (Soon)</a>
+  <a href="#" onclick="event.preventDefault();">NODE VIDEO (Soon)</a>
+  <a href="#contact" onclick="goContact();">CONTACT</a>
 
-<section id="contact">
-  <h2>Contact Me</h2>
-  <p>For collaborations, business, talks — anytime!</p>
-  <a href="mailto:voraks200@gmail.com">Email Me</a>
-  <p><b>voraks200@gmail.com</b></p>
-</section>
+  <div style="height:14px"></div>
+  <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
+</aside>
 
-<footer>© 2025 VORAKS</footer>
+<main class="container">
+  <section class="hero">
+    <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
+  </section>
 
+  <section id="presets">
+    <h2 style="margin-top:18px">PRESET COLLECTION</h2>
+
+    <div class="grid">
+
+      <!-- ALIGHT MOTION -->
+      <article class="preset-card">
+        <div class="thumb"><img src="alight_motion1.png" alt="Alight Motion preview"></div>
+        <h4>ALIGHT MOTION PRESETS</h4>
+        <p>Click to view the full collection of Alight Motion presets.</p>
+        <button class="open-btn" onclick="openAlight()">OPEN</button>
+
+        <div id="am-content" style="display:none;margin-top:10px;">
+          <a href="ALIGHTMOTION.html" style="color:var(--accent-1);font-weight:700;text-decoration:none">Open Alight Motion Presets →</a>
+          <p style="margin-top:6px;font-size:13px;color:var(--muted)">Full preset collection available.</p>
+        </div>
+      </article>
+
+      <!-- AFTER EFFECTS -->
+      <article class="preset-card">
+        <div class="thumb"><img src="after_effects1.png" alt="After Effects preview"></div>
+        <h4>AFTER EFFECTS PRESETS (COMING SOON)</h4>
+        <p>Presets for After Effects — coming soon.</p>
+        <button class="soon-btn" aria-disabled="true">COMING SOON</button>
+
+        <div id="ae-content" style="display:none;margin-top:10px;">
+          <p style="font-weight:700">⏳ Coming soon...</p>
+          <p style="color:var(--muted);font-size:13px;margin-top:4px">We'll release these presets in a future update.</p>
+        </div>
+      </article>
+
+      <!-- NODE VIDEO -->
+      <article class="preset-card">
+        <div class="thumb"><img src="20251003_195318.png" alt="Node Video preview"></div>
+        <h4>NODE VIDEO PRESETS (COMING SOON)</h4>
+        <p>Node Video presets are in development — preview available here.</p>
+        <button class="soon-btn" aria-disabled="true">COMING SOON</button>
+
+        <div id="node-content" style="display:none;margin-top:10px;">
+          <p style="font-weight:700">⏳ Coming soon...</p>
+          <p style="color:var(--muted);font-size:13px;margin-top:4px">Preview & release will be announced later.</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- NEW: dynamic JSON-driven presets (added without removing your existing content) -->
+  <section class="dynamic-section" id="dynamicPresetsSection" aria-live="polite">
+    <h2 style="color:#07203a;margin:0 0 10px 0">Colour Correction Presets (JSON)</h2>
+
+    <div class="dynamic-search">
+      <input id="dynamicSearchInput" type="text" placeholder="Search presets by title, tag or description..." />
+      <button onclick="doDynamicSearch()" style="padding:10px 12px;border-radius:8px;background:var(--accent-1);color:#fff;border:none;cursor:pointer">Search</button>
+    </div>
+
+    <div id="presetList" class="preset-list">
+      <!-- JSON-driven preset cards will be injected here -->
+      <p style="color:var(--muted);text-align:center">Loading presets...</p>
+    </div>
+  </section>
+
+  <section id="contact" style="margin-top:28px;padding:18px;background:var(--card);border-radius:10px;border:1px solid rgba(15,23,36,0.04)">
+    <h2>Contact Me</h2>
+    <p style="color:var(--muted)">Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
+    <a href="mailto:voraks200@gmail.com" style="display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent-2);color:#fff;text-decoration:none">📧 Email Me</a>
+  </section>
+
+  <footer style="text-align:center;margin-top:28px;color:var(--muted)">© 2025 VORAKS Presets</footer>
+</main>
 
 <script>
-let allPresets=[];
-fetch('presets.json').then(r=>r.json()).then(d=>{allPresets=d;displayPresets(d);});
+  // ---------- Menu open/close (keeps original behaviour) ----------
+  const sideMenu = document.getElementById('sideMenu');
+  const overlay = document.getElementById('overlay');
+  const menuBtn = document.getElementById('menuBtn');
 
-function displayPresets(list){
-  const box=document.getElementById("presetList");
-  box.innerHTML="";
-  if(list.length==0){box.innerHTML="<p>No results found</p>";return;}
+  sideMenu.classList.remove('show');
+  overlay.classList.remove('show');
+  sideMenu.setAttribute('aria-hidden','true');
 
-  list.forEach((p,i)=>{
-    const card=document.createElement("div");
-    card.className="preset-section";
+  function openMenu(){
+    sideMenu.classList.add('show');
+    overlay.classList.add('show');
+    sideMenu.setAttribute('aria-hidden','false');
+    // trap focus could be added later
+  }
+  function closeMenu(){
+    sideMenu.classList.remove('show');
+    overlay.classList.remove('show');
+    sideMenu.setAttribute('aria-hidden','true');
+  }
 
-    let slider="";
-    if(p.images?.length){
-      const ctrl=p.images.length>1?
-      `<button class='slider-btn prev-btn' onclick="moveSlide('s${i}',-1)">❮</button>
-       <button class='slider-btn next-btn' onclick="moveSlide('s${i}',1)">❯</button>`:"";
+  menuBtn.addEventListener('click', openMenu);
+  overlay.addEventListener('click', closeMenu);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeMenu();
+  });
 
-      slider=`<div class='slider' id='s${i}'>
-        ${p.images.map((x,n)=>`<img src="${x}" class='${n==0?"active":""}'>`).join("")}
-        ${ctrl}
-      </div>`;
+  function goContact(){
+    closeMenu();
+    setTimeout(() => {
+      const el = document.querySelector('#contact');
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 180);
+  }
+
+  // keep your existing openAlight function
+  function openAlight(){
+    const el = document.getElementById('am-content');
+    if(el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+  }
+
+  // ---------------- Dynamic JSON presets loader ----------------
+  // This supports JSON entries with fields:
+  // title, description, type, tags (array or comma string),
+  // image, images (array), video, videos (array), download
+  let allPresets = [];
+
+  // helper: safely convert value to array
+  function toArray(v){
+    if(!v) return [];
+    if(Array.isArray(v)) return v;
+    if(typeof v === 'string') return [v];
+    return [];
+  }
+
+  // fetch JSON
+  fetch('presets.json')
+    .then(res => {
+      if(!res.ok) throw new Error('presets.json not found (status ' + res.status + ')');
+      return res.json();
+    })
+    .then(data => {
+      allPresets = Array.isArray(data) ? data : [];
+      if(allPresets.length === 0){
+        document.getElementById('presetList').innerHTML = '<p style="text-align:center;color:var(--muted)">No presets found in presets.json</p>';
+      } else {
+        displayPresets(allPresets);
+      }
+    })
+    .catch(err => {
+      console.error('Error loading presets.json:', err);
+      document.getElementById('presetList').innerHTML = '<p style="text-align:center;color:var(--muted)">Failed to load presets.json</p>';
+    });
+
+  function displayPresets(list){
+    const box = document.getElementById('presetList');
+    box.innerHTML = '';
+    if(!list || list.length === 0){
+      box.innerHTML = '<p style="text-align:center;color:var(--muted)">No results found</p>';
+      return;
     }
 
-    card.innerHTML=`
-      <h3>${p.title}</h3>
-      <p>${p.description}</p>
-      <span class="label ${p.type}">${p.type=="paid"?"Paid":"Free"}</span>
-      ${slider}
-      ${p.download?`<a href='${p.download}' target='_blank'><button class='download-btn'>Download XML</button></a>`:""}
-    `;
-    box.appendChild(card);
+    list.forEach( (p, idx) => {
+      const card = document.createElement('div');
+      card.className = 'json-preset';
+
+      // collect slides (images + videos) in order: images first, then videos
+      const imgs = toArray(p.images).concat(toArray(p.image));
+      const vids = toArray(p.videos).concat(toArray(p.video));
+
+      const slides = [];
+      imgs.forEach(src => { if(src) slides.push({type:'image', src}) });
+      vids.forEach(src => { if(src) slides.push({type:'video', src}) });
+
+      // build slider HTML
+      let sliderHtml = '';
+      if(slides.length){
+        sliderHtml += `<div class="json-slider" id="json-slider-${idx}">`;
+        slides.forEach((s, si) => {
+          if(s.type === 'image'){
+            // lazy-load images
+            sliderHtml += `<img data-src="${s.src}" alt="${escapeHtml(p.title||'')}" class="${si===0 ? 'active' : ''}" loading="lazy">`;
+          } else {
+            // video element - do not autoplay; set playsinline and controls
+            // include preload="metadata" so browser fetches minimal data and can show duration/poster
+            sliderHtml += `<video data-src="${s.src}" preload="metadata" controls playsinline class="${si===0 ? 'active' : ''}" muted="false"></video>`;
+          }
+        });
+        if(slides.length > 1){
+          sliderHtml += `<button class="slider-btn prev" onclick="changeSlide('json-slider-${idx}', -1)">❮</button>`;
+          sliderHtml += `<button class="slider-btn next" onclick="changeSlide('json-slider-${idx}', 1)">❯</button>`;
+        }
+        sliderHtml += `</div>`;
+      }
+
+      // tags handling
+      let tagsHtml = '';
+      const tags = p.tags ? (Array.isArray(p.tags) ? p.tags : String(p.tags).split(',').map(t=>t.trim()).filter(Boolean)) : [];
+      if(tags.length){
+        tagsHtml = '<div style="margin-top:8px;">' + tags.map(t => `<span style="display:inline-block;margin-right:6px;padding:6px 10px;border-radius:999px;background:#eef4ff;color:#07203a;font-weight:700;font-size:12px">${escapeHtml(t)}</span>`).join('') + '</div>';
+      }
+
+      // download
+      const dl = p.download ? `<a href="${escapeHtml(p.download)}" target="_blank" rel="noopener"><button class="json-download">Download XML</button></a>` : '';
+
+      // description fallback
+      const desc = p.description ? escapeHtml(p.description) : '';
+
+      card.innerHTML = `
+        <h3>${escapeHtml(p.title || 'Untitled')}</h3>
+        <p>${desc}</p>
+        <div style="margin-top:8px;">
+          <span style="padding:6px 10px;border-radius:999px;background:#f3f5f8;color:#07203a;font-weight:700;font-size:12px">${escapeHtml(p.type || 'free')}</span>
+        </div>
+        ${tagsHtml}
+        ${sliderHtml}
+        ${dl}
+      `;
+
+      box.appendChild(card);
+
+      // after DOM inserted: set actual src attributes for media (lazy init)
+      if(slides.length){
+        const sliderEl = document.getElementById(`json-slider-${idx}`);
+        // set src from data-src when in DOM
+        const imgsInSlider = sliderEl.querySelectorAll('img[data-src]');
+        imgsInSlider.forEach(img => {
+          const src = img.getAttribute('data-src');
+          if(src){
+            img.src = src;
+            img.removeAttribute('data-src');
+          }
+        });
+        const vidsInSlider = sliderEl.querySelectorAll('video[data-src]');
+        vidsInSlider.forEach(video => {
+          const src = video.getAttribute('data-src');
+          if(src){
+            const sourceElem = document.createElement('source');
+            sourceElem.src = src;
+            // Try to infer type from extension
+            const ext = src.split('.').pop().toLowerCase();
+            if(ext) sourceElem.type = 'video/' + (ext === 'mp4' ? 'mp4' : ext);
+            video.appendChild(sourceElem);
+            video.removeAttribute('data-src');
+            // ensure native controls show; don't autoplay by default
+            video.setAttribute('controls', '');
+            video.preload = 'metadata';
+            video.playsInline = true;
+            // When a video becomes active, we won't auto-play; user must click play.
+            // But we'll pause videos when they are hidden.
+          }
+        });
+
+        // pause videos when sliding away - ensure initial hidden videos are paused
+        // (if some browsers auto-play muted sources this protects them)
+        const allVideos = sliderEl.querySelectorAll('video');
+        allVideos.forEach(v => { try { v.pause(); } catch(e){} });
+      }
+    });
+  }
+
+  // changeSlide: handles images and videos; pauses hidden videos
+  function changeSlide(sliderId, dir){
+    const slider = document.getElementById(sliderId);
+    if(!slider) return;
+    const media = Array.from(slider.querySelectorAll('img,video'));
+    if(media.length === 0) return;
+    let activeIndex = media.findIndex(m => m.classList.contains('active'));
+    if(activeIndex < 0) activeIndex = 0;
+    media[activeIndex].classList.remove('active');
+    // if leaving a video, pause it
+    if(media[activeIndex].tagName.toLowerCase() === 'video'){
+      try { media[activeIndex].pause(); } catch(e){}
+    }
+    const next = (activeIndex + dir + media.length) % media.length;
+    media[next].classList.add('active');
+    // if new one is a video, do NOT auto-play (user control), but we ensure it's ready:
+    if(media[next].tagName.toLowerCase() === 'video'){
+      try { media[next].currentTime = 0; } catch(e){}
+    }
+    // scroll slider into view a bit for UX on mobile
+    slider.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  // search helper - search title, description, tags, and type
+  function doDynamicSearch(){
+    const q = (document.getElementById('dynamicSearchInput').value || '').trim().toLowerCase();
+    if(!q){
+      displayPresets(allPresets);
+      return;
+    }
+    const filtered = allPresets.filter(p=>{
+      const title = (p.title||'').toLowerCase();
+      const desc = (p.description||'').toLowerCase();
+      const type = (p.type||'').toLowerCase();
+      const tags = (p.tags ? (Array.isArray(p.tags) ? p.tags.join(' ') : String(p.tags)) : '').toLowerCase();
+      return title.includes(q) || desc.includes(q) || type.includes(q) || tags.includes(q);
+    });
+    displayPresets(filtered);
+  }
+
+  // small utility: escapeHtml to avoid XSS from JSON (good practice)
+  function escapeHtml(str){
+    if(!str) return '';
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  // Pause any playing videos when user navigates away (optional cleanup)
+  window.addEventListener('pagehide', () => {
+    document.querySelectorAll('video').forEach(v => { try{ v.pause(); }catch(e){} });
   });
-}
 
-function moveSlide(id,dir){
-  const s=document.getElementById(id);
-  let imgs=[...s.querySelectorAll("img")];
-  let i=imgs.findIndex(x=>x.classList.contains("active"));
-  imgs[i].classList.remove("active");
-  imgs[(i+dir+imgs.length)%imgs.length].classList.add("active");
-}
+  // ---------------- keep existing extras -------------
+  // adblock alert safely left in place (no changes)
+  try {
+    if (typeof blockAdBlock === 'undefined') {
+      // commented intentionally
+    } else if(blockAdBlock && typeof blockAdBlock.onDetected === 'function') {
+      blockAdBlock.onDetected(function(){ /* optional alert */ });
+    }
+  } catch(e){ /* ignore */ }
 
-function searchPresets(){
-  let q=document.getElementById("presetSearch").value.toLowerCase();
-  displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q)));
-}
-
-/*** MENU TOGGLE FIX ***/
-function toggleMenu(){
-  document.getElementById("menu").classList.toggle("open");
-}
-
+  // ---------------- end of script --------------------
 </script>
 
 </body>
