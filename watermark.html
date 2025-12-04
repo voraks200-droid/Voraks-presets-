@@ -9,9 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* =====================
-   GLOBAL
-===================== */
 * { box-sizing:border-box; margin:0; padding:0; }
 
 body{
@@ -23,9 +20,6 @@ body{
   overflow-x:hidden;
 }
 
-/* =====================
-   HEADER
-===================== */
 header{
   padding:60px 20px 30px;
   position:relative;
@@ -41,9 +35,6 @@ header h1{
   margin-bottom:20px;
 }
 
-/* =====================
-   MENU (3 Dot)
-===================== */
 .menu-btn{
   position:fixed;
   right:22px;
@@ -82,9 +73,6 @@ header h1{
 #menu a:hover{background:#f4c430;color:#000;}
 #menu a.coming{color:#777;pointer-events:none;font-style:italic;}
 
-/* =====================
-   SEARCH BAR
-===================== */
 .search-container{
   display:flex;
   justify-content:center;
@@ -114,9 +102,6 @@ header h1{
 }
 .search-container button:hover{background:#d9af29;}
 
-/* =====================
-   CARD SECTIONS
-===================== */
 section{
   width:92%;
   max-width:880px;
@@ -153,9 +138,6 @@ section h2{
   margin-bottom:10px;
 }
 
-/* =====================
-   LABEL TAGS
-===================== */
 .label{
   padding:6px 12px;
   border-radius:18px;
@@ -165,9 +147,6 @@ section h2{
 .free{background:#2ea44f;}
 .paid{background:#d93b47;}
 
-/* =====================
-   IMAGE SLIDER
-===================== */
 .slider{
   position:relative;
   max-width:620px;
@@ -198,9 +177,13 @@ section h2{
 .prev-btn{left:10px;}
 .next-btn{right:10px;}
 
-/* =====================
-   DOWNLOAD BTN
-===================== */
+.video-box iframe{
+  width:100%;
+  margin-top:15px;
+  border-radius:10px;
+  height:330px;
+}
+
 .download-btn{
   background:#ff6b24;
   color:white;
@@ -214,9 +197,6 @@ section h2{
 }
 .download-btn:hover{background:#e85f1c;}
 
-/* =====================
-   CONTACT
-===================== */
 #contact{
   text-align:center;
 }
@@ -254,7 +234,6 @@ footer{
 
 <body>
 
-<!-- 3 Dot Menu -->
 <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 <div id="menu">
   <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
@@ -289,7 +268,6 @@ footer{
 <script>
 let allPresets=[];
 
-/* -------- LOAD JSON -------- */
 fetch("watermark.json")
 .then(r=>r.json())
 .then(data=>{
@@ -301,7 +279,6 @@ fetch("watermark.json")
   "<p style='color:#ff4444;font-size:18px'>⚠ watermark.json not loading (Use Live Server)</p>";
 });
 
-/* -------- DISPLAY PRESETS -------- */
 function displayPresets(list){
   const box=document.getElementById("presetList");
   box.innerHTML="";
@@ -311,7 +288,8 @@ function displayPresets(list){
     const card=document.createElement("div");
     card.className="preset-section";
 
-    let slider="";
+    let slider="", videoBox="";
+
     if(p.images?.length){
       const ctrl=p.images.length>1?
       `<button class='slider-btn prev-btn' onclick="moveSlide('s${i}',-1)">❮</button>
@@ -323,11 +301,16 @@ function displayPresets(list){
       </div>`;
     }
 
+    if(p.video){
+      videoBox=`<div class="video-box"><iframe src="${p.video}" allow="autoplay" allowfullscreen></iframe></div>`;
+    }
+
     card.innerHTML=`
       <h3>${p.title}</h3>
       <p>${p.description}</p>
       <span class="label ${p.type}">${p.type=="paid"?"Paid":"Free"}</span>
       ${slider}
+      ${videoBox}
       ${p.download?`<a href='${p.download}' target='_blank'><button class='download-btn'>Download</button></a>`:""}
     `;
 
@@ -335,7 +318,6 @@ function displayPresets(list){
   });
 }
 
-/* -------- SLIDER -------- */
 function moveSlide(id,dir){
   let imgs=[...document.getElementById(id).querySelectorAll("img")];
   let i=imgs.findIndex(x=>x.classList.contains("active"));
@@ -343,13 +325,11 @@ function moveSlide(id,dir){
   imgs[(i+dir+imgs.length)%imgs.length].classList.add("active");
 }
 
-/* -------- SEARCH -------- */
 function searchPresets(){
   let q=document.getElementById("presetSearch").value.toLowerCase();
   displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q)));
 }
 
-/* -------- MENU FUNCTIONS -------- */
 function toggleMenu(){
   const m=document.getElementById("menu");
   m.style.right = m.style.right=="0px"?"-260px":"0px";
