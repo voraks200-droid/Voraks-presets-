@@ -1,178 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>ALIGHT MOTION PRESETS</title>
+<title>VORAKS Presets</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-/* -------- GENERAL STYLE -------- */
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#ffffff,#d9e6ff,#e6ffe6);
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  color:#222;
-}
 
-.container { max-width: 900px; margin: auto; }
-
-/* -------- HEADING -------- */
-.main-title{
-  font-size: 34px;
-  font-weight: 900;
-  letter-spacing:3px;
-  padding:20px;
-  margin-top:60px;
-  color:#111;
-}
-
-/* -------- 3 DOT MENU -------- */
-.menu-btn{
-  position:fixed;
-  top:15px;
-  right:15px;
-  width:45px;
-  height:45px;
-  background:#000;
+/* =================== GLOBAL =================== */
+body{
+  margin:0;
+  font-family:Poppins,Arial,sans-serif;
+  background:linear-gradient(135deg,#0d0d0d,#161a2e,#1e2f54,#182b43);
   color:white;
-  border-radius:8px;
-  font-size:26px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  cursor:pointer;
-  z-index:1000;
+  text-align:center;
 }
 
-.menu-panel{
+/* =================== HEADER =================== */
+header{
+  padding:50px 10px 30px;
+  position:relative;
+}
+
+header h1{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:#ffcc00;
+  text-transform:uppercase;
+  text-shadow:0 0 15px rgba(255,230,0,.6);
+  margin-top:20px;
+}
+
+/* =================== HAMBURGER MENU =================== */
+
+.menu-btn{
+  position:absolute;
+  right:25px;
+  top:20px;
+  font-size:28px;
+  cursor:pointer;
+  padding:10px;
+  border-radius:8px;
+  background:#ffffff15;
+  backdrop-filter:blur(5px);
+}
+.menu-btn:hover{background:#ffffff30;}
+
+#menu{
   position:fixed;
   top:0;
   right:-260px;
-  width:250px;
-  height:100vh;
-  background:#111;
-  color:white;
+  width:240px;
+  height:100%;
+  background:#0b0b0c;
+  box-shadow:-4px 0 15px rgba(0,0,0,.6);
   padding-top:70px;
-  transition:0.4s ease;
-  z-index:999;
+  transition:.4s ease;
+  text-align:center;
 }
 
-.menu-panel a{
+#menu a{
   display:block;
-  padding:18px;
-  text-decoration:none;
-  color:#fff;
-  text-align:left;
+  color:white;
+  padding:15px 0;
   font-size:18px;
-  border-bottom:1px solid #222;
-}
-.menu-panel a:hover{ background:#333; }
-
-/* -------- PRESET SECTION -------- */
-section{ padding:20px; }
-
-.preset-link{
-  display:block;
-  margin-bottom:25px;
   text-decoration:none;
-  color:#000;
+  border-bottom:1px solid #ffffff25;
 }
 
-.preset-link img{
-  width:500px; max-width:100%;
+#menu a:hover{
+  background:#ffcc00;
+  color:black;
+}
+
+/* =================== SEARCH =================== */
+.search-container{
+  margin-top:25px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.search-container input{
+  width:260px;
+  padding:12px 18px;
+  border:none;
+  border-radius:30px;
+  outline:none;
+  font-size:16px;
+}
+
+.search-container button{
+  background:#ffcc00;
+  padding:12px 22px;
+  color:black;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.search-container button:hover{background:#e6b800;}
+
+/* =================== PRESETS CARD =================== */
+section{
+  width:92%;
+  max-width:850px;
+  margin:35px auto;
+  background:#ffffff10;
+  backdrop-filter:blur(10px);
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 0 25px rgba(0,0,0,.4);
+}
+
+section h2{
+  color:#ffcc00;
+  font-size:26px;
+}
+
+.preset-section{
+  margin-bottom:30px;
+  padding-bottom:20px;
+  border-bottom:1px solid #ffffff30;
+}
+
+.label{padding:8px 15px;border-radius:20px;font-weight:bold;}
+.free{background:#28a745;}
+.paid{background:#dc3545;}
+
+/* =================== SLIDER =================== */
+.slider{
+  position:relative;
+  width:100%;
+  max-width:600px;
+  margin:20px auto;
+  overflow:hidden;
   border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-.preset-text{ margin-top:8px; font-size:18px; font-weight:bold; }
+.slider img{
+  width:100%;
+  display:none;
+  opacity:0;
+  transition:.7s;
+  border-radius:10px;
+}
+.slider img.active{display:block;opacity:1;}
 
-/* -------- CONTACT -------- */
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#00000070;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  font-size:20px;
+  cursor:pointer;
+  border-radius:6px;
+}
+.prev-btn{left:10px;}
+.next-btn{right:10px;}
+
+/* =================== DOWNLOAD BUTTON =================== */
+.download-btn{
+  background:#ff4500;
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:6px;
+  margin-top:15px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.download-btn:hover{background:#e63b00;}
+
+/* =================== CONTACT =================== */
 #contact{
-  background:#111; color:white;
-  padding:50px 20px; margin-top:40px;
+  background:#000000aa;
+  margin-top:50px;
 }
+
+#contact h2{color:#ffcc00;}
 
 #contact a{
   background:#ff4500;
-  padding:12px 28px;
-  border-radius:30px;
+  padding:12px 25px;
   color:white;
+  border-radius:30px;
   text-decoration:none;
   font-weight:bold;
 }
+#contact a:hover{background:#ff5b1e;}
 
-#contact a:hover{ background:#ff6a2e; }
-#contact .email{ margin-top:15px; color:#ddd; }
-
-/* -------- FOOTER -------- */
 footer{
-  background:#000;color:white;
-  padding:12px;margin-top:30px;
+  background:#000000dd;
+  padding:15px;
+  margin-top:30px;
 }
+
 </style>
 </head>
+
 <body>
 
-<!-- 🔥 3 DOT BUTTON -->
+<!-- 3 DOT MENU BUTTON -->
 <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 
-<!-- 🔥 SLIDE MENU -->
-<div id="menu" class="menu-panel">
-  <a href="index.html">🏠 Home</a>
-  <a href="ALIGHTMOTION.html">📂 Alight Motion</a>
-  <a href="#">✨ After Effects (Coming Soon)</a>
-  <a href="#">🧩 Node Video (Coming Soon)</a>
-  <a href="#contact" onclick="closeMenuAndScroll()">📞 Contact</a>
+<!-- SLIDE MENU -->
+<div id="menu">
+  <a onclick="scrollToTop();toggleMenu()">🏠 Home</a>
+  <a onclick="scrollToContact();toggleMenu()">📩 Contact</a>
 </div>
 
-<!-- PAGE TITLE -->
-<h1 class="main-title">VORAKS PRESETS</h1>
+<header>
+  <h1>VORAKS PRESETS</h1>
 
-<div class="container">
-<section id="presets">
-<h2 style="margin-bottom:30px;">PRESET COLLECTION</h2>
+  <div class="search-container">
+      <input type="text" id="presetSearch" placeholder="Search Colour Correction Presets...">
+      <button onclick="searchPresets()">Search</button>
+  </div>
+</header>
 
-<a href="colourcorrection.html" class="preset-link">
-  <img src="20251003_222828.png" alt="COLOUR CORRECTION PRESETS">
-  <span class="preset-text">Colour Correction Presets</span>
-</a>
-
-<a href="watermark.html" class="preset-link">
-  <img src="20251003_223734.png" alt="WATERMARK PRESETS">
-  <span class="preset-text">Watermark Presets</span>
-</a>
-
-<a href="logo_animation.html" class="preset-link">
-  <img src="20251003_224158.png" alt="LOGO ANIMATION PRESETS">
-  <span class="preset-text">Logo Animation Presets</span>
-</a>
+<section id="presets-container">
+  <h2>Alight Motion Colour Correction Presets</h2>
+  <div id="presetList"></div>
 </section>
-</div>
 
-<!-- CONTACT -->
 <section id="contact">
-<h2>Contact Me</h2>
-<p>Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
-<a href="mailto:voraks200@gmail.com">📧 Email Me</a>
-<p class="email">or email directly: <span>voraks200@gmail.com</span></p>
+  <h2>Contact Me</h2>
+  <p>For collaborations, business, talks — anytime!</p>
+  <a href="mailto:voraks200@gmail.com">Email Me</a>
+  <p><b>voraks200@gmail.com</b></p>
 </section>
 
-<footer>
-<p>&copy; 2025 VORAKS Presets | Contact: info@voraks.com</p>
-</footer>
+<footer>© 2025 VORAKS</footer>
 
-<!-- MENU SCRIPT -->
+
 <script>
-function toggleMenu(){
-  document.getElementById("menu").style.right =
-     document.getElementById("menu").style.right=="0px" ? "-260px" : "0px";
+let allPresets=[];
+fetch('presets.json').then(r=>r.json()).then(d=>{allPresets=d;displayPresets(d);});
+
+function displayPresets(list){
+  const box=document.getElementById("presetList");
+  box.innerHTML="";
+  if(list.length==0){box.innerHTML="<p>No results found</p>";return;}
+  list.forEach((p,i)=>{
+    const card=document.createElement("div");
+    card.className="preset-section";
+
+    let slider="";
+    if(p.images?.length){
+      const ctrl=p.images.length>1?
+      `<button class='slider-btn prev-btn' onclick="moveSlide('s${i}',-1)">❮</button>
+       <button class='slider-btn next-btn' onclick="moveSlide('s${i}',1)">❯</button>`:"";
+
+      slider=`<div class='slider' id='s${i}'>
+        ${p.images.map((x,n)=>`<img src="${x}" class='${n==0?"active":""}'>`).join("")}
+        ${ctrl}
+      </div>`;
+    }
+
+    card.innerHTML=`
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <span class="label ${p.type}">${p.type=="paid"?"Paid":"Free"}</span>
+      ${slider}
+      ${p.download?`<a href='${p.download}' target='_blank'><button class='download-btn'>Download XML</button></a>`:""}
+    `;
+    box.appendChild(card);
+  });
 }
 
-function closeMenuAndScroll(){
-  document.getElementById("menu").style.right="-260px";
+function moveSlide(id,dir){
+  const s=document.getElementById(id);
+  let imgs=[...s.querySelectorAll("img")];
+  let i=imgs.findIndex(x=>x.classList.contains("active"));
+  imgs[i].classList.remove("active");
+  imgs[(i+dir+imgs.length)%imgs.length].classList.add("active");
 }
+
+function searchPresets(){
+  let q=document.getElementById("presetSearch").value.toLowerCase();
+  displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q)));
+}
+
+/* MENU FUNCTIONS */
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.right = m.style.right=="0px"?"-260px":"0px";
+}
+
+function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
+function scrollToContact(){
+  document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+}
+
 </script>
 
 </body>
