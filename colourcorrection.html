@@ -13,21 +13,29 @@
 /* =====================
    GLOBAL
 ===================== */
-body{
+* {
+  box-sizing: border-box;
   margin:0;
+  padding:0;
+}
+
+body{
   font-family:'Inter',sans-serif;
   background:#0d0d0d;
   color:white;
   text-align:center;
   line-height:1.55;
+  overflow-x:hidden;
 }
 
 /* =====================
    HEADER
 ===================== */
 header{
-  padding:60px 10px 30px;
+  padding:60px 20px 30px;
   position:relative;
+  max-width:960px;
+  margin:0 auto;
 }
 
 header h1{
@@ -35,14 +43,14 @@ header h1{
   font-weight:700;
   color:#f4c430;
   letter-spacing:1px;
-  margin-top:20px;
+  margin-bottom:20px;
 }
 
 /* =====================
    MENU (3 Dot)
 ===================== */
 .menu-btn{
-  position:absolute;
+  position:fixed;
   right:22px;
   top:18px;
   font-size:28px;
@@ -58,6 +66,7 @@ header h1{
 #menu{
   position:fixed;
   right:-260px;
+  top:0;
   width:240px;
   height:100%;
   background:#0b0b0e;
@@ -73,6 +82,7 @@ header h1{
   color:#eaeaea;
   font-size:16px;
   border-bottom:1px solid #ffffff10;
+  text-decoration:none;
 }
 #menu a:hover{background:#f4c430;color:#000;}
 
@@ -239,6 +249,7 @@ footer{
   font-size:14px;
   margin-top:30px;
 }
+
 </style>
 </head>
 
@@ -247,11 +258,11 @@ footer{
 <div class="menu-btn" onclick="toggleMenu()">⋮</div>
 
 <div id="menu">
-  <a onclick="scrollToTop();toggleMenu()">🏠 Home</a>
-  <a onclick="toggleMenu()">🟢 Alight Motion </a>
-  <a onclick="toggleMenu()">🔵 After Effects (Coming Soon)</a>
-  <a onclick="toggleMenu()">🟣 Node Video (Coming Soon)</a>
-  <a onclick="scrollToContact();toggleMenu()">📩 Contact</a>
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="ALIGHTMOTION.html" onclick="toggleMenu()">🟢 Alight Motion</a>
+  <a href="#" onclick="toggleMenu()">🔵 After Effects (Coming Soon)</a>
+  <a href="#" onclick="toggleMenu()">🟣 Node Video (Coming Soon)</a>
+  <a href="#contact" onclick="scrollToContact();toggleMenu()">📩 Contact</a>
 </div>
 
 <header>
