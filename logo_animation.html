@@ -1,374 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Logo Animation Presets | VORAKS</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logo Animation Presets | VORAKS</title>
 
-  <style>
-    /* === General Styling === */
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0; /* Corrected typo: removed 'pl' */
-      text-align: center;
-    }
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    /* === Header and Nav === */
-    header {
-      background: black;
-      color: white;
-      padding: 25px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #ffcc00; /* Added hover effect */
-    }
-    
-    /* === Section Styling === */
-    section {
-      padding: 30px 20px;
-      background: #fff;
-      margin: 40px auto;
-      width: 90%;
-      max-width: 800px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-    }
-    .preset-section {
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
-    }
-    .preset-section:last-child {
-      border-bottom: none;
-    }
+<!-- Professional Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    /* === Footer === */
-    footer {
-      background: black;
-      color: white;
-      text-align: center;
-      padding: 15px 10px;
-    }
-    footer a {
-        color: #ff4500;
-        text-decoration: none;
-    }
-    footer a:hover {
-        text-decoration: underline;
-    }
-    
-    /* === Slider and Media === */
-    .slider {
-      position: relative;
-      width: 90%;
-      max-width: 600px;
-      margin: 20px auto;
-      padding-top: 56.25%; /* 16:9 aspect ratio */
-      overflow: hidden;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    .slider img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: none;
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      object-fit: cover; /* Changed to cover for consistency and better fill */
-      background-color: #000;
-    }
-    .slider img.active { display: block; opacity: 1; }
-    .slider-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 20px;
-      border-radius: 4px;
-      z-index: 10;
-    }
-    .slider-btn:hover { background: rgba(0, 0, 0, 0.8); }
-    .prev-btn { left: 10px; }
-    .next-btn { right: 10px; }
-    iframe {
-      display: block;
-      margin: 20px auto 0;
-      width: 90%;
-      max-width: 600px;
-      height: 315px;
-      border-radius: 10px;
-      border: none; /* Added to remove default border */
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-    }
-    
-    /* === Buttons and Labels === */
-    button {
-      background: black;
-      color: white;
-      border: none;
-      padding: 12px 25px; /* Increased padding for better click area */
-      margin-top: 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    button:hover { background: #444; }
-    .download-btn {
-        background: #ff4500; /* Distinct color for download */
-    }
-    .download-btn:hover {
-        background: #e63e00;
-    }
-    .label {
-      display: inline-block;
-      padding: 6px 12px;
-      border-radius: 20px;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      margin: 10px 0;
-      text-transform: uppercase;
-    }
-    .label.free { background: #28a745; }
-    .label.paid { background: #dc3545; }
-    
-    /* === Search === */
-    .search-container {
-      margin-top: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      background-color: #1a1a1a;
-      padding: 10px;
-      border-radius: 5px;
-    }
-    .search-container input {
-      padding: 10px 15px;
-      width: 280px;
-      border-radius: 30px;
-      border: 2px solid #333;
-      outline: none;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-    .search-container input:focus {
-      border-color: #ffcc00;
-      box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
-    }
-    .search-container button {
-      background: #ffcc00;
-      color: black;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    .search-container button:hover { background: #e6b800; }
-    .no-results {
-      font-size: 16px;
-      color: #666;
-      margin-top: 20px;
-    }
-    
-    /* === Contact === */
-    #contact {
-      background: #000;
-      color: #fff;
-      padding: 50px 20px;
-      margin: 0; /* Removed margin-top to connect better */
-      border-radius: 0;
-      box-shadow: none;
-    }
-    #contact a {
-      display: inline-block;
-      background: #ff4500;
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s ease;
-    }
-    #contact a:hover { background: #ff5e1e; }
-    .email-container {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #888;
-    }
-    .email-container span {
-      color: #fff;
-      font-weight: bold;
-    }
-  </style>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body{
+  font-family:'Inter',sans-serif;
+  background:#0d0d0d;
+  color:white;
+  text-align:center;
+  line-height:1.55;
+  overflow-x:hidden;
+}
+
+header{
+  padding:60px 20px 30px;
+  max-width:960px;
+  margin:0 auto;
+}
+
+header h1{
+  font-size:34px;
+  font-weight:700;
+  color:#f4c430;
+  letter-spacing:1px;
+  margin-bottom:20px;
+}
+
+.menu-btn{
+  position:fixed;
+  right:22px;
+  top:18px;
+  font-size:28px;
+  background:#ffffff15;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  z-index:9999;
+  transition:.25s;
+}
+.menu-btn:hover{background:#ffffff30;}
+
+#menu{
+  position:fixed;
+  right:-260px;
+  top:0;
+  width:240px;
+  height:100%;
+  background:#0b0b0e;
+  padding-top:70px;
+  transition:.4s;
+  z-index:9998;
+  border-left:1px solid #ffffff15;
+}
+
+#menu a{
+  display:block;
+  padding:15px;
+  color:#eaeaea;
+  font-size:16px;
+  border-bottom:1px solid #ffffff10;
+  text-decoration:none;
+}
+#menu a:hover{background:#f4c430;color:#000;}
+#menu a.coming{color:#777;pointer-events:none;font-style:italic;}
+
+.search-container{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:25px;
+  flex-wrap:wrap;
+}
+
+.search-container input{
+  width:260px;
+  padding:12px 18px;
+  border:none;
+  border-radius:25px;
+  font-size:15px;
+  background:#ffffff12;
+  color:white;
+}
+
+.search-container button{
+  background:#f4c430;
+  border:none;
+  padding:12px 22px;
+  border-radius:25px;
+  font-weight:600;
+  font-size:15px;
+  cursor:pointer;
+}
+.search-container button:hover{background:#d9af29;}
+
+section{
+  width:92%;
+  max-width:880px;
+  margin:35px auto;
+  background:#ffffff07;
+  backdrop-filter:blur(12px);
+  padding:32px;
+  border-radius:14px;
+  box-shadow:0 0 35px rgba(0,0,0,.35);
+}
+
+section h2{
+  font-size:24px;
+  font-weight:600;
+  color:#f4c430;
+  margin-bottom:22px;
+}
+
+.preset-section{
+  margin-bottom:35px;
+  padding-bottom:25px;
+  border-bottom:1px solid #ffffff15;
+}
+
+.preset-section h3{
+  margin-bottom:8px;
+  font-size:20px;
+  font-weight:600;
+}
+
+.preset-section p{
+  font-size:15px;
+  opacity:.92;
+  margin-bottom:10px;
+}
+
+.label{
+  padding:6px 12px;
+  border-radius:18px;
+  font-weight:500;
+  font-size:13px;
+}
+.free{background:#2ea44f;}
+.paid{background:#d93b47;}
+
+.slider{
+  position:relative;
+  max-width:620px;
+  margin:18px auto 0;
+  overflow:hidden;
+  border-radius:10px;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+
+.slider img{
+  width:100%;
+  display:none;
+  opacity:0;
+  transition:.6s;
+  border-radius:10px;
+}
+.slider img.active{display:block;opacity:1;}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#00000065;
+  padding:9px 14px;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  font-size:18px;
+}
+.prev-btn{left:10px;}
+.next-btn{right:10px;}
+
+.video-box iframe{
+  width:100%;
+  margin-top:15px;
+  border-radius:10px;
+  height:330px;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+  border:none;
+}
+
+.download-btn{
+  background:#ff6b24;
+  color:white;
+  border:none;
+  border-radius:6px;
+  padding:11px 22px;
+  font-size:15px;
+  font-weight:600;
+  margin-top:16px;
+  cursor:pointer;
+}
+.download-btn:hover{background:#e85f1c;}
+
+#contact{
+  text-align:center;
+}
+
+#contact h2{
+  color:#f4c430;
+  margin-bottom:15px;
+}
+
+#contact p{
+  margin-bottom:12px;
+  font-size:16px;
+}
+
+#contact a{
+  display:inline-block;
+  background:#ff6b24;
+  color:white;
+  padding:12px 28px;
+  border-radius:28px;
+  text-decoration:none;
+  font-weight:600;
+  margin-bottom:12px;
+}
+#contact a:hover{background:#e85f1c;}
+
+footer{
+  background:#000000d8;
+  padding:15px;
+  font-size:14px;
+  margin-top:30px;
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>VORAKS PRESETS</h1>
-    <nav>
-      <a href="index.html">HOME</a> |
-      <a href="ALIGHTMOTION.html">ALIGHT MOTION</a> |
-      <a href="#">AFTER EFFECTS</a> |
-      <a href="#contact">CONTACT</a>
-    </nav>
-    <div class="search-container">
-      <input type="text" id="presetSearch" placeholder="Search logo presets..." />
-      <button onclick="searchPresets()">Search</button>
-    </div>
-  </header>
 
-  <section id="presets-container">
-    <h2>Different Types of Logo Animation Presets</h2>
-    <div id="presetList"></div>
-  </section>
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+<div id="menu">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="ALIGHTMOTION.html" onclick="toggleMenu()">🟢 Alight Motion</a>
+  <a class="coming">✨ After Effects (Coming Soon)</a>
+  <a class="coming">📲 Node Video (Coming Soon)</a>
+  <a href="#contact" onclick="scrollToContact();toggleMenu()">📩 Contact</a>
+</div>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <p>Have questions or feedback? Reach out anytime.</p>
-    <a href="mailto:voraks200@gmail.com" rel="noopener noreferrer">📧 Email Me</a>
-    <p class="email-container">or email directly: <span>voraks200@gmail.com</span></p>
-  </section>
+<header>
+  <h1>LOGO ANIMATION PRESETS</h1>
+  <div class="search-container">
+    <input type="text" id="presetSearch" placeholder="Search logo presets...">
+    <button onclick="searchPresets()">Search</button>
+  </div>
+</header>
 
-  <footer>
-    <p>&copy; 2025 VORAKS Presets | Contact: <a href="mailto:voraks200@gmail.com">voraks200@gmail.com</a></p>
-  </footer>
+<section id="presets-container">
+  <h2>Different Types of Logo Animation Presets</h2>
+  <div id="presetList"></div>
+</section>
 
-  <script src="blockadblock.js"></script>
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p>Have questions or feedback? Reach out anytime.</p>
+  <a href="mailto:voraks200@gmail.com">📧 Email Me</a>
+  <p><b>voraks200@gmail.com</b></p>
+</section>
 
-  <script>
-    let allPresets = [];
+<footer>© 2025 VORAKS</footer>
 
-    // 1. Fetch data and initialize display
-    fetch('logo-presets.json')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('Failed to load logo-presets.json');
-        }
-        return res.json();
-      })
-      .then(presets => {
-        allPresets = presets;
-        displayPresets(allPresets);
-      })
-      .catch(err => console.error('Error loading JSON:', err));
+<script>
+let allPresets=[];
 
-    // 2. Function to display presets (filtering logic here)
-    function displayPresets(presets) {
-      const list = document.getElementById('presetList');
-      list.innerHTML = '';
+fetch("logo-presets.json")
+.then(r=>r.json())
+.then(data=>{
+  allPresets=data;
+  displayPresets(data);
+})
+.catch(()=>{
+  document.getElementById("presetList").innerHTML =
+  "<p style='color:#ff4444;font-size:18px'>⚠ logo-presets.json not loading (Use Live Server)</p>";
+});
 
-      if (presets.length === 0) {
-        list.innerHTML = '<p class="no-results">No logo presets found.</p>';
-        return;
-      }
+function displayPresets(list){
+  const box=document.getElementById("presetList");
+  box.innerHTML="";
+  if(list.length==0){box.innerHTML="<p>No results found</p>"; return;}
 
-      presets.forEach((p, index) => {
-        const section = document.createElement('div');
-        section.classList.add('preset-section');
-        section.id = p.id;
+  list.forEach((p,i)=>{
+    const card=document.createElement("div");
+    card.className="preset-section";
 
-        let sliderHTML = '';
-        const validImages = (p.images || []).filter(img => img && img.trim() !== '');
-        if (validImages.length > 0) {
-          // Only show slider controls if there's more than one image
-          const controls = validImages.length > 1 ? `
-            <button class="slider-btn prev-btn" onclick="moveSlide('slider${index+1}', -1)">&#10094;</button>
-            <button class="slider-btn next-btn" onclick="moveSlide('slider${index+1}', 1)">&#10095;</button>
-          ` : '';
+    let slider="", videoBox="";
 
-          sliderHTML = `
-            <div class="slider" id="slider${index+1}">
-              ${validImages.map((img, i) => `<img src="${img}" class="${i===0?'active':''}" alt="Preview ${i+1}">`).join('')}
-              ${controls}
-            </div>`;
-        }
-        
-        // Added title, frameborder, and required allow attributes for better iframe embedding
-        const videoHTML = p.video ? `<iframe src="${p.video}" title="${p.title} video preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>` : '';
-        
-        // Added rel="noopener noreferrer" and used .download-btn class
-        const downloadHTML = p.download && p.download.trim() !== ''
-          ? `<p><a href="${p.download}" target="_blank" rel="noopener noreferrer"><button class="download-btn">Download Logo Preset</button></a></p>` 
-          : '';
+    if(p.images?.length){
+      const ctrl=p.images.length>1?
+      `<button class='slider-btn prev-btn' onclick="moveSlide('s${i}',-1)">❮</button>
+       <button class='slider-btn next-btn' onclick="moveSlide('s${i}',1)">❯</button>`:"";
 
-        section.innerHTML = `
-          <h3>${p.title}</h3>
-          <p>${p.description}</p>
-          <span class="label ${p.type === 'paid' ? 'paid' : 'free'}">${p.type === 'paid' ? 'Paid Preset' : 'Free Preset'}</span>
-          ${sliderHTML}
-          ${videoHTML}
-          ${downloadHTML}
-        `;
-        list.appendChild(section);
-      });
-
-      // Scroll to preset from URL hash
-      if (window.location.hash) {
-        const target = document.querySelector(window.location.hash);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-      }
+      slider=`<div class='slider' id='s${i}'>
+        ${p.images.map((x,n)=>`<img src="${x}" class='${n==0?"active":""}'>`).join("")}
+        ${ctrl}
+      </div>`;
     }
 
-    // 3. Function to handle the image slider movement
-    function moveSlide(sliderId, direction) {
-      const slider = document.getElementById(sliderId);
-      if (!slider) return;
-      const images = Array.from(slider.querySelectorAll('img'));
-      let current = images.findIndex(img => img.classList.contains('active'));
-      if (current === -1) current = 0; // Default to first image if none is active
-
-      images[current].classList.remove('active');
-      let next = (current + direction + images.length) % images.length;
-      images[next].classList.add('active');
+    if(p.video){
+      videoBox=`<div class="video-box"><iframe src="${p.video}" allow="autoplay" allowfullscreen></iframe></div>`;
     }
 
-    // 4. Function to handle the search button click (This was missing!)
-    function searchPresets() {
-        const searchTerm = document.getElementById('presetSearch').value.toLowerCase();
-        const filteredPresets = allPresets.filter(p => 
-            (p.title && p.title.toLowerCase().includes(searchTerm)) || 
-            (p.description && p.description.toLowerCase().includes(searchTerm)) || 
-            (p.type && p.type.toLowerCase().includes(searchTerm))
-        );
-        displayPresets(filteredPresets);
-    }
-    
-    // 5. Adblocker detection logic (Executed on window load)
-    window.addEventListener('load', function() {
-        if (typeof blockAdBlock === "undefined") {
-            alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-        } else {
-            blockAdBlock.onDetected(function() {
-                alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-            });
-        }
-    });
-  </script>
+    card.innerHTML=`
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <span class="label ${p.type}">${p.type=="paid"?"Paid":"Free"}</span>
+      ${slider}
+      ${videoBox}
+      ${p.download?`<a href='${p.download}' target='_blank'><button class='download-btn'>Download</button></a>`:""}
+    `;
+
+    box.appendChild(card);
+  });
+}
+
+function moveSlide(id,dir){
+  let imgs=[...document.getElementById(id).querySelectorAll("img")];
+  let i=imgs.findIndex(x=>x.classList.contains("active"));
+  imgs[i].classList.remove("active");
+  imgs[(i+dir+imgs.length)%imgs.length].classList.add("active");
+}
+
+function searchPresets(){
+  let q=document.getElementById("presetSearch").value.toLowerCase();
+  displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q) || x.description.toLowerCase().includes(q)));
+}
+
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.right = m.style.right=="0px"?"-260px":"0px";
+}
+
+function scrollToContact(){document.getElementById("contact").scrollIntoView({behavior:"smooth"});}
+</script>
+
 </body>
 </html>
