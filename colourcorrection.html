@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Colour Correction Presets | VORAKS</title>
+<title>VORAKS Presets</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -10,27 +10,71 @@
 /* =================== GLOBAL =================== */
 body{
   margin:0;
-  font-family: Poppins, Arial, sans-serif;
-  background: linear-gradient(135deg,#111,#18142b,#222954,#18223b);
+  font-family:Poppins,Arial,sans-serif;
+  background:linear-gradient(135deg,#0d0d0d,#161a2e,#1e2f54,#182b43);
   color:white;
   text-align:center;
 }
 
 /* =================== HEADER =================== */
 header{
-  padding:40px 10px;
+  padding:50px 10px 30px;
+  position:relative;
 }
 
 header h1{
-  font-size:38px;
-  font-weight:800;
-  letter-spacing:4px;
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:3px;
   color:#ffcc00;
   text-transform:uppercase;
-  text-shadow:0px 0px 10px rgba(255,220,0,.6);
+  text-shadow:0 0 15px rgba(255,230,0,.6);
+  margin-top:20px;
 }
 
-/* Search bar redesigned */
+/* =================== HAMBURGER MENU =================== */
+
+.menu-btn{
+  position:absolute;
+  right:25px;
+  top:20px;
+  font-size:28px;
+  cursor:pointer;
+  padding:10px;
+  border-radius:8px;
+  background:#ffffff15;
+  backdrop-filter:blur(5px);
+}
+.menu-btn:hover{background:#ffffff30;}
+
+#menu{
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:240px;
+  height:100%;
+  background:#0b0b0c;
+  box-shadow:-4px 0 15px rgba(0,0,0,.6);
+  padding-top:70px;
+  transition:.4s ease;
+  text-align:center;
+}
+
+#menu a{
+  display:block;
+  color:white;
+  padding:15px 0;
+  font-size:18px;
+  text-decoration:none;
+  border-bottom:1px solid #ffffff25;
+}
+
+#menu a:hover{
+  background:#ffcc00;
+  color:black;
+}
+
+/* =================== SEARCH =================== */
 .search-container{
   margin-top:25px;
   display:flex;
@@ -57,9 +101,9 @@ header h1{
   cursor:pointer;
   font-weight:600;
 }
-.search-container button:hover{ background:#e6b800; }
+.search-container button:hover{background:#e6b800;}
 
-/* =================== PRESETS CARD STYLE =================== */
+/* =================== PRESETS CARD =================== */
 section{
   width:92%;
   max-width:850px;
@@ -68,7 +112,7 @@ section{
   backdrop-filter:blur(10px);
   padding:25px;
   border-radius:15px;
-  box-shadow:0px 0px 25px rgba(0,0,0,.4);
+  box-shadow:0 0 25px rgba(0,0,0,.4);
 }
 
 section h2{
@@ -82,16 +126,9 @@ section h2{
   border-bottom:1px solid #ffffff30;
 }
 
-.label{
-  padding:8px 15px;
-  font-size:13px;
-  border-radius:20px;
-  font-weight:bold;
-  display:inline-block;
-}
-
-.label.free{ background:#28a745; }
-.label.paid{ background:#dc3545; }
+.label{padding:8px 15px;border-radius:20px;font-weight:bold;}
+.free{background:#28a745;}
+.paid{background:#dc3545;}
 
 /* =================== SLIDER =================== */
 .slider{
@@ -107,31 +144,28 @@ section h2{
   width:100%;
   display:none;
   opacity:0;
-  transition:.7s ease;
+  transition:.7s;
   border-radius:10px;
 }
-.slider img.active{
-  display:block;
-  opacity:1;
-}
+.slider img.active{display:block;opacity:1;}
 
 .slider-btn{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  background:#00000080;
+  background:#00000070;
   color:white;
   border:none;
   padding:10px 15px;
   font-size:20px;
   cursor:pointer;
-  border-radius:5px;
+  border-radius:6px;
 }
-.prev-btn{ left:10px; }
-.next-btn{ right:10px; }
+.prev-btn{left:10px;}
+.next-btn{right:10px;}
 
-/* =================== BUTTONS =================== */
-button.download-btn{
+/* =================== DOWNLOAD BUTTON =================== */
+.download-btn{
   background:#ff4500;
   color:white;
   border:none;
@@ -141,7 +175,7 @@ button.download-btn{
   cursor:pointer;
   font-weight:bold;
 }
-button.download-btn:hover{ background:#e63b00; }
+.download-btn:hover{background:#e63b00;}
 
 /* =================== CONTACT =================== */
 #contact{
@@ -149,7 +183,7 @@ button.download-btn:hover{ background:#e63b00; }
   margin-top:50px;
 }
 
-#contact h2{ color:#ffcc00; }
+#contact h2{color:#ffcc00;}
 
 #contact a{
   background:#ff4500;
@@ -159,22 +193,27 @@ button.download-btn:hover{ background:#e63b00; }
   text-decoration:none;
   font-weight:bold;
 }
+#contact a:hover{background:#ff5b1e;}
 
-#contact a:hover{ background:#ff5b1e; }
-
-/* footer */
 footer{
   background:#000000dd;
   padding:15px;
-  color:white;
+  margin-top:30px;
 }
-footer a{ color:#ffcc00; text-decoration:none; }
 
 </style>
 </head>
 
-
 <body>
+
+<!-- 3 DOT MENU BUTTON -->
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<!-- SLIDE MENU -->
+<div id="menu">
+  <a onclick="scrollToTop();toggleMenu()">🏠 Home</a>
+  <a onclick="scrollToContact();toggleMenu()">📩 Contact</a>
+</div>
 
 <header>
   <h1>VORAKS PRESETS</h1>
@@ -185,78 +224,81 @@ footer a{ color:#ffcc00; text-decoration:none; }
   </div>
 </header>
 
-
 <section id="presets-container">
   <h2>Alight Motion Colour Correction Presets</h2>
   <div id="presetList"></div>
 </section>
 
-
 <section id="contact">
   <h2>Contact Me</h2>
-  <p>Questions? Collaboration? Feedback? I'm open!</p>
-  <a href="mailto:voraks200@gmail.com">📩 Email Me</a>
-  <p class="email-container">Direct Mail: <b>voraks200@gmail.com</b></p>
+  <p>For collaborations, business, talks — anytime!</p>
+  <a href="mailto:voraks200@gmail.com">Email Me</a>
+  <p><b>voraks200@gmail.com</b></p>
 </section>
 
-<footer>
-  <p>© 2025 VORAKS Presets</p>
-</footer>
+<footer>© 2025 VORAKS</footer>
 
 
 <script>
 let allPresets=[];
-
-fetch('presets.json')
-.then(r=>r.json())
-.then(data=>{allPresets=data; displayPresets(allPresets);});
+fetch('presets.json').then(r=>r.json()).then(d=>{allPresets=d;displayPresets(d);});
 
 function displayPresets(list){
-  const div=document.getElementById("presetList");
-  div.innerHTML="";
-  if(list.length==0){ div.innerHTML="<p>No Results</p>"; return;}
-
+  const box=document.getElementById("presetList");
+  box.innerHTML="";
+  if(list.length==0){box.innerHTML="<p>No results found</p>";return;}
   list.forEach((p,i)=>{
-    const box=document.createElement("div");
-    box.className="preset-section";
+    const card=document.createElement("div");
+    card.className="preset-section";
 
     let slider="";
-    if(p.images && p.images.length>0){
-      const controls=p.images.length>1?
-      `<button class="slider-btn prev-btn" onclick="moveSlide('s${i}',-1)">❮</button>
-       <button class="slider-btn next-btn" onclick="moveSlide('s${i}',1)">❯</button>`:"";
+    if(p.images?.length){
+      const ctrl=p.images.length>1?
+      `<button class='slider-btn prev-btn' onclick="moveSlide('s${i}',-1)">❮</button>
+       <button class='slider-btn next-btn' onclick="moveSlide('s${i}',1)">❯</button>`:"";
 
-      slider=`
-      <div class="slider" id="s${i}">
-        ${p.images.map((img,n)=>`<img src="${img}" class="${n==0?"active":""}">`).join("")}
-        ${controls}
+      slider=`<div class='slider' id='s${i}'>
+        ${p.images.map((x,n)=>`<img src="${x}" class='${n==0?"active":""}'>`).join("")}
+        ${ctrl}
       </div>`;
     }
 
-    box.innerHTML=`
+    card.innerHTML=`
       <h3>${p.title}</h3>
       <p>${p.description}</p>
-      <span class="label ${p.type=="paid"?"paid":"free"}">${p.type=="paid"?"Paid":"Free"}</span>
+      <span class="label ${p.type}">${p.type=="paid"?"Paid":"Free"}</span>
       ${slider}
-      ${p.video?`<iframe src="${p.video}" allowfullscreen></iframe>`:""}
-      ${p.download?`<a href="${p.download}" target="_blank"><button class="download-btn">Download XML</button></a>`:""}
+      ${p.download?`<a href='${p.download}' target='_blank'><button class='download-btn'>Download XML</button></a>`:""}
     `;
-    div.appendChild(box);
+    box.appendChild(card);
   });
 }
 
 function moveSlide(id,dir){
   const s=document.getElementById(id);
   let imgs=[...s.querySelectorAll("img")];
-  let c=imgs.findIndex(i=>i.classList.contains("active"));
-  imgs[c].classList.remove("active");
-  imgs[(c+dir+imgs.length)%imgs.length].classList.add("active");
+  let i=imgs.findIndex(x=>x.classList.contains("active"));
+  imgs[i].classList.remove("active");
+  imgs[(i+dir+imgs.length)%imgs.length].classList.add("active");
 }
 
 function searchPresets(){
-  let term=document.getElementById("presetSearch").value.toLowerCase();
-  displayPresets(allPresets.filter(p=>p.title.toLowerCase().includes(term)));
+  let q=document.getElementById("presetSearch").value.toLowerCase();
+  displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q)));
 }
+
+/* MENU FUNCTIONS */
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.right = m.style.right=="0px"?"-260px":"0px";
+}
+
+function scrollToTop(){window.scrollTo({top:0,behavior:"smooth"});}
+function scrollToContact(){
+  document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+}
+
 </script>
+
 </body>
 </html>
