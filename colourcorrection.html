@@ -1,237 +1,307 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>VORAKS PRESETS</title>
+<title>VORAKS Presets</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-/* ------------ Your style section remains SAME (no edits) ------------ */
-:root{
-  --bg-grad: linear-gradient(180deg,#f0f7ff 0%, #eef6fb 60%);
-  --card:#ffffff;
-  --accent-1:#0b84ff;
-  --accent-2:#ff5a1e;
-  --accent-3:#7c3aed;
-  --muted:#556068;
-  --max-width:1100px;
-  --radius:12px;
-  --pad:20px;
-  --menu-w:76px;
-  --mono:'Segoe UI', Roboto, Arial, sans-serif;
-}
 
-*{box-sizing:border-box}
-html,body{height:100%}
+/* =================== GLOBAL =================== */
 body{
   margin:0;
-  font-family:var(--mono);
-  background:var(--bg-grad);
-  color:#0f1724;
-  overflow-x:hidden;
+  font-family:Poppins,Arial,sans-serif;
+  background:linear-gradient(135deg,#0d0d0d,#161a2e,#1e2f54,#182b43);
+  color:white;
+  text-align:center;
 }
 
-/* Header */
+/* =================== HEADER =================== */
 header{
-  position:sticky; top:0; z-index:1200;
-  background:rgba(255,255,255,0.95);
-  border-bottom:1px solid rgba(15,23,36,0.05);
-  backdrop-filter:blur(4px);
+  padding:60px 10px 30px;
+  position:relative;
 }
-.topbar-inner{
-  max-width:var(--max-width);
-  margin:0 auto; padding:12px var(--pad);
-  position:relative; display:flex; justify-content:center; align-items:center;
-  padding-right:calc(var(--pad) + var(--menu-w));
-}
-.brand h1{margin:0;font-size:22px;font-weight:800;color:#07203a}
 
-/* Menu Button */
+header h1{
+  font-size:42px;
+  font-weight:900;
+  letter-spacing:3px;
+  color:#ffcc00;
+  text-transform:uppercase;
+  text-shadow:0 0 15px rgba(255,230,0,.6);
+  margin-top:25px;
+}
+
+/* =================== 3 DOT MENU =================== */
 .menu-btn{
-  position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);
-  width:var(--menu-w);height:56px;border-radius:14px;border:none;
-  background:linear-gradient(90deg,var(--accent-1),var(--accent-3));
-  color:#fff;font-size:30px;cursor:pointer;display:flex;justify-content:center;align-items:center;
-  box-shadow:0 8px 20px rgba(11,132,255,0.12);
+  position:absolute;
+  right:25px;
+  top:20px;
+  font-size:30px;
+  cursor:pointer;
+  padding:10px;
+  border-radius:8px;
+  background:#ffffff15;
+  backdrop-filter:blur(5px);
+  user-select:none;
+  z-index:99999;
+}
+.menu-btn:hover{background:#ffffff30;}
+
+#menu{
+  position:fixed;
+  top:0;
+  right:-260px;
+  width:240px;
+  height:100vh;
+  background:#0b0b0c;
+  box-shadow:-4px 0 15px rgba(0,0,0,.7);
+  padding-top:80px;
+  transition:.4s ease;
+  text-align:center;
+  z-index:9999;
 }
 
-/* Sidebar */
-#overlay{position:fixed;inset:0;background:rgba(0,0,0,0.3);display:none;z-index:1140;}
-#overlay.show{display:block;backdrop-filter: blur(2px);}
-.side-menu{
-  position:fixed;top:0;right:-420px;width:360px;height:100vh;background:#fff;
-  padding:24px;transition:right .28s ease;z-index:1160;border-left:1px solid rgba(15,23,36,0.04);
+#menu.open{
+  right:0; /* <<< Makes menu actually open */
 }
-.side-menu.show{right:0;}
-.side-menu a{display:block;margin:10px 0;padding:10px;border-radius:8px;text-decoration:none;
-  color:var(--accent-1);border:1px solid rgba(11,132,255,0.08)}
-.side-menu a:hover{background:rgba(11,132,255,0.06)}
 
-/* Body layout & grid */
-.container{max-width:var(--max-width);margin:30px auto;padding:0 var(--pad);}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:18px;}
-.preset-card{background:var(--card);padding:12px;border-radius:12px;
-  box-shadow:0 6px 16px rgba(0,0,0,0.05);display:flex;flex-direction:column}
-.thumb img{width:100%;height:120px;border-radius:8px;object-fit:cover}
-.open-btn{margin-top:10px;padding:10px;border:none;border-radius:8px;width:100%;background:var(--accent-1);color:#fff;font-weight:600;cursor:pointer}
-.soon-btn{margin-top:10px;padding:10px;border:none;border-radius:8px;width:100%;background:#9aa0a6;color:#fff;font-weight:600;cursor:not-allowed}
+#menu a{
+  display:block;
+  color:white;
+  padding:15px 0;
+  font-size:18px;
+  text-decoration:none;
+  border-bottom:1px solid #ffffff25;
+}
+#menu a:hover{
+  background:#ffcc00;
+  color:black;
+}
 
-/* Dynamic JSON section */
-.dynamic-section{margin-top:28px;background:var(--card);padding:18px;border-radius:12px;}
-.dynamic-search{display:flex;gap:10px;justify-content:center;margin-bottom:14px;}
-.dynamic-search input{width:60%;padding:10px;border-radius:8px;border:1px solid #ccc;}
-.preset-list{display:flex;flex-direction:column;gap:18px;margin-top:12px;}
+/* =================== SEARCH =================== */
+.search-container{
+  margin-top:25px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-.json-preset{background:#fff;padding:12px;border-radius:10px;
-  box-shadow:0 8px 22px rgba(11,132,255,0.06);}
+.search-container input{
+  width:260px;
+  padding:12px 18px;
+  border:none;
+  border-radius:30px;
+  outline:none;
+  font-size:16px;
+}
 
-/* Slider */
-.json-slider{position:relative;width:100%;max-width:720px;height:320px;margin-top:12px;overflow:hidden;border-radius:10px;background:#e9ecf2;}
-.json-slider img,.json-slider video{display:none;width:100%;height:100%;object-fit:cover}
-.json-slider .active{display:block}
-.json-slider .slider-btn{position:absolute;top:50%;transform:translateY(-50%);
-  background:rgba(0,0,0,.5);color:#fff;padding:8px 12px;border:none;border-radius:8px;cursor:pointer}
-.json-slider .prev{left:10px} .json-slider .next{right:10px}
-.json-download{margin-top:12px;padding:10px;background:var(--accent-2);color:white;border:none;border-radius:8px;font-weight:700;cursor:pointer}
+.search-container button{
+  background:#ffcc00;
+  padding:12px 22px;
+  color:black;
+  border-radius:30px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.search-container button:hover{background:#e6b800;}
+
+/* =================== PRESET CARD =================== */
+section{
+  width:92%;
+  max-width:850px;
+  margin:35px auto;
+  background:#ffffff10;
+  backdrop-filter:blur(10px);
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 0 25px rgba(0,0,0,.4);
+}
+
+section h2{
+  color:#ffcc00;
+  font-size:26px;
+}
+
+.preset-section{
+  margin-bottom:30px;
+  padding-bottom:20px;
+  border-bottom:1px solid #ffffff30;
+}
+
+.label{padding:8px 15px;border-radius:20px;font-weight:bold;}
+.free{background:#28a745;}
+.paid{background:#dc3545;}
+
+/* =================== SLIDER =================== */
+.slider{
+  position:relative;
+  width:100%;
+  max-width:600px;
+  margin:20px auto;
+  overflow:hidden;
+  border-radius:10px;
+}
+
+.slider img{
+  width:100%;
+  display:none;
+  opacity:0;
+  transition:.7s;
+  border-radius:10px;
+}
+.slider img.active{display:block;opacity:1;}
+
+.slider-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#00000070;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  font-size:20px;
+  cursor:pointer;
+  border-radius:6px;
+}
+.prev-btn{left:10px;}
+.next-btn{right:10px;}
+
+/* =================== DOWNLOAD BUTTON =================== */
+.download-btn{
+  background:#ff4500;
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:6px;
+  margin-top:15px;
+  cursor:pointer;
+  font-weight:bold;
+}
+.download-btn:hover{background:#e63b00;}
+
+/* =================== CONTACT =================== */
+#contact{
+  background:#000000aa;
+  margin-top:50px;
+}
+
+#contact h2{color:#ffcc00;}
+
+#contact a{
+  background:#ff4500;
+  padding:12px 25px;
+  color:white;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:bold;
+}
+#contact a:hover{background:#ff5b1e;}
+
+footer{
+  background:#000000dd;
+  padding:15px;
+  margin-top:30px;
+}
 </style>
 </head>
+
 <body>
 
-<!-- Overlay + Sidebar -->
-<div id="overlay" onclick="closeMenu()"></div>
+<!-- 3 DOT MENU BUTTON -->
+<div class="menu-btn" onclick="toggleMenu()">⋮</div>
+
+<!-- SLIDE MENU -->
+<div id="menu">
+  <a href="index.html" onclick="toggleMenu()">🏠 Home</a>
+  <a href="alightmotion.html" onclick="toggleMenu()">🎞 Alight Motion</a>
+  <a href="#" onclick="toggleMenu()">After Effects</a>
+  <a href="#" onclick="toggleMenu()">NODE VIDEO</a>
+  <a href="#contact" onclick="toggleMenu()">📩 Contact</a>
+  
+</div>
 
 <header>
-  <div class="topbar-inner">
-    <div class="brand"><h1>VORAKS PRESETS</h1></div>
-    <button id="menuBtn" class="menu-btn">⋮</button>
+  <h1>VORAKS PRESETS</h1>
+
+  <div class="search-container">
+    <input type="text" id="presetSearch" placeholder="Search Colour Correction Presets...">
+    <button onclick="searchPresets()">Search</button>
   </div>
 </header>
 
-<aside id="sideMenu" class="side-menu">
-  <h3>Navigate</h3>
-  <a href="index.html">HOME</a>
-  <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-  <a href="#" onclick="event.preventDefault()">After Effects (Soon)</a>
-  <a href="#" onclick="event.preventDefault()">Node Video (Soon)</a>
-  <a href="#contact" onclick="goContact()">Contact</a>
-</aside>
-
-<main class="container">
-
-<section class="hero"><h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2></section>
-
-<!-- Normal preset cards -->
-<section id="presets"><h2>PRESET COLLECTION</h2>
-<div class="grid">
-
-<article class="preset-card">
- <div class="thumb"><img src="alight_motion1.png"></div>
- <h4>ALIGHT MOTION PRESETS</h4>
- <button class="open-btn" onclick="openAlight()">OPEN</button>
- <div id="am-content" style="display:none;margin-top:10px;">
-   <a href="ALIGHTMOTION.html">Open Alight Motion Presets →</a>
- </div>
-</article>
-
-<article class="preset-card">
- <div class="thumb"><img src="after_effects1.png"></div>
- <h4>AFTER EFFECTS (COMING SOON)</h4>
- <button class="soon-btn">COMING SOON</button>
-</article>
-
-<article class="preset-card">
- <div class="thumb"><img src="20251003_195318.png"></div>
- <h4>NODE VIDEO (COMING SOON)</h4>
- <button class="soon-btn">COMING SOON</button>
-</article>
-
-</div></section>
-
-<!-- JSON dynamic section -->
-<section class="dynamic-section">
-<h2>Colour Correction Presets (JSON)</h2>
-
-<div class="dynamic-search">
-  <input id="dynamicSearchInput" placeholder="Search presets...">
-  <button onclick="doDynamicSearch()">Search</button>
-</div>
-
-<div id="presetList" class="preset-list"><p>Loading presets...</p></div>
+<section id="presets-container">
+  <h2>Alight Motion Colour Correction Presets</h2>
+  <div id="presetList"></div>
 </section>
 
-<section id="contact" style="margin-top:30px"><h2>Contact</h2>
-<p>Email: <b>voraks200@gmail.com</b></p></section>
-<footer style="text-align:center;margin-top:20px">©2025 VORAKS</footer>
-</main>
+<section id="contact">
+  <h2>Contact Me</h2>
+  <p>For collaborations, business, talks — anytime!</p>
+  <a href="mailto:voraks200@gmail.com">Email Me</a>
+  <p><b>voraks200@gmail.com</b></p>
+</section>
 
-<!-- SCRIPT FINALLY COMPLETED ↓ -->
+<footer>© 2025 VORAKS</footer>
+
+
 <script>
-const sideMenu=document.getElementById("sideMenu"),overlay=document.getElementById("overlay");
-menuBtn.onclick=()=>openMenu();
-function openMenu(){sideMenu.classList.add("show");overlay.classList.add("show");}
-function closeMenu(){sideMenu.classList.remove("show");overlay.classList.remove("show");}
-function openAlight(){const a=document.getElementById("am-content");
-a.style.display=a.style.display==="block"?"none":"block";}
-
-/* ===== JSON PRESET LOAD ===== */
 let allPresets=[];
-fetch("presets.json")
-.then(r=>r.json())
-.then(d=>{allPresets=d;displayPresets(d)})
-.catch(e=>document.getElementById("presetList").innerHTML="<p>Failed to load</p>");
+fetch('presets.json').then(r=>r.json()).then(d=>{allPresets=d;displayPresets(d);});
 
 function displayPresets(list){
- let box=document.getElementById("presetList"); box.innerHTML="";
- list.forEach((p)=>{
-  let card=document.createElement("div"); card.className="json-preset";
+  const box=document.getElementById("presetList");
+  box.innerHTML="";
+  if(list.length==0){box.innerHTML="<p>No results found</p>";return;}
 
-  let media=[...(p.images||[]),...(p.videos||[])];
-  let slideIndex=0;
+  list.forEach((p,i)=>{
+    const card=document.createElement("div");
+    card.className="preset-section";
 
-  let slider=document.createElement("div"); slider.className="json-slider";
+    let slider="";
+    if(p.images?.length){
+      const ctrl=p.images.length>1?
+      `<button class='slider-btn prev-btn' onclick="moveSlide('s${i}',-1)">❮</button>
+       <button class='slider-btn next-btn' onclick="moveSlide('s${i}',1)">❯</button>`:"";
 
-  media.forEach((m,i)=>{
-    let el;
-    if(m.endsWith(".mp4")){el=document.createElement("video");el.src=m;el.controls=true;}
-    else{el=document.createElement("img");el.src=m;}
-    if(i===0)el.classList.add("active");
-    slider.appendChild(el);
+      slider=`<div class='slider' id='s${i}'>
+        ${p.images.map((x,n)=>`<img src="${x}" class='${n==0?"active":""}'>`).join("")}
+        ${ctrl}
+      </div>`;
+    }
+
+    card.innerHTML=`
+      <h3>${p.title}</h3>
+      <p>${p.description}</p>
+      <span class="label ${p.type}">${p.type=="paid"?"Paid":"Free"}</span>
+      ${slider}
+      ${p.download?`<a href='${p.download}' target='_blank'><button class='download-btn'>Download XML</button></a>`:""}
+    `;
+    box.appendChild(card);
   });
-
-  if(media.length>1){
-      let prev=document.createElement("button");
-      let next=document.createElement("button");
-      prev.innerText="<";next.innerText=">";
-      prev.className="slider-btn prev";next.className="slider-btn next";
-      prev.onclick=()=>change(-1); next.onclick=()=>change(1);
-      slider.append(prev,next);
-  }
-
-  function change(n){
-      let slides=slider.querySelectorAll("img,video");
-      slides[slideIndex].classList.remove("active");
-      slideIndex=(slideIndex+n+slides.length)%slides.length;
-      slides[slideIndex].classList.add("active");
-  }
-
-  let dBtn=document.createElement("button");
-  dBtn.className="json-download";dBtn.innerText="Download";
-  dBtn.onclick=()=>window.location=p.download;
-
-  card.innerHTML=`<h3>${p.title}</h3><p>${p.description||""}</p>`;
-  card.append(slider,dBtn);
-  box.append(card);
- });
 }
 
-/* SEARCH */
-function doDynamicSearch(){
- let q=document.getElementById("dynamicSearchInput").value.toLowerCase();
- displayPresets(allPresets.filter(p=>
-   p.title.toLowerCase().includes(q) ||
-   (p.description||"").toLowerCase().includes(q)
- ));
+function moveSlide(id,dir){
+  const s=document.getElementById(id);
+  let imgs=[...s.querySelectorAll("img")];
+  let i=imgs.findIndex(x=>x.classList.contains("active"));
+  imgs[i].classList.remove("active");
+  imgs[(i+dir+imgs.length)%imgs.length].classList.add("active");
 }
+
+function searchPresets(){
+  let q=document.getElementById("presetSearch").value.toLowerCase();
+  displayPresets(allPresets.filter(x=>x.title.toLowerCase().includes(q)));
+}
+
+/*** MENU TOGGLE FIX ***/
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("open");
+}
+
 </script>
+
 </body>
 </html>
