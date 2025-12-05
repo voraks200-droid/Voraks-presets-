@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="description" content="Professional presets, motion graphics tools and animations by VORAKS">
-<meta name="keywords" content="motion graphics, presets, animation, voraks, alight motion, after effects">
-<meta name="author" content="VORAKS">
-<meta name="robots" content="index, follow">
-<title>VORAKS - Presets & Motion Graphics</title>
+<!-- ────────────────── SEO & META ────────────────── -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>VORAKS PRESETS</title>
 
+<title>VORAKS PRESETS | Alight Motion • After Effects • Node Video • Motion Graphics</title>
+
+<meta name="description" content="Professional motion graphics presets, tools and animations by VORAKS. Explore Alight Motion presets, CC packs, logo animation presets, watermark presets and more.">
+<meta name="keywords" content="VORAKS presets, motion graphics presets, alight motion, after effects presets, node video presets, colour correction presets, cc packs, animation presets">
+<meta name="author" content="VORAKS">
+<meta name="robots" content="index, follow">
+
+<!-- Social Share -->
+<meta property="og:title" content="VORAKS – Motion Graphics Presets">
+<meta property="og:description" content="High quality presets for Alight Motion, After Effects & Node Video. CC packs, logo animations, watermark presets and more.">
+<meta property="og:url" content="https://voraks200-droid.github.io/voraks-presets/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="alight_motion1.png">
+
+<link rel="canonical" href="https://voraks200-droid.github.io/voraks-presets/">
+
+<!-- ────────────────── CSS ────────────────── -->
 <style>
 :root{
   --bg-grad: linear-gradient(180deg,#f0f7ff 0%, #eef6fb 60%);
@@ -25,7 +37,7 @@
   --mono:'Segoe UI', Roboto, Arial, sans-serif;
 }
 
-/* basic reset */
+/* base */
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -33,7 +45,7 @@ body{
   font-family:var(--mono);
   background:var(--bg-grad);
   color:#0f1724;
-  overflow-x:hidden; /* important: prevents horizontal scroll that may reveal the menu */
+  overflow-x:hidden;
 }
 
 /* Header */
@@ -46,12 +58,13 @@ header{
 .topbar-inner{
   max-width:var(--max-width);
   margin:0 auto; padding:12px var(--pad);
-  position:relative; display:flex; justify-content:center; align-items:center;
+  position:relative;
+  display:flex; justify-content:center; align-items:center;
   padding-right:calc(var(--pad) + var(--menu-w));
 }
 .brand h1{margin:0;font-size:22px;font-weight:800;color:#07203a}
 
-/* Menu Button */
+/* Menu */
 .menu-btn{
   position:absolute;right:var(--pad);top:50%;transform:translateY(-50%);
   width:var(--menu-w);height:56px;border-radius:14px;border:none;
@@ -60,7 +73,7 @@ header{
   box-shadow:0 8px 20px rgba(11,132,255,0.12);
 }
 
-/* Sidebar & overlay */
+/* Sidebar */
 #overlay{
   position:fixed; inset:0; background:rgba(0,0,0,0.3); display:none; z-index:1140;
 }
@@ -69,188 +82,148 @@ header{
 .side-menu{
   position:fixed; top:0; right:-420px; width:360px; height:100vh;
   background:#fff; padding:24px; box-shadow:-20px 0 60px rgba(0,0,0,0.08);
-  transition:right .28s ease; z-index:1160; border-left:1px solid rgba(15,23,36,0.04);
-  will-change: right;
+  transition:right .28s ease; z-index:1160;
+  border-left:1px solid rgba(15,23,36,0.04);
 }
 .side-menu.show{ right:0; }
 
 .side-menu h3{ margin:0 0 12px 0; color:#07203a; font-size:16px; }
-.side-menu a{ display:block; margin:10px 0; padding:10px; border-radius:8px; text-decoration:none;
-  color:var(--accent-1); border:1px solid rgba(11,132,255,0.08); }
+.side-menu a{
+  display:block; margin:10px 0; padding:10px; border-radius:8px; text-decoration:none;
+  color:var(--accent-1); border:1px solid rgba(11,132,255,0.08);
+}
 .side-menu a:hover{ background:rgba(11,132,255,0.06); }
 
-/* Main layout */
-.container{ max-width:var(--max-width); margin:30px auto; padding:0 var(--pad); }
-.hero{ background:white; padding:25px; border-radius:var(--radius); box-shadow:0 5px 15px rgba(0,0,0,0.06); }
+/* Main */
+.container{ max-width:var(--max-width); margin:30px auto; padding:0 var(--pad);}
+.hero{ background:white; padding:25px; border-radius:var(--radius); box-shadow:0 5px 15px rgba(0,0,0,0.06);}
 .hero h2{ margin:0; font-size:20px; color:#07203a }
 
-/* Grid & cards */
-.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:18px; margin-top:18px; }
-.preset-card{ background:var(--card); padding:12px; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,0.05); display:flex; flex-direction:column; }
-.thumb{ width:100%; height:120px; border-radius:8px; overflow:hidden; margin-bottom:10px; background:#f3f5f8; }
-.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-.preset-card h4{ margin:6px 0 6px 0; color:#07203a; font-size:16px }
-.preset-card p{ margin:0; color:var(--muted); font-size:13px }
+/* Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:18px; margin-top:18px;
+}
+.preset-card{
+  background:var(--card); padding:12px; border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.05); display:flex; flex-direction:column;
+}
+.thumb{ width:100%; height:120px; border-radius:8px; overflow:hidden; background:#f3f5f8; margin-bottom:10px; }
+.thumb img{ width:100%; height:100%; object-fit:cover; }
+
+.preset-card h4{ margin:6px 0; font-size:16px; color:#07203a}
+.preset-card p{ margin:0; color:var(--muted); font-size:13px}
 
 /* Buttons */
-.open-btn{
-  margin-top:10px; padding:10px; border:none; border-radius:8px; width:100%;
-  background:var(--accent-1); color:white; cursor:pointer; font-weight:600;
+.open-btn,.soon-btn{
+  margin-top:10px; width:100%; padding:10px; border:none; border-radius:8px; font-weight:600;
 }
+.open-btn{ background:var(--accent-1); color:#fff; }
 .open-btn:hover{ opacity:.95 }
+.soon-btn{ background:#9aa0a6; color:white; opacity:.85; cursor:not-allowed; }
 
-.soon-btn{
-  margin-top:10px; padding:10px; border:none; border-radius:8px; width:100%;
-  background:#9aa0a6; color:white; font-weight:600; opacity:.85; cursor:not-allowed;
-}
-
-/* small screens */
+/* mobile */
 @media (max-width:780px){
   .menu-btn{ right:12px; width:60px; height:56px; }
   .side-menu{ width:300px; right:-360px; }
-  .topbar-inner{ padding-right: calc(var(--pad) + var(--menu-w)); }
 }
 </style>
 </head>
+
 <body>
 
-<div id="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+<div id="overlay" onclick="closeMenu()"></div>
 
 <header>
   <div class="topbar-inner">
     <div class="brand"><h1>VORAKS PRESETS</h1></div>
-    <button id="menuBtn" class="menu-btn" aria-label="Open menu">⋮</button>
+    <button id="menuBtn" class="menu-btn">⋮</button>
   </div>
 </header>
 
-<!-- Side menu -->
-<aside id="sideMenu" class="side-menu" role="dialog" aria-hidden="true">
+<!-- Side Navigation -->
+<aside id="sideMenu" class="side-menu">
   <h3>Navigate</h3>
   <a href="index.html">HOME</a>
   <a href="ALIGHTMOTION.html">ALIGHT MOTION</a>
-  <a href="#" onclick="event.preventDefault();">AFTER EFFECTS (Soon)</a>
-  <a href="#" onclick="event.preventDefault();">NODE VIDEO (Soon)</a>
-  <a href="#contact" onclick="goContact();">CONTACT</a>
-
-  <div style="height:14px"></div>
+  <a href="#">AFTER EFFECTS (Soon)</a>
+  <a href="#">NODE VIDEO (Soon)</a>
+  <a href="#contact" onclick="goContact()">CONTACT</a>
+  <br>
   <small style="color:var(--muted)">© 2025 VORAKS Presets</small>
 </aside>
 
 <main class="container">
+
   <section class="hero">
     <h2>PROFESSIONAL PRESETS FOR MOTION GRAPHICS</h2>
   </section>
 
-  <section id="presets">
+  <section>
     <h2 style="margin-top:18px">PRESET COLLECTION</h2>
 
     <div class="grid">
 
-      <!-- ALIGHT MOTION -->
+      <!-- Alight -->
       <article class="preset-card">
-        <div class="thumb"><img src="alight_motion1.png" alt="Alight Motion preview"></div>
+        <div class="thumb"><img src="alight_motion1.png" alt="Alight Motion Presets"></div>
         <h4>ALIGHT MOTION PRESETS</h4>
-        <p>Click to view the full collection of Alight Motion presets.</p>
+        <p>Full Alight Motion preset collection.</p>
         <button class="open-btn" onclick="openAlight()">OPEN</button>
-
         <div id="am-content" style="display:none;margin-top:10px;">
-          <a href="ALIGHTMOTION.html" style="color:var(--accent-1);font-weight:700;text-decoration:none">Open Alight Motion Presets →</a>
-          <p style="margin-top:6px;font-size:13px;color:var(--muted)">Full preset collection available.</p>
+          <a href="ALIGHTMOTION.html" style="font-weight:700;color:var(--accent-1)">Open →</a>
+          <p style="font-size:13px;color:var(--muted)">All presets available.</p>
         </div>
       </article>
 
-      <!-- AFTER EFFECTS -->
+      <!-- AE -->
       <article class="preset-card">
-        <div class="thumb"><img src="after_effects1.png" alt="After Effects preview"></div>
+        <div class="thumb"><img src="after_effects1.png"></div>
         <h4>AFTER EFFECTS PRESETS (COMING SOON)</h4>
-        <p>Presets for After Effects — coming soon.</p>
-        <button class="soon-btn" aria-disabled="true">COMING SOON</button>
-
-        <div id="ae-content" style="display:none;margin-top:10px;">
-          <p style="font-weight:700">⏳ Coming soon...</p>
-          <p style="color:var(--muted);font-size:13px;margin-top:4px">We'll release these presets in a future update.</p>
-        </div>
+        <p>After Effects preset pack coming soon.</p>
+        <button class="soon-btn">COMING SOON</button>
       </article>
 
-      <!-- NODE VIDEO -->
+      <!-- Node -->
       <article class="preset-card">
-        <div class="thumb"><img src="20251003_195318.png" alt="Node Video preview"></div>
+        <div class="thumb"><img src="20251003_195318.png"></div>
         <h4>NODE VIDEO PRESETS (COMING SOON)</h4>
-        <p>Node Video presets are in development — preview available here.</p>
-        <button class="soon-btn" aria-disabled="true">COMING SOON</button>
-
-        <div id="node-content" style="display:none;margin-top:10px;">
-          <p style="font-weight:700">⏳ Coming soon...</p>
-          <p style="color:var(--muted);font-size:13px;margin-top:4px">Preview & release will be announced later.</p>
-        </div>
+        <p>Node Video automation preset pack coming soon.</p>
+        <button class="soon-btn">COMING SOON</button>
       </article>
 
     </div>
   </section>
 
-  <section id="contact" style="margin-top:28px;padding:18px;background:var(--card);border-radius:10px;border:1px solid rgba(15,23,36,0.04)">
+  <section id="contact" style="margin-top:28px;padding:18px;background:#fff;border-radius:10px;">
     <h2>Contact Me</h2>
-    <p style="color:var(--muted)">Have questions, collaboration ideas, or feedback? Reach out anytime.</p>
-    <a href="mailto:voraks200@gmail.com" style="display:inline-block;padding:10px 16px;border-radius:8px;background:var(--accent-2);color:#fff;text-decoration:none">📧 Email Me</a>
+    <p style="color:var(--muted)">Have questions or collab ideas?</p>
+    <a href="mailto:voraks200@gmail.com" style="padding:10px 16px;background:var(--accent-2);color:#fff;text-decoration:none;border-radius:8px;">📧 Email Me</a>
   </section>
 
   <footer style="text-align:center;margin-top:28px;color:var(--muted)">© 2025 VORAKS Presets</footer>
+
 </main>
 
 <script>
-  // get references once (safe)
-  const sideMenu = document.getElementById('sideMenu');
-  const overlay = document.getElementById('overlay');
-  const menuBtn = document.getElementById('menuBtn');
+const sideMenu=document.getElementById("sideMenu");
+const overlay=document.getElementById("overlay");
+const menuBtn=document.getElementById("menuBtn");
 
-  // ensure menu is hidden initially
-  sideMenu.classList.remove('show');
-  overlay.classList.remove('show');
-  sideMenu.setAttribute('aria-hidden','true');
+function openMenu(){ sideMenu.classList.add("show"); overlay.classList.add("show"); }
+function closeMenu(){ sideMenu.classList.remove("show"); overlay.classList.remove("show"); }
 
-  function openMenu(){
-    sideMenu.classList.add('show');
-    overlay.classList.add('show');
-    sideMenu.setAttribute('aria-hidden','false');
-  }
-  function closeMenu(){
-    sideMenu.classList.remove('show');
-    overlay.classList.remove('show');
-    sideMenu.setAttribute('aria-hidden','true');
-  }
+menuBtn.addEventListener("click",openMenu);
+overlay.addEventListener("click",closeMenu);
 
-  // click handlers
-  menuBtn.addEventListener('click', openMenu);
-  overlay.addEventListener('click', closeMenu);
+document.addEventListener("keydown",(e)=>{if(e.key==="Escape")closeMenu();});
 
-  // close with Esc key
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeMenu();
-  });
-
-  function goContact(){
-    closeMenu();
-    setTimeout(() => {
-      const el = document.querySelector('#contact');
-      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-    }, 180);
-  }
-
-  // alight open (reveals the small in-card content)
-  function openAlight(){
-    const el = document.getElementById('am-content');
-    if(el) el.style.display = (el.style.display === 'block') ? 'none' : 'block';
-  }
-
-  // adblock alert (safe guard)
-  try {
-    if (typeof blockAdBlock === 'undefined') {
-      // don't spam the user — only show alert if window is focused and it's the first load
-      // alert("We noticed you're using an ad blocker. Please whitelist VORAKS to support us ❤️");
-    } else if(blockAdBlock && typeof blockAdBlock.onDetected === 'function') {
-      blockAdBlock.onDetected(function(){ /* optional alert, kept commented */ });
-    }
-  } catch(e){ /* ignore */ }
+function goContact(){ closeMenu(); setTimeout(()=>{document.querySelector("#contact").scrollIntoView({behavior:"smooth"});},200); }
+function openAlight(){
+  const el=document.getElementById("am-content");
+  el.style.display=el.style.display==="block"?"none":"block";
+}
 </script>
 
 </body>
