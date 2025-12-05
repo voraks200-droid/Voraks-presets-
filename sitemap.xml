@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://voraks200-droid.github.io/voraks-presets/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <!-- Add extra pages below if they exist -->
+  <!--
+  <url>
+    <loc>https://voraks200-droid.github.io/voraks-presets/alight-motion.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://voraks200-droid.github.io/voraks-presets/contact.html</loc>
+    <priority>0.70</priority>
+  </url>
+  -->
+
+</urlset>
