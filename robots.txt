@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://voraks200-droid.github.io/voraks-presets/sitemap.xml
